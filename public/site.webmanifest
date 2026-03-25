@@ -1,0 +1,14 @@
+{
+  "name": "Murmur",
+  "short_name": "Murmur",
+  "description": "Voice dictation for Linux",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#060d18",
+  "theme_color": "#14b8a6",
+  "icons": [
+    { "src": "/favicon.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/logo.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

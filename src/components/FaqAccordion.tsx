@@ -37,22 +37,23 @@ export default function FaqAccordion() {
     <div className="space-y-2">
       {faqs.map((faq, i) => (
         <div
-          key={i}
+          key={faq.question}
           className={`faq-item glass overflow-hidden${openIndex === i ? " open" : ""}`}
         >
           <button
             type="button"
             onClick={() => setOpenIndex(openIndex === i ? null : i)}
             className="flex items-center gap-3 p-4 cursor-pointer text-xs w-full text-left"
+            aria-expanded={openIndex === i}
           >
-            <span className="faq-chevron font-mono text-glass-text/30">
+            <span className="faq-chevron font-mono text-glass-text/30" aria-hidden="true">
               &#x25b6;
             </span>
             <span className="text-glass-light font-medium">
               {faq.question}
             </span>
           </button>
-          <div className="faq-body px-4 text-[11px] text-glass-text leading-relaxed">
+          <div className="faq-body px-4 text-[11px] text-glass-text leading-relaxed" role="region">
             <div className="pb-4 pl-6">{faq.answer}</div>
           </div>
         </div>

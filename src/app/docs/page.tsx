@@ -8,11 +8,8 @@ export const metadata: Metadata = {
 export default function DocsPage() {
   return (
     <>
-      <div className="mesh" />
-      <div className="orb orb-1" />
-      <div className="orb orb-2" />
 
-      <div className="relative z-10 pt-24 pb-20">
+      <div className="pt-24 pb-20">
         <div className="max-w-3xl mx-auto px-6">
           <p className="text-[11px] font-mono uppercase tracking-widest text-teal mb-5">man murmur</p>
           <h1 className="text-4xl md:text-5xl font-extrabold text-glass-white tracking-tight mb-12">Documentation</h1>
@@ -27,7 +24,7 @@ export default function DocsPage() {
 
               <h3 className="text-lg font-bold text-glass-light pt-2">1. Install</h3>
               <div className="glass p-4 font-mono text-[12px]">
-                <div className="text-teal/70">wget <span className="text-glass-text/40">https://murmurlinux.com/latest.AppImage</span></div>
+                <div className="text-teal/70">wget <span className="text-glass-text/40">https://github.com/murmurlinux/murmur/releases/latest</span></div>
                 <div className="text-teal/70">chmod +x <span className="text-glass-text/40">latest.AppImage && ./latest.AppImage</span></div>
               </div>
 

@@ -17,11 +17,7 @@ interface ComparisonPageProps {
 export default function ComparisonPage({ competitor, tagline, intro, rows, whySwitch }: ComparisonPageProps) {
   return (
     <>
-      <div className="mesh" />
-      <div className="orb orb-1" />
-      <div className="orb orb-2" />
-
-      <div className="relative z-10 pt-24 pb-20">
+      <div className="pt-24 pb-20">
         <div className="max-w-4xl mx-auto px-6">
           {/* Header */}
           <p className="text-[11px] font-mono uppercase tracking-widest text-teal mb-5">diff --compare</p>
@@ -72,7 +68,7 @@ export default function ComparisonPage({ competitor, tagline, intro, rows, whySw
 
           {/* CTA */}
           <div className="text-center">
-            <a href="/#download" className="cta-grad text-sm font-mono inline-flex items-center gap-2">
+            <a href="/download" className="cta-grad text-sm font-mono inline-flex items-center gap-2">
               $ murmur --install
             </a>
           </div>
