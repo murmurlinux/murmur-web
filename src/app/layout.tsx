@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Sora, JetBrains_Mono } from "next/font/google";
+import Nav from "@/components/Nav";
 import ChatPlaceholder from "@/components/ChatPlaceholder";
 import "./globals.css";
 
@@ -53,6 +54,7 @@ export default function RootLayout({
       className={`${sora.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-ocean-deep text-white/40 font-sans">
+        <Nav />
         {children}
         <ChatPlaceholder />
       </body>
