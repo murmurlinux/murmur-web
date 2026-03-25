@@ -69,7 +69,7 @@ export default function AboutPage() {
 
             <h2 className="text-xl font-extrabold text-glass-white pt-4">Contact</h2>
             <p>
-              <a href="mailto:dev@murmurlinux.com" className="text-teal hover:underline">dev@murmurlinux.com</a> &middot;{" "}
+              <a href="mailto:hello@murmurlinux.com" className="text-teal hover:underline">hello@murmurlinux.com</a> &middot;{" "}
               <a href="https://github.com/murmurlinux/murmur" className="text-teal hover:underline">GitHub</a> &middot;{" "}
               <a href="https://github.com/murmurlinux/murmur/discussions" className="text-teal hover:underline">Discussions</a>
             </p>
