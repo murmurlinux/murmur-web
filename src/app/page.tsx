@@ -44,24 +44,6 @@ export default function Home() {
       <div className="orb orb-3" />
 
       <div className="relative z-10">
-        {/* ════════════════════ NAV ════════════════════ */}
-        <nav className="fixed top-0 left-0 right-0 z-50 nav-bg">
-          <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
-            <a href="#" className="font-bold text-lg text-glass-white tracking-tight flex items-center gap-2">
-              <span className="font-mono text-teal text-sm">&#x276f;</span> murmur
-            </a>
-            <div className="hidden md:flex items-center gap-7 text-xs font-mono text-glass-text">
-              <a href="#features" className="hover:text-teal transition-colors">--features</a>
-              <a href="#compare" className="hover:text-teal transition-colors">--compare</a>
-              <a href="#specs" className="hover:text-teal transition-colors">--specs</a>
-              <a href="#download" className="hover:text-teal transition-colors">--install</a>
-            </div>
-            <a href="#download" className="text-xs font-mono font-semibold px-4 py-2 rounded-lg bg-teal/15 text-teal hover:bg-teal/25 transition-colors border border-teal/20">
-              $ install
-            </a>
-          </div>
-        </nav>
-
         {/* ════════════════════ HERO ════════════════════ */}
         <section className="min-h-screen flex items-center pt-14">
           <div className="max-w-6xl mx-auto px-6 py-28 grid md:grid-cols-2 gap-14 items-center">
@@ -81,7 +63,7 @@ export default function Home() {
               </p>
 
               <div className="flex flex-wrap gap-4 mb-10">
-                <a href="#download" className="cta-grad text-sm font-mono">$ murmur --install</a>
+                <a href="/download" className="cta-grad text-sm font-mono">$ murmur --install</a>
                 <a href="#how" className="text-sm font-medium px-6 py-3.5 text-glass-text hover:text-glass-white transition-colors">How it works &darr;</a>
               </div>
 
@@ -277,10 +259,10 @@ export default function Home() {
                     <tr className="border-b border-white/5">
                       <th className="text-left py-3 px-4 text-glass-text font-normal">field</th>
                       <th className="py-3 px-3 text-teal font-bold">murmur</th>
-                      <th className="py-3 px-3 text-glass-text font-normal">wispr</th>
+                      <th className="py-3 px-3 text-glass-text font-normal"><a href="/compare/wispr-flow" className="hover:text-teal transition-colors">wispr</a></th>
                       <th className="py-3 px-3 text-glass-text font-normal">glaido</th>
-                      <th className="py-3 px-3 text-glass-text font-normal">nerd_dict</th>
-                      <th className="py-3 px-3 text-glass-text font-normal">vocalinux</th>
+                      <th className="py-3 px-3 text-glass-text font-normal"><a href="/compare/nerd-dictation" className="hover:text-teal transition-colors">nerd_dict</a></th>
+                      <th className="py-3 px-3 text-glass-text font-normal"><a href="/compare/vocalinux" className="hover:text-teal transition-colors">vocalinux</a></th>
                     </tr>
                   </thead>
                   <tbody className="text-center">
@@ -412,8 +394,8 @@ export default function Home() {
             <h2 className="text-3xl md:text-5xl font-extrabold text-glass-white tracking-tight mb-3">Ready in 30 seconds</h2>
             <p className="text-glass-text mb-10 text-sm">No account. No cloud.</p>
             <div className="flex flex-wrap justify-center gap-4 mb-8">
-              <a href="#" className="cta-grad text-sm font-mono flex items-center gap-2"><DownloadIcon /> .deb</a>
-              <a href="#" className="glass px-6 py-3.5 text-sm font-mono text-glass-white hover:bg-white/5 transition-colors flex items-center gap-2 rounded-xl"><DownloadIcon /> .AppImage</a>
+              <a href="/download" className="cta-grad text-sm font-mono flex items-center gap-2"><DownloadIcon /> .deb</a>
+              <a href="/download" className="glass px-6 py-3.5 text-sm font-mono text-glass-white hover:bg-white/5 transition-colors flex items-center gap-2 rounded-xl"><DownloadIcon /> .AppImage</a>
             </div>
             <div className="glass p-4 text-left font-mono text-[11px] max-w-md mx-auto">
               <div className="text-glass-text/25"># quick install</div>
@@ -472,15 +454,18 @@ export default function Home() {
                 <h4 className="text-[10px] font-mono text-glass-text/30 uppercase tracking-wider mb-3">product</h4>
                 <ul className="space-y-1.5 text-xs text-glass-text">
                   <li><a href="#features" className="hover:text-teal transition-colors">Features</a></li>
-                  <li><a href="#compare" className="hover:text-teal transition-colors">Compare</a></li>
-                  <li><a href="#download" className="hover:text-teal transition-colors">Download</a></li>
+                  <li><a href="/pricing" className="hover:text-teal transition-colors">Pricing</a></li>
+                  <li><a href="/download" className="hover:text-teal transition-colors">Download</a></li>
+                  <li><a href="/compare/vocalinux" className="hover:text-teal transition-colors">vs Vocalinux</a></li>
+                  <li><a href="/compare/wispr-flow" className="hover:text-teal transition-colors">vs Wispr Flow</a></li>
                 </ul>
               </div>
               <div>
                 <h4 className="text-[10px] font-mono text-glass-text/30 uppercase tracking-wider mb-3">resources</h4>
                 <ul className="space-y-1.5 text-xs text-glass-text">
                   <li><a href="/docs" className="hover:text-teal transition-colors">Docs</a></li>
-                  <li><a href="#faq" className="hover:text-teal transition-colors">FAQ</a></li>
+                  <li><a href="/about" className="hover:text-teal transition-colors">About</a></li>
+                  <li><a href="/changelog" className="hover:text-teal transition-colors">Changelog</a></li>
                   <li><a href="https://github.com/murmurlinux/murmur/blob/main/CONTRIBUTING.md" className="hover:text-teal transition-colors">Contributing</a></li>
                 </ul>
               </div>
