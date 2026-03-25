@@ -25,8 +25,8 @@ export default function DownloadPage() {
 
           {/* Download buttons */}
           <div className="flex flex-wrap gap-4 mb-12">
-            <a href="https://github.com/murmurlinux/murmur/releases" className="cta-grad text-base font-mono flex items-center gap-3"><DownloadIcon /> Download .deb</a>
-            <a href="https://github.com/murmurlinux/murmur/releases" className="glass px-8 py-4 text-base font-mono text-glass-white hover:bg-white/5 transition-colors flex items-center gap-3 rounded-xl"><DownloadIcon /> Download .AppImage</a>
+            <a href="https://github.com/murmurlinux/murmur/releases/download/v0.1.0/Murmur_0.1.0_amd64.deb" className="cta-grad text-base font-mono flex items-center gap-3"><DownloadIcon /> Download .deb</a>
+            <a href="https://github.com/murmurlinux/murmur/releases" className="glass px-8 py-4 text-base font-mono text-glass-white hover:bg-white/5 transition-colors flex items-center gap-3 rounded-xl"><DownloadIcon /> All Releases</a>
           </div>
 
           {/* Distro guides */}
