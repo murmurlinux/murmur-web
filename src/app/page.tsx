@@ -1,6 +1,7 @@
 import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal";
 import FaqAccordion from "@/components/FaqAccordion";
+import WaitlistForm from "@/components/WaitlistForm";
 
 /* ── SVG Icons ── */
 function GitHubIcon() {
@@ -419,6 +420,20 @@ export default function Home() {
               <div className="text-teal/70 mt-1">wget <span className="text-glass-text/40">https://murmurlinux.com/latest.AppImage</span></div>
               <div className="text-teal/70">chmod +x <span className="text-glass-text/40">latest.AppImage &amp;&amp; ./latest.AppImage</span></div>
             </div>
+          </div>
+        </section>
+
+        {/* ════════════════════ WAITLIST ════════════════════ */}
+        <section className="py-20 reveal">
+          <div className="max-w-2xl mx-auto px-6 text-center">
+            <p className="text-[11px] font-mono uppercase tracking-widest text-amber mb-5">pro tier</p>
+            <h2 className="text-2xl font-extrabold text-glass-white tracking-tight mb-3">
+              Get notified when Pro launches
+            </h2>
+            <p className="text-sm text-glass-text mb-8">
+              Cloud STT, LLM cleanup, 99+ languages, CLI mode. Be first to know.
+            </p>
+            <WaitlistForm />
           </div>
         </section>
 
