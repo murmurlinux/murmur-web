@@ -72,6 +72,11 @@ export default function Home() {
                 <span><span className="text-amber">&#x2713;</span> ~3MB</span>
                 <span><span className="text-teal">&#x2713;</span> GPL v3</span>
               </div>
+
+              <p className="text-[11px] text-glass-text/50 mt-4">
+                Pro tier coming soon — cloud STT, LLM cleanup, 99+ languages.{" "}
+                <a href="#waitlist" className="text-amber hover:text-amber/80 transition-colors underline underline-offset-2">Get notified</a>
+              </p>
             </div>
 
             {/* Right — Comm Badge + terminal */}
@@ -406,7 +411,7 @@ export default function Home() {
         </section>
 
         {/* ════════════════════ WAITLIST ════════════════════ */}
-        <section className="py-20 reveal">
+        <section id="waitlist" className="py-20 reveal">
           <div className="max-w-2xl mx-auto px-6 text-center">
             <p className="text-[11px] font-mono uppercase tracking-widest text-amber mb-5">pro tier</p>
             <h2 className="text-2xl font-extrabold text-glass-white tracking-tight mb-3">
