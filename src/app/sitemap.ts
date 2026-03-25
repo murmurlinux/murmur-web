@@ -14,5 +14,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/compare/vocalinux`, lastModified: lastBuild, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/wispr-flow`, lastModified: lastBuild, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/nerd-dictation`, lastModified: lastBuild, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/privacy`, lastModified: lastBuild, changeFrequency: "yearly", priority: 0.3 },
   ];
 }

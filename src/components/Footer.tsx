@@ -34,6 +34,7 @@ export default function Footer() {
               <li><a href="https://github.com/murmurlinux/murmur" className="hover:text-teal transition-colors">GitHub</a></li>
               <li><a href="https://github.com/murmurlinux/murmur/discussions" className="hover:text-teal transition-colors">Discussions</a></li>
               <li><a href="https://github.com/murmurlinux/murmur/blob/main/LICENSE" className="hover:text-teal transition-colors">License</a></li>
+              <li><a href="/privacy" className="hover:text-teal transition-colors">Privacy</a></li>
             </ul>
           </div>
         </div>
