@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Sora, JetBrains_Mono } from "next/font/google";
+import ChatPlaceholder from "@/components/ChatPlaceholder";
 import "./globals.css";
 
 const sora = Sora({
@@ -53,6 +54,7 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-ocean-deep text-white/40 font-sans">
         {children}
+        <ChatPlaceholder />
       </body>
     </html>
   );
