@@ -16,11 +16,8 @@ function DownloadIcon() {
 export default function DownloadPage() {
   return (
     <>
-      <div className="mesh" />
-      <div className="orb orb-1" />
-      <div className="orb orb-2" />
 
-      <div className="relative z-10 pt-24 pb-20">
+      <div className="pt-24 pb-20">
         <div className="max-w-4xl mx-auto px-6">
           <p className="text-[11px] font-mono uppercase tracking-widest text-amber mb-5">install</p>
           <h1 className="text-4xl md:text-5xl font-extrabold text-glass-white tracking-tight mb-4">Download Murmur</h1>
@@ -28,8 +25,8 @@ export default function DownloadPage() {
 
           {/* Download buttons */}
           <div className="flex flex-wrap gap-4 mb-12">
-            <a href="#" className="cta-grad text-base font-mono flex items-center gap-3"><DownloadIcon /> Download .deb</a>
-            <a href="#" className="glass px-8 py-4 text-base font-mono text-glass-white hover:bg-white/5 transition-colors flex items-center gap-3 rounded-xl"><DownloadIcon /> Download .AppImage</a>
+            <a href="https://github.com/murmurlinux/murmur/releases" className="cta-grad text-base font-mono flex items-center gap-3"><DownloadIcon /> Download .deb</a>
+            <a href="https://github.com/murmurlinux/murmur/releases" className="glass px-8 py-4 text-base font-mono text-glass-white hover:bg-white/5 transition-colors flex items-center gap-3 rounded-xl"><DownloadIcon /> Download .AppImage</a>
           </div>
 
           {/* Distro guides */}
@@ -43,7 +40,7 @@ export default function DownloadPage() {
                 <div className="term-bar"><div className="term-dot bg-teal/50" /><span className="ml-2 text-[9px] font-mono text-white/15">bash</span></div>
                 <div className="p-4 font-mono text-[12px] text-white/40 leading-relaxed">
                   <div className="text-glass-text/25"># Download and install .deb package</div>
-                  <div className="text-teal/70">wget <span className="text-glass-text/40">https://murmurlinux.com/latest.deb</span></div>
+                  <div className="text-teal/70">wget <span className="text-glass-text/40">https://github.com/murmurlinux/murmur/releases/latest</span></div>
                   <div className="text-teal/70">sudo dpkg -i <span className="text-glass-text/40">latest.deb</span></div>
                   <div className="mt-2 text-glass-text/25"># Run</div>
                   <div className="text-teal/70">murmur</div>
@@ -58,7 +55,7 @@ export default function DownloadPage() {
                 <div className="term-bar"><div className="term-dot bg-amber/50" /><span className="ml-2 text-[9px] font-mono text-white/15">bash</span></div>
                 <div className="p-4 font-mono text-[12px] text-white/40 leading-relaxed">
                   <div className="text-glass-text/25"># Download AppImage (works on any distro)</div>
-                  <div className="text-teal/70">wget <span className="text-glass-text/40">https://murmurlinux.com/latest.AppImage</span></div>
+                  <div className="text-teal/70">wget <span className="text-glass-text/40">https://github.com/murmurlinux/murmur/releases/latest</span></div>
                   <div className="text-teal/70">chmod +x <span className="text-glass-text/40">latest.AppImage</span></div>
                   <div className="text-teal/70">./latest.AppImage</div>
                 </div>

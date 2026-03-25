@@ -8,11 +8,8 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <div className="mesh" />
-      <div className="orb orb-1" />
-      <div className="orb orb-2" />
 
-      <div className="relative z-10 pt-24 pb-20">
+      <div className="pt-24 pb-20">
         <div className="max-w-3xl mx-auto px-6">
           <p className="text-[11px] font-mono uppercase tracking-widest text-teal mb-5">cat README</p>
           <h1 className="text-4xl md:text-5xl font-extrabold text-glass-white tracking-tight mb-8">About Murmur</h1>

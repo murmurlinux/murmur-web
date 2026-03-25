@@ -24,7 +24,7 @@
 
   /* Fonts */
   --font-sans: var(--font-sora), system-ui, sans-serif;
-  --font-mono: var(--font-mono), "JetBrains Mono", monospace;
+  --font-mono: var(--font-jetbrains), "JetBrains Mono", monospace;
 }
 
 html {
@@ -140,7 +140,7 @@ body {
 
 /* FAQ accordion */
 .faq-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-.faq-item.open .faq-body { max-height: 200px; }
+.faq-item.open .faq-body { max-height: 500px; }
 .faq-item.open .faq-chevron { transform: rotate(90deg); }
 .faq-chevron { transition: transform 0.2s ease; }
 

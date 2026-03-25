@@ -69,11 +69,8 @@ const faqs = [
 export default function PricingPage() {
   return (
     <>
-      <div className="mesh" />
-      <div className="orb orb-1" />
-      <div className="orb orb-2" />
 
-      <div className="relative z-10 pt-24 pb-20">
+      <div className="pt-24 pb-20">
         {/* Header */}
         <div className="max-w-4xl mx-auto px-6 text-center mb-16">
           <p className="text-[11px] font-mono uppercase tracking-widest text-teal mb-5">pricing</p>

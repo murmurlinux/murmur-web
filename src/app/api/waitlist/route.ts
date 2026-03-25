@@ -1,41 +1,34 @@
 import { NextResponse } from "next/server";
+import { supabase } from "@/lib/supabase";
 
-// Simple in-memory rate limiting (resets on cold start, which is fine for spam prevention)
-const rateLimitMap = new Map<string, number[]>();
-const RATE_LIMIT = 5;
-const RATE_WINDOW = 60 * 60 * 1000;
-
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const timestamps = rateLimitMap.get(ip) || [];
-  const recent = timestamps.filter((t) => now - t < RATE_WINDOW);
-  rateLimitMap.set(ip, recent);
-  return recent.length >= RATE_LIMIT;
-}
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const ALLOWED_ORIGIN = "https://murmurlinux.com";
 
 export async function POST(request: Request) {
   try {
-    const ip = request.headers.get("x-forwarded-for") || "unknown";
-
-    if (isRateLimited(ip)) {
-      return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+    // CSRF: verify origin
+    const origin = request.headers.get("origin");
+    if (origin && origin !== ALLOWED_ORIGIN && !origin.endsWith(".vercel.app")) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
-    const { email } = await request.json();
+    const body = await request.json();
+    const email = typeof body?.email === "string" ? body.email.trim().toLowerCase().slice(0, 254) : "";
 
-    if (!email || typeof email !== "string" || !email.includes("@")) {
+    if (!email || !EMAIL_REGEX.test(email)) {
       return NextResponse.json({ error: "Invalid email" }, { status: 400 });
     }
 
-    const sanitized = email.trim().toLowerCase().slice(0, 254);
+    const { error } = await supabase.from("waitlist").insert({ email });
 
-    // Log for now — we'll add proper storage (Upstash/Supabase) before launch
-    console.log(`[waitlist] ${sanitized} at ${new Date().toISOString()}`);
-
-    // Record rate limit
-    const timestamps = rateLimitMap.get(ip) || [];
-    timestamps.push(Date.now());
-    rateLimitMap.set(ip, timestamps);
+    if (error) {
+      // Duplicate email — treat as success (don't reveal if email exists)
+      if (error.code === "23505") {
+        return NextResponse.json({ message: "Added to waitlist" });
+      }
+      console.error("[waitlist] insert error:", error.code);
+      return NextResponse.json({ error: "Internal error" }, { status: 500 });
+    }
 
     return NextResponse.json({ message: "Added to waitlist" });
   } catch {
