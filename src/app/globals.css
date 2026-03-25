@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Ocean Terminal palette */
+  --color-ocean-deep: #060d18;
+  --color-ocean-mid: #0c1222;
+  --color-ocean-surf: #122035;
+
+  /* Glass */
+  --color-glass-bg: rgba(255, 255, 255, 0.025);
+  --color-glass-border: rgba(255, 255, 255, 0.06);
+  --color-glass-hover: rgba(255, 255, 255, 0.04);
+  --color-glass-text: rgba(255, 255, 255, 0.4);
+  --color-glass-light: rgba(255, 255, 255, 0.65);
+  --color-glass-white: rgba(255, 255, 255, 0.92);
+
+  /* Accents */
+  --color-teal: #14b8a6;
+  --color-teal-dim: #0d9488;
+  --color-teal-glow: rgba(20, 184, 166, 0.2);
+  --color-amber: #f59e0b;
+  --color-amber-dim: #d97706;
+  --color-amber-glow: rgba(245, 158, 11, 0.2);
+
+  /* Fonts */
+  --font-sans: var(--font-sora), system-ui, sans-serif;
+  --font-mono: var(--font-mono), "JetBrains Mono", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #060d18;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Glass card */
+.glass {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 14px;
+}
+
+.glass:hover {
+  background: var(--color-glass-hover);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Terminal window */
+.term {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.term-bar {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Gradient text */
+.grad-text {
+  background: linear-gradient(135deg, #14b8a6, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradient border CTA */
+.cta-grad {
+  position: relative;
+  border-radius: 12px;
+  padding: 14px 28px;
+  font-weight: 700;
+  color: #fff;
+  background: #060d18;
+  z-index: 1;
+}
+
+.cta-grad::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 14px;
+  background: conic-gradient(from var(--cta-angle, 0deg), #14b8a6, #f59e0b, #14b8a6);
+  z-index: -2;
+  animation: cta-spin 3s linear infinite;
+}
+
+.cta-grad::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 10px;
+  background: #060d18;
+  z-index: -1;
+}
+
+@property --cta-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes cta-spin {
+  to { --cta-angle: 360deg; }
+}
+
+/* LED pulse */
+@keyframes led-pulse {
+  0%, 100% { box-shadow: 0 0 4px 1px rgba(20, 184, 166, 0.25); }
+  50% { box-shadow: 0 0 10px 3px rgba(20, 184, 166, 0.45); }
+}
+.led { animation: led-pulse 1.4s ease-in-out infinite; }
+
+/* Waveform bars */
+@keyframes wave {
+  0%, 100% { height: var(--wave-min, 2px); }
+  50% { height: var(--wave-max, 16px); }
+}
+.wave-bar {
+  animation: wave var(--wave-duration, 1s) ease-in-out infinite;
+  animation-delay: var(--wave-delay, 0s);
+}
+
+/* Cursor blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.blink { animation: blink 1s step-end infinite; }
+
+/* FAQ accordion */
+.faq-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.faq-item.open .faq-body { max-height: 200px; }
+.faq-item.open .faq-chevron { transform: rotate(90deg); }
+.faq-chevron { transition: transform 0.2s ease; }
