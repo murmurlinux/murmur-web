@@ -63,7 +63,7 @@ export default function Home() {
 
               <div className="flex gap-6 text-[11px] font-mono text-glass-text">
                 <span><span className="text-teal">&#x2713;</span> no account</span>
-                <span><span className="text-amber">&#x2713;</span> ~3MB</span>
+                <span><span className="text-amber">&#x2713;</span> ~5MB</span>
                 <span><span className="text-teal">&#x2713;</span> GPL v3</span>
               </div>
 
@@ -298,7 +298,7 @@ export default function Home() {
                     </tr>
                     <tr className="border-b border-white/[0.03]">
                       <td className="text-left py-2.5 px-4 text-glass-light">binary</td>
-                      <td className="py-2.5 px-3 text-teal">~3MB</td>
+                      <td className="py-2.5 px-3 text-teal">~5MB</td>
                       <td className="py-2.5 px-3 text-glass-text">~50MB</td>
                       <td className="py-2.5 px-3 text-glass-text">unknown</td>
                       <td className="py-2.5 px-3 text-glass-text">~1MB</td>
@@ -352,7 +352,7 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
               {[
-                { value: "~3MB", label: "binary" },
+                { value: "~5MB", label: "binary" },
                 { value: "~50MB", label: "ram" },
                 { value: "<1s", label: "startup" },
                 { value: "~3s", label: "transcribe" },
