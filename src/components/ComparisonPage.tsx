@@ -55,8 +55,8 @@ export default function ComparisonPage({ competitor, tagline, intro, rows, whySw
             </div>
           </div>
 
-          {/* Why switch */}
-          <h2 className="text-2xl font-extrabold text-glass-white tracking-tight mb-8">Why choose Murmur?</h2>
+          {/* How we differ */}
+          <h2 className="text-2xl font-extrabold text-glass-white tracking-tight mb-8">Where Murmur differs</h2>
           <div className="grid md:grid-cols-2 gap-4 mb-12">
             {whySwitch.map((item) => (
               <div key={item.title} className="glass p-6">

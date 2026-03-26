@@ -22,8 +22,8 @@ export default function AboutPage() {
             </p>
 
             <p>
-              macOS has Wispr Flow and SuperWhisper. Windows has built-in dictation. Linux had Python scripts with VOSK and dependency hell.
-              Murmur was built to fix that — a native Rust/Tauri app that&apos;s 3MB, starts instantly, and actually looks good on your desktop.
+              Voice dictation on other platforms has been polished for years. We wanted to bring that same quality to Linux — a native
+              Rust/Tauri app that&apos;s 3MB, starts instantly, and actually looks good on your desktop.
             </p>
 
             <h2 className="text-xl font-extrabold text-glass-white pt-4">Open source commitment</h2>
