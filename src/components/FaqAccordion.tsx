@@ -19,9 +19,9 @@ const faqs: FaqItem[] = [
       "X11 now. Wayland via ydotool in V2. Recording works on both.",
   },
   {
-    question: "vs Vocalinux?",
+    question: "How does Murmur compare to other tools?",
     answer:
-      "Rust/Tauri (~3MB) vs Python/GTK (~200MB+). Floating widget vs GTK tray. No deps.",
+      "Murmur uses Rust and Tauri for a small, fast binary with a floating widget UI. Other great tools like Vocalinux and Nerd Dictation take different approaches. We recommend trying a few and using what works best for you.",
   },
   {
     question: "Paid version?",

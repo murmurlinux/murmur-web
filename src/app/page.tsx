@@ -134,13 +134,12 @@ export default function Home() {
         {/* ════════════════════ PROBLEM ════════════════════ */}
         <section className="py-28 reveal">
           <div className="max-w-3xl mx-auto px-6 text-center">
-            <p className="text-[11px] font-mono uppercase tracking-widest text-amber mb-5">stderr</p>
+            <p className="text-[11px] font-mono uppercase tracking-widest text-amber mb-5">motivation</p>
             <h2 className="text-3xl md:text-5xl font-extrabold text-glass-white leading-tight tracking-tight mb-8">
-              Linux deserved better than<br />CLI scripts and cloud services
+              Built for how we work
             </h2>
             <p className="text-base text-glass-text leading-relaxed max-w-xl mx-auto">
-              macOS has Wispr Flow. Windows has dictation. Linux has Vocalinux (Python/GTK, ~200MB, dependency hell)
-              and Nerd Dictation (VOSK, CLI-only). <span className="text-glass-light font-semibold">That changes now.</span>
+              We wanted voice dictation that felt native to Linux — tiny, offline, and with a UI worth keeping on your desktop. <span className="text-glass-light font-semibold">So we built it.</span>
             </p>
           </div>
         </section>
@@ -276,8 +275,8 @@ export default function Home() {
                     <tr className="border-b border-white/[0.03]">
                       <td className="text-left py-2.5 px-4 text-glass-light">processing</td>
                       <td className="py-2.5 px-3 text-teal">local</td>
-                      <td className="py-2.5 px-3 text-red-400/60">cloud</td>
-                      <td className="py-2.5 px-3 text-amber/60">servers</td>
+                      <td className="py-2.5 px-3 text-glass-text">cloud</td>
+                      <td className="py-2.5 px-3 text-glass-text">servers</td>
                       <td className="py-2.5 px-3 text-glass-text">local</td>
                       <td className="py-2.5 px-3 text-glass-text">local</td>
                     </tr>
@@ -286,14 +285,14 @@ export default function Home() {
                       <td className="py-2.5 px-3 text-amber">widget</td>
                       <td className="py-2.5 px-3 text-glass-text">tray</td>
                       <td className="py-2.5 px-3 text-glass-text">standard</td>
-                      <td className="py-2.5 px-3 text-white/15">none</td>
+                      <td className="py-2.5 px-3 text-glass-text">none</td>
                       <td className="py-2.5 px-3 text-glass-text">gtk</td>
                     </tr>
                     <tr className="border-b border-white/[0.03]">
                       <td className="text-left py-2.5 px-4 text-glass-light">engine</td>
                       <td className="py-2.5 px-3 text-teal">whisper.cpp</td>
-                      <td className="py-2.5 px-3 text-white/15">proprietary</td>
-                      <td className="py-2.5 px-3 text-white/15">undisclosed</td>
+                      <td className="py-2.5 px-3 text-glass-text">proprietary</td>
+                      <td className="py-2.5 px-3 text-glass-text">undisclosed</td>
                       <td className="py-2.5 px-3 text-glass-text">vosk</td>
                       <td className="py-2.5 px-3 text-glass-text">whisper.cpp</td>
                     </tr>
@@ -303,13 +302,13 @@ export default function Home() {
                       <td className="py-2.5 px-3 text-glass-text">~50MB</td>
                       <td className="py-2.5 px-3 text-glass-text">unknown</td>
                       <td className="py-2.5 px-3 text-glass-text">~1MB</td>
-                      <td className="py-2.5 px-3 text-red-400/60">~200MB+</td>
+                      <td className="py-2.5 px-3 text-glass-text">~200MB+</td>
                     </tr>
                     <tr>
                       <td className="text-left py-2.5 px-4 text-glass-light">cost</td>
                       <td className="py-2.5 px-3 text-amber font-bold">$0</td>
-                      <td className="py-2.5 px-3 text-red-400/60">$144/yr</td>
-                      <td className="py-2.5 px-3 text-amber/60">$20/mo</td>
+                      <td className="py-2.5 px-3 text-glass-text">$144/yr</td>
+                      <td className="py-2.5 px-3 text-glass-text">$20/mo</td>
                       <td className="py-2.5 px-3 text-glass-text">$0</td>
                       <td className="py-2.5 px-3 text-glass-text">$0</td>
                     </tr>
