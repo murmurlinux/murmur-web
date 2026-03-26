@@ -89,7 +89,7 @@ export default function DownloadPage() {
                 ["Display", "X11 (Wayland in V2)"],
                 ["Audio", "PipeWire or PulseAudio"],
                 ["Deps", "xdotool"],
-                ["Disk", "~3MB binary + ~75MB model (auto-downloads)"],
+                ["Disk", "~5MB binary + ~75MB model (auto-downloads)"],
               ].map(([k, v]) => (
                 <div key={k} className="flex justify-between">
                   <span className="text-glass-text">{k}</span>

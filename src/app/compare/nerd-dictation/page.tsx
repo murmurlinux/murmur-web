@@ -17,7 +17,7 @@ export default function NerdDictationComparison() {
         { label: "engine", murmur: "whisper.cpp", murmurColor: "text-teal", competitor: "VOSK" },
         { label: "gui", murmur: "Floating widget", murmurColor: "text-amber", competitor: "CLI" },
         { label: "stack", murmur: "Rust + Tauri 2", competitor: "Python" },
-        { label: "binary", murmur: "~3MB", murmurColor: "text-teal", competitor: "~1MB (+ deps)" },
+        { label: "binary", murmur: "~5MB", murmurColor: "text-teal", competitor: "~1MB (+ deps)" },
         { label: "memory", murmur: "~50MB", competitor: "~200MB" },
         { label: "skins", murmur: "Multiple + custom", murmurColor: "text-amber", competitor: "N/A" },
         { label: "hotkey", murmur: "Configurable GUI", murmurColor: "text-teal", competitor: "Manual evdev/xdotool" },

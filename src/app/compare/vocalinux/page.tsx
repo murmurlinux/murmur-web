@@ -15,7 +15,7 @@ export default function VocalinuxComparison() {
       intro="Both Murmur and Vocalinux use whisper.cpp for offline transcription on Linux. Vocalinux takes a Python/GTK approach with broad engine support (whisper.cpp, VOSK, OpenAI Whisper) and Vulkan GPU acceleration. Murmur takes a Rust/Tauri approach focused on a small binary and a floating widget UI. Both are free and open source."
       rows={[
         { label: "stack", murmur: "Rust + Tauri 2", competitor: "Python + GTK" },
-        { label: "binary", murmur: "~3MB", murmurColor: "text-teal", competitor: "~200MB+" },
+        { label: "binary", murmur: "~5MB", murmurColor: "text-teal", competitor: "~200MB+" },
         { label: "memory", murmur: "~50MB", murmurColor: "text-teal", competitor: "~300MB" },
         { label: "gui", murmur: "Floating widget", murmurColor: "text-amber", competitor: "GTK tray" },
         { label: "skins", murmur: "Multiple + custom", murmurColor: "text-amber", competitor: "Standard" },
@@ -28,7 +28,7 @@ export default function VocalinuxComparison() {
       whySwitch={[
         { title: "Single binary install", desc: "One AppImage or .deb — download and run. No runtime dependencies to manage." },
         { title: "Floating desktop widget", desc: "The Comm Badge sits on your desktop with customisable skins and accent colours. A different take on the UI." },
-        { title: "Lightweight footprint", desc: "~3MB binary, ~50MB RAM. Built with Rust for minimal resource usage." },
+        { title: "Lightweight footprint", desc: "~5MB binary, ~50MB RAM. Built with Rust for minimal resource usage." },
         { title: "Pro tier coming", desc: "Cloud STT for speed, LLM text cleanup, 99+ languages, CLI mode. Optional paid features that fund ongoing development." },
       ]}
     />
