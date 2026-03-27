@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Sora, JetBrains_Mono } from "next/font/google";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import ChatPlaceholder from "@/components/ChatPlaceholder";
 import "./globals.css";
 
 const sora = Sora({
@@ -80,7 +79,6 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <ChatPlaceholder />
       </body>
     </html>
   );
