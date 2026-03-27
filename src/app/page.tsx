@@ -125,7 +125,7 @@ export default function Home() {
               <span>offline=true</span><span className="text-white/8">|</span>
               <span>engine=whisper.cpp</span><span className="text-white/8">|</span>
               <span>platform=linux</span><span className="text-white/8">|</span>
-              <span>display=x11,wayland</span><span className="text-white/8">|</span>
+              <span>display=x11</span><span className="text-white/8">|</span>
               <span>license=GPL-3.0</span>
             </div>
           </div>
@@ -352,7 +352,7 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
               {[
-                { value: "~5MB", label: "binary" },
+                { value: "~5MB", label: ".deb" },
                 { value: "~50MB", label: "ram" },
                 { value: "<1s", label: "startup" },
                 { value: "~3s", label: "transcribe" },

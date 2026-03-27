@@ -14,6 +14,42 @@ export default function ChangelogPage() {
           <p className="text-[11px] font-mono uppercase tracking-widest text-teal mb-5">git log</p>
           <h1 className="text-4xl md:text-5xl font-extrabold text-glass-white tracking-tight mb-12">Changelog</h1>
 
+          {/* v0.1.1 */}
+          <div className="mb-12">
+            <div className="flex items-center gap-4 mb-4">
+              <span className="text-lg font-extrabold text-glass-white font-mono">v0.1.1</span>
+              <span className="text-[10px] font-mono text-glass-text/30 px-2 py-0.5 border border-glass-border rounded">2026-03-26</span>
+              <span className="text-[10px] font-mono text-teal px-2 py-0.5 bg-teal/10 rounded">MVP polish</span>
+            </div>
+
+            <div className="glass p-6 space-y-4">
+              <div>
+                <h3 className="font-mono text-[11px] text-teal font-semibold mb-2">feat: Tap-to-toggle recording mode</h3>
+                <p className="text-xs text-glass-text leading-relaxed">
+                  New recording mode alongside hold-to-record. Tap the hotkey once to start, again to stop. Configurable in settings.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-mono text-[11px] text-teal font-semibold mb-2">feat: Show/hide skin + recording popup</h3>
+                <p className="text-xs text-glass-text leading-relaxed">
+                  Hide the Comm Badge to system tray. When recording with skin hidden, a floating pill with the M logo and animated waveform bars appears at bottom-center. Accent colour follows your picker.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-mono text-[11px] text-teal font-semibold mb-2">feat: Settings redesign</h3>
+                <p className="text-xs text-glass-text leading-relaxed">
+                  Ocean terminal theme with glass cards, teal accents, and brand logo header. Native GNOME window with proper resize, snap, and maximize.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-mono text-[11px] text-amber font-semibold mb-2">fix: Default accent colour</h3>
+                <p className="text-xs text-glass-text leading-relaxed">
+                  Changed from cyan to brand green to match the website. Settings window background now matches theme with no white border flash.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* v0.1.0 */}
           <div className="mb-12">
             <div className="flex items-center gap-4 mb-4">
