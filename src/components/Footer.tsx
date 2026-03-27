@@ -7,7 +7,7 @@ export default function Footer() {
             <div className="font-bold text-glass-white mb-2 flex items-center gap-1.5">
               <span className="font-mono text-teal text-xs">&#x276f;</span> murmur
             </div>
-            <p className="text-[10px] text-glass-text">Voice dictation for Linux.<br />Free. Open source. Offline.</p>
+            <p className="text-[10px] text-glass-text">AI voice to text for Linux.<br />Free. Open source. Offline.</p>
           </div>
           <div>
             <h4 className="text-[10px] font-mono text-glass-text/30 uppercase tracking-wider mb-3">product</h4>
