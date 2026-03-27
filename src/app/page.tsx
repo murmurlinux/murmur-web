@@ -48,7 +48,7 @@ export default function Home() {
               </div>
 
               <h1 className="text-5xl md:text-6xl lg:text-[68px] font-extrabold text-glass-white leading-[1.05] tracking-tight mb-8">
-                Voice dictation<br />for Linux.<br /><span className="grad-text">Finally.</span>
+                AI voice to text<br />for Linux.<br /><span className="grad-text">Finally.</span>
               </h1>
 
               <p className="text-base text-glass-text leading-relaxed max-w-md mb-10">
@@ -73,7 +73,7 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Right — Comm Badge + terminal */}
+            {/* Right - Comm Badge + terminal */}
             <div className="relative flex flex-col items-center gap-3">
               <div className="relative z-10">
                 <Image
@@ -94,7 +94,7 @@ export default function Home() {
                     <div className="term-dot bg-teal/50" />
                     <div className="term-dot bg-amber/50" />
                     <div className="term-dot bg-teal/50" />
-                    <span className="ml-2 text-[10px] font-mono text-white/15">murmur — session</span>
+                    <span className="ml-2 text-[10px] font-mono text-white/15">murmur - session</span>
                   </div>
                   <div className="px-4 py-3 font-mono text-[11px] text-white/40 leading-relaxed">
                     <div><span className="text-teal/60">&#x276f;</span> murmur --start --model tiny.en</div>
@@ -139,7 +139,7 @@ export default function Home() {
               Built for how we work
             </h2>
             <p className="text-base text-glass-text leading-relaxed max-w-xl mx-auto">
-              We wanted voice dictation that felt native to Linux — tiny, offline, and with a UI worth keeping on your desktop. <span className="text-glass-light font-semibold">So we built it.</span>
+              We wanted voice dictation that felt native to Linux: tiny, offline, and with a UI worth keeping on your desktop. <span className="text-glass-light font-semibold">So we built it.</span>
             </p>
           </div>
         </section>
@@ -223,9 +223,9 @@ export default function Home() {
             </div>
             <div className="grid md:grid-cols-3 gap-4">
               {[
-                { flag: "--no-cloud", color: "text-teal", hover: "hover:border-teal/15", desc: "0ms cloud latency — there is no cloud. No account, no telemetry, no network." },
+                { flag: "--no-cloud", color: "text-teal", hover: "hover:border-teal/15", desc: "0ms cloud latency. There is no cloud. No account, no telemetry, no network." },
                 { flag: "--skin comm-badge", color: "text-amber", hover: "hover:border-amber/15", desc: "Floating desktop gadget with customisable skins and accent colours." },
-                { flag: "--target any", color: "text-teal", hover: "hover:border-teal/15", desc: "Universal XTEST injection. Terminals, IDEs, browsers — anything." },
+                { flag: "--target any", color: "text-teal", hover: "hover:border-teal/15", desc: "Universal XTEST injection. Terminals, IDEs, browsers, anything." },
                 { flag: "--bind Super+V", color: "text-amber", hover: "hover:border-amber/15", desc: "Configurable global hotkey. Hold to record, release to transcribe." },
                 { flag: "--model tiny|base|small", color: "text-teal", hover: "hover:border-teal/15", desc: "Tiny (75MB, ~3s), Base (142MB, ~8s), Small (466MB). Your call." },
                 { flag: "--license GPL-3.0", color: "text-amber", hover: "hover:border-amber/15", desc: "Free, open source. Read the code, verify, contribute." },

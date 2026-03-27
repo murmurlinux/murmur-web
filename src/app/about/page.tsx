@@ -16,24 +16,24 @@ export default function AboutPage() {
 
           <div className="space-y-6 text-sm text-glass-text leading-relaxed">
             <p>
-              Murmur is a voice dictation gadget for Linux. Press a hotkey, speak, and text appears at your cursor — in any application.
+              Murmur is a voice dictation gadget for Linux. Press a hotkey, speak, and text appears at your cursor, in any application.
               It&apos;s powered by <a href="https://github.com/ggerganov/whisper.cpp" className="text-teal hover:underline">whisper.cpp</a> for
               fast, accurate, 100% offline transcription.
             </p>
 
             <p>
-              Voice dictation on other platforms has been polished for years. We wanted to bring that same quality to Linux — a native
+              Voice dictation on other platforms has been polished for years. We wanted to bring that same quality to Linux: a native
               Rust/Tauri app that&apos;s 5MB, starts instantly, and actually looks good on your desktop.
             </p>
 
             <h2 className="text-xl font-extrabold text-glass-white pt-4">Open source commitment</h2>
             <p>
               Murmur is free and open source under the <a href="https://github.com/murmurlinux/murmur/blob/main/LICENSE" className="text-teal hover:underline">GPL v3</a> license.
-              The core app — local whisper transcription, all skins, push-to-talk, text injection — will always be free with no limits.
+              The core app (local whisper transcription, all skins, push-to-talk, text injection) will always be free with no limits.
             </p>
             <p>
               A Pro tier is planned for power users who want cloud STT speed (&lt;200ms via Groq/Deepgram), LLM text cleanup,
-              multi-language support (99+ languages), and a CLI mode for scripting. The free tier is not a trial — it&apos;s the complete product.
+              multi-language support (99+ languages), and a CLI mode for scripting. The free tier is not a trial. It&apos;s the complete product.
             </p>
 
             <h2 className="text-xl font-extrabold text-glass-white pt-4">Built with</h2>

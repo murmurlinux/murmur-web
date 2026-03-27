@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ComparisonPage from "@/components/ComparisonPage";
 
 export const metadata: Metadata = {
-  title: "Murmur vs Vocalinux — Linux Voice Dictation Comparison",
+  title: "Murmur vs Vocalinux | Linux Voice Dictation Comparison",
   description: "Compare Murmur and Vocalinux for Linux voice dictation. Two different approaches to the same goal.",
   alternates: { canonical: "https://murmurlinux.com/compare/vocalinux" },
 };
@@ -26,7 +26,7 @@ export default function VocalinuxComparison() {
         { label: "cost", murmur: "Free", competitor: "Free" },
       ]}
       whySwitch={[
-        { title: "Single binary install", desc: "One AppImage or .deb — download and run. No runtime dependencies to manage." },
+        { title: "Single binary install", desc: "One AppImage or .deb. Download and run. No runtime dependencies to manage." },
         { title: "Floating desktop widget", desc: "The Comm Badge sits on your desktop with customisable skins and accent colours. A different take on the UI." },
         { title: "Lightweight footprint", desc: "~5MB binary, ~50MB RAM. Built with Rust for minimal resource usage." },
         { title: "Pro tier coming", desc: "Cloud STT for speed, LLM text cleanup, 99+ languages, CLI mode. Optional paid features that fund ongoing development." },

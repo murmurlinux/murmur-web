@@ -31,7 +31,7 @@ export default function Nav() {
             $ install
           </a>
 
-          {/* Hamburger — mobile only */}
+          {/* Hamburger - mobile only */}
           <button
             type="button"
             onClick={() => setOpen(!open)}
