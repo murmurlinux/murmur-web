@@ -58,7 +58,7 @@ const faqs = [
   },
   {
     q: "Is the free version limited?",
-    a: "No. The free tier is a complete, genuinely great product. Unlimited local whisper, all skins, GPU acceleration, VAD — no artificial limits. Pro adds cloud speed and extra polish.",
+    a: "No. The free tier is a complete, genuinely great product. Unlimited local whisper, all skins, GPU acceleration, VAD. No artificial limits. Pro adds cloud speed and extra polish.",
   },
   {
     q: "Do you offer refunds?",
@@ -137,7 +137,7 @@ export default function PricingPage() {
         <div className="max-w-2xl mx-auto px-6 text-center mb-20">
           <div className="glass p-6">
             <p className="text-sm text-glass-light leading-relaxed">
-              <span className="text-teal font-semibold">The free tier is not a trial.</span> It&apos;s the full app — unlimited local whisper, all skins, GPU acceleration, Wayland support. Pro is for people who want <span className="text-amber">cloud speed</span> (&lt;200ms) and <span className="text-amber">AI text cleanup</span>.
+              <span className="text-teal font-semibold">The free tier is not a trial.</span> It&apos;s the full app: unlimited local whisper, all skins, GPU acceleration, Wayland support. Pro is for people who want <span className="text-amber">cloud speed</span> (&lt;200ms) and <span className="text-amber">AI text cleanup</span>.
             </p>
           </div>
         </div>

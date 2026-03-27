@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Murmur privacy policy — what data we collect, how we use it, and your rights.",
+  description: "Murmur privacy policy: what data we collect, how we use it, and your rights.",
   alternates: { canonical: "https://murmurlinux.com/privacy" },
 };
 
@@ -18,7 +18,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-lg font-bold text-glass-white mb-3">The short version</h2>
             <p>
-              Murmur is built for privacy. The desktop app processes your voice <strong className="text-glass-light">entirely on your machine</strong> — no
+              Murmur is built for privacy. The desktop app processes your voice <strong className="text-glass-light">entirely on your machine</strong>. No
               audio is sent anywhere. This website collects minimal data and we never sell or share it.
             </p>
           </section>
@@ -31,7 +31,7 @@ export default function PrivacyPage() {
               <li>No account required. No sign-up. No login.</li>
               <li>The only network request is downloading the Whisper model on first use (~75MB from Hugging Face). After that, zero network activity.</li>
               <li>Settings are stored locally at <code className="text-teal/70 font-mono text-xs">~/.local/share/murmur/</code>.</li>
-              <li>The app is open source (GPL v3) — you can <a href="https://github.com/murmurlinux/murmur" className="text-teal hover:underline">read the code</a> and verify these claims.</li>
+              <li>The app is open source (GPL v3). You can <a href="https://github.com/murmurlinux/murmur" className="text-teal hover:underline">read the code</a> and verify these claims.</li>
             </ul>
           </section>
 
@@ -82,7 +82,7 @@ export default function PrivacyPage() {
                   ["Hugging Face", "Model downloads (app only)", "huggingface.co/privacy"],
                 ].map(([name, purpose, url]) => (
                   <div key={name} className="flex justify-between flex-wrap gap-2">
-                    <span className="text-glass-light">{name} — {purpose}</span>
+                    <span className="text-glass-light">{name}: {purpose}</span>
                     <span className="text-glass-text/30">{url}</span>
                   </div>
                 ))}

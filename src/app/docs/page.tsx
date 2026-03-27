@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Documentation",
-  description: "Murmur documentation — getting started, settings, hotkeys, FAQ.",
+  description: "Murmur documentation: getting started, settings, hotkeys, FAQ.",
 };
 
 export default function DocsPage() {

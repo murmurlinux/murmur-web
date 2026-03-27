@@ -46,7 +46,7 @@ export async function POST(request: Request) {
     const { error } = await supabase.from("waitlist").insert({ email });
 
     if (error) {
-      // Duplicate email — treat as success (don't reveal if email exists)
+      // Duplicate email. Treat as success (don't reveal if email exists)
       if (error.code === "23505") {
         return NextResponse.json({ message: "Added to waitlist" });
       }

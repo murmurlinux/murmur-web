@@ -60,28 +60,28 @@ export default function ChangelogPage() {
 
             <div className="glass p-6 space-y-4">
               <div>
-                <h3 className="font-mono text-[11px] text-teal font-semibold mb-2">feat: Slice 1 — Transparent skinned gadget</h3>
+                <h3 className="font-mono text-[11px] text-teal font-semibold mb-2">feat: Slice 1: Transparent skinned gadget</h3>
                 <p className="text-xs text-glass-text leading-relaxed">
                   Transparent borderless window with click-through. Gemini v1 skin with interactive zones (mic button, gear button, status LEDs). Skin loader with hot zone definitions from JSON config.
                 </p>
               </div>
 
               <div>
-                <h3 className="font-mono text-[11px] text-teal font-semibold mb-2">feat: Slice 2 — Audio capture pipeline</h3>
+                <h3 className="font-mono text-[11px] text-teal font-semibold mb-2">feat: Slice 2: Audio capture pipeline</h3>
                 <p className="text-xs text-glass-text leading-relaxed">
                   Real-time audio capture via cpal (PipeWire/PulseAudio). Live waveform visualisation on the Comm Badge display. Automatic device selection.
                 </p>
               </div>
 
               <div>
-                <h3 className="font-mono text-[11px] text-teal font-semibold mb-2">feat: Slice 3 — Whisper transcription + text injection</h3>
+                <h3 className="font-mono text-[11px] text-teal font-semibold mb-2">feat: Slice 3: Whisper transcription + text injection</h3>
                 <p className="text-xs text-glass-text leading-relaxed">
                   whisper.cpp integration via whisper-rs. Auto-download models from Hugging Face (SHA256 verified). Text injection via xdotool (XTEST). Global hotkey via tauri-plugin-global-shortcut (Ctrl+Shift+Space).
                 </p>
               </div>
 
               <div>
-                <h3 className="font-mono text-[11px] text-teal font-semibold mb-2">feat: Slice 4 — Settings + packaging</h3>
+                <h3 className="font-mono text-[11px] text-teal font-semibold mb-2">feat: Slice 4: Settings + packaging</h3>
                 <p className="text-xs text-glass-text leading-relaxed">
                   Settings panel with hotkey configuration, model selection, and accent colour picker. Persistent settings via tauri-plugin-store. Click-through alpha channel hit testing. .deb and .AppImage packaging.
                 </p>

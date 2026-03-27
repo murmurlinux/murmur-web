@@ -16,14 +16,14 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Murmur — Voice Dictation for Linux",
+    default: "Murmur | AI Voice to Text for Linux",
     template: "%s | Murmur",
   },
   description:
-    "Voice dictation for Linux. 100% offline, open source, powered by whisper.cpp. Press a hotkey, speak, text at your cursor.",
+    "AI voice to text for Linux. 100% offline, open source, powered by whisper.cpp. Press a hotkey, speak, text at your cursor.",
   metadataBase: new URL("https://murmurlinux.com"),
   openGraph: {
-    title: "Murmur — Voice Dictation for Linux",
+    title: "Murmur | AI Voice to Text for Linux",
     description:
       "Press a hotkey, speak, text at your cursor. 100% offline. Your voice never leaves your machine.",
     url: "https://murmurlinux.com",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Murmur — Voice Dictation for Linux",
+    title: "Murmur | AI Voice to Text for Linux",
     description: "Press a hotkey, speak, text at your cursor. 100% offline.",
     images: ["/og-image.png"],
   },
@@ -64,7 +64,7 @@ export default function RootLayout({
       className={`${sora.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-ocean-deep text-white/40 font-sans">
-        {/* Background — shared across all pages */}
+        {/* Background - shared across all pages */}
         <div className="mesh" />
         <div className="orb orb-1" />
         <div className="orb orb-2" />
