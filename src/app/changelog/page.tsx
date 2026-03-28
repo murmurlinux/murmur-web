@@ -14,6 +14,36 @@ export default function ChangelogPage() {
           <p className="text-[11px] font-mono uppercase tracking-widest text-teal mb-5">git log</p>
           <h1 className="text-4xl md:text-5xl font-extrabold text-glass-white tracking-tight mb-12">Changelog</h1>
 
+          {/* v0.2.0 */}
+          <div className="mb-12">
+            <div className="flex items-center gap-4 mb-4">
+              <span className="text-lg font-extrabold text-glass-white font-mono">v0.2.0</span>
+              <span className="text-[10px] font-mono text-glass-text/30 px-2 py-0.5 border border-glass-border rounded">2026-03-28</span>
+              <span className="text-[10px] font-mono text-teal px-2 py-0.5 bg-teal/10 rounded">Wayland + VAD</span>
+            </div>
+
+            <div className="glass p-6 space-y-4">
+              <div>
+                <h3 className="font-mono text-[11px] text-teal font-semibold mb-2">feat: Wayland support via wtype</h3>
+                <p className="text-xs text-glass-text leading-relaxed">
+                  Text injection now works on Wayland desktops using wtype. Murmur auto-detects whether you are running X11 or Wayland and selects the correct backend (xdotool or wtype) automatically. No configuration needed.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-mono text-[11px] text-teal font-semibold mb-2">feat: Voice activity detection (VAD)</h3>
+                <p className="text-xs text-glass-text leading-relaxed">
+                  In tap mode, recording now stops automatically when silence is detected. No need to tap the hotkey a second time. Silence threshold and duration are tuned for natural speech pauses.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-mono text-[11px] text-amber font-semibold mb-2">audit: Pre-release security audit</h3>
+                <p className="text-xs text-glass-text leading-relaxed">
+                  Full security audit completed before release. All critical findings identified and fixed.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* v0.1.1 */}
           <div className="mb-12">
             <div className="flex items-center gap-4 mb-4">
