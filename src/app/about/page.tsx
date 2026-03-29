@@ -44,7 +44,7 @@ export default function AboutPage() {
                   ["Frontend", "SolidJS + TypeScript"],
                   ["STT Engine", "whisper.cpp (via whisper-rs)"],
                   ["Audio", "cpal (PipeWire / PulseAudio)"],
-                  ["Text Injection", "xdotool (XTEST)"],
+                  ["Text Injection", "xdotool (X11) / wtype (Wayland)"],
                   ["Website", "Next.js + Tailwind CSS on Vercel"],
                 ].map(([k, v]) => (
                   <div key={k} className="flex justify-between">
@@ -58,13 +58,14 @@ export default function AboutPage() {
             <h2 className="text-xl font-extrabold text-glass-white pt-4">Roadmap</h2>
             <div className="space-y-2 text-xs font-mono">
               <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Core dictation + settings (v0.1.0)</span></div>
-              <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>GPU acceleration (Vulkan)</span></div>
-              <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>Wayland support (ydotool)</span></div>
-              <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>Voice Activity Detection (tap-to-record)</span></div>
-              <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>Additional skins</span></div>
+              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">GPU acceleration (Vulkan) (v0.2.0)</span></div>
+              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Wayland support via wtype (v0.2.0)</span></div>
+              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Voice Activity Detection (v0.2.0)</span></div>
+              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Onboarding + auto-update (v0.2.0)</span></div>
+              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Multi-language support (v0.2.0)</span></div>
+              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Additional skins (v0.1.1)</span></div>
               <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>Cloud STT (Pro)</span></div>
               <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>CLI mode (murmur-cli)</span></div>
-              <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>Multi-language (99+)</span></div>
             </div>
 
             <h2 className="text-xl font-extrabold text-glass-white pt-4">Contact</h2>

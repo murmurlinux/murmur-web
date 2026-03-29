@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://murmurlinux.com";
-  const lastBuild = "2026-03-25";
+  const lastBuild = "2026-03-28";
 
   return [
     { url: baseUrl, lastModified: lastBuild, changeFrequency: "weekly", priority: 1 },

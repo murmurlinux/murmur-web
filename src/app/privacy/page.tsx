@@ -30,7 +30,7 @@ export default function PrivacyPage() {
               <li>No telemetry, analytics, or usage tracking of any kind.</li>
               <li>No account required. No sign-up. No login.</li>
               <li>The only network request is downloading the Whisper model on first use (~75MB from Hugging Face). After that, zero network activity.</li>
-              <li>Settings are stored locally at <code className="text-teal/70 font-mono text-xs">~/.local/share/murmur/</code>.</li>
+              <li>Settings are stored locally at <code className="text-teal/70 font-mono text-xs">~/.local/share/com.murmurlinux.murmur/</code>.</li>
               <li>The app is open source (GPL v3). You can <a href="https://github.com/murmurlinux/murmur" className="text-teal hover:underline">read the code</a> and verify these claims.</li>
             </ul>
           </section>

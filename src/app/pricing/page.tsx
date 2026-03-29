@@ -31,13 +31,13 @@ const features: FeatureRow[] = [
   { label: "GPU acceleration (Vulkan)", free: true, pro: true },
   { label: "Wayland + X11", free: true, pro: true },
   { label: "Configurable hotkey", free: true, pro: true },
-  { label: "Transcript history", free: true, pro: true },
+  { label: "Transcript history", free: false, pro: true },
   { label: "Voice commands", free: "Basic", pro: "Full set" },
   { label: "Cloud STT (Groq/Deepgram)", free: "BYOK", pro: "Managed" },
   { label: "LLM text cleanup", free: false, pro: true },
   { label: "Multi-language (99+)", free: "English", pro: "All" },
   { label: "CLI mode (murmur-cli)", free: false, pro: true },
-  { label: "Auto-update", free: false, pro: true },
+  { label: "Auto-update", free: true, pro: true },
   { label: "Support", free: "Community", pro: "Priority email" },
 ];
 

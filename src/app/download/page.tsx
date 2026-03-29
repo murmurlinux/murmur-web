@@ -39,9 +39,8 @@ export default function DownloadPage() {
               <div className="term">
                 <div className="term-bar"><div className="term-dot bg-teal/50" /><span className="ml-2 text-[9px] font-mono text-white/15">bash</span></div>
                 <div className="p-4 font-mono text-[12px] text-white/40 leading-relaxed">
-                  <div className="text-glass-text/25"># Download and install .deb package</div>
-                  <div className="text-teal/70">wget <span className="text-glass-text/40">https://github.com/murmurlinux/murmur/releases/latest</span></div>
-                  <div className="text-teal/70">sudo dpkg -i <span className="text-glass-text/40">latest.deb</span></div>
+                  <div className="text-glass-text/25"># Download .deb from GitHub Releases, then install</div>
+                  <div className="text-teal/70">sudo dpkg -i <span className="text-glass-text/40">Murmur_0.2.0_amd64.deb</span></div>
                   <div className="mt-2 text-glass-text/25"># Run</div>
                   <div className="text-teal/70">murmur</div>
                 </div>
@@ -54,10 +53,9 @@ export default function DownloadPage() {
               <div className="term">
                 <div className="term-bar"><div className="term-dot bg-amber/50" /><span className="ml-2 text-[9px] font-mono text-white/15">bash</span></div>
                 <div className="p-4 font-mono text-[12px] text-white/40 leading-relaxed">
-                  <div className="text-glass-text/25"># Download AppImage (works on any distro)</div>
-                  <div className="text-teal/70">wget <span className="text-glass-text/40">https://github.com/murmurlinux/murmur/releases/latest</span></div>
-                  <div className="text-teal/70">chmod +x <span className="text-glass-text/40">latest.AppImage</span></div>
-                  <div className="text-teal/70">./latest.AppImage</div>
+                  <div className="text-glass-text/25"># Download AppImage from GitHub Releases, then run</div>
+                  <div className="text-teal/70">chmod +x <span className="text-glass-text/40">Murmur_0.2.0_amd64.AppImage</span></div>
+                  <div className="text-teal/70">./Murmur_0.2.0_amd64.AppImage</div>
                 </div>
               </div>
             </div>
@@ -69,7 +67,7 @@ export default function DownloadPage() {
                 <div className="term-bar"><div className="term-dot bg-teal/50" /><span className="ml-2 text-[9px] font-mono text-white/15">bash</span></div>
                 <div className="p-4 font-mono text-[12px] text-white/40 leading-relaxed">
                   <div className="text-glass-text/25"># Prerequisites (Ubuntu/Debian)</div>
-                  <div className="text-teal/70">sudo apt install <span className="text-glass-text/40">libwebkit2gtk-4.1-dev libayatana-appindicator3-dev xdotool</span></div>
+                  <div className="text-teal/70">sudo apt install <span className="text-glass-text/40">libwebkit2gtk-4.1-dev libayatana-appindicator3-dev xdotool wtype</span></div>
                   <div className="mt-2 text-glass-text/25"># Clone and build</div>
                   <div className="text-teal/70">git clone <span className="text-glass-text/40">https://github.com/murmurlinux/murmur.git</span></div>
                   <div className="text-teal/70">cd <span className="text-glass-text/40">murmur</span></div>
@@ -86,9 +84,9 @@ export default function DownloadPage() {
             <div className="space-y-2 text-sm font-mono">
               {[
                 ["OS", "Linux (Ubuntu 22.04+, Fedora 38+, Arch)"],
-                ["Display", "X11 (Wayland in V2)"],
+                ["Display", "X11 + Wayland"],
                 ["Audio", "PipeWire or PulseAudio"],
-                ["Deps", "xdotool"],
+                ["Deps", "xdotool (X11) / wtype (Wayland)"],
                 ["Disk", "~5MB binary + ~75MB model (auto-downloads)"],
               ].map(([k, v]) => (
                 <div key={k} className="flex justify-between">

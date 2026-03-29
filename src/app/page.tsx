@@ -125,7 +125,7 @@ export default function Home() {
               <span>offline=true</span><span className="text-white/8">|</span>
               <span>engine=whisper.cpp</span><span className="text-white/8">|</span>
               <span>platform=linux</span><span className="text-white/8">|</span>
-              <span>display=x11</span><span className="text-white/8">|</span>
+              <span>display=x11+wayland</span><span className="text-white/8">|</span>
               <span>license=GPL-3.0</span>
             </div>
           </div>
@@ -225,7 +225,7 @@ export default function Home() {
               {[
                 { flag: "--no-cloud", color: "text-teal", hover: "hover:border-teal/15", desc: "0ms cloud latency. There is no cloud. No account, no telemetry, no network." },
                 { flag: "--skin comm-badge", color: "text-amber", hover: "hover:border-amber/15", desc: "Floating desktop gadget with customisable skins and accent colours." },
-                { flag: "--target any", color: "text-teal", hover: "hover:border-teal/15", desc: "Universal XTEST injection. Terminals, IDEs, browsers, anything." },
+                { flag: "--target any", color: "text-teal", hover: "hover:border-teal/15", desc: "X11 (XTEST) and Wayland (wtype) injection. Terminals, IDEs, browsers, anything." },
                 { flag: "--bind Super+V", color: "text-amber", hover: "hover:border-amber/15", desc: "Configurable global hotkey. Hold to record, release to transcribe." },
                 { flag: "--model tiny|base|small", color: "text-teal", hover: "hover:border-teal/15", desc: "Tiny (75MB, ~3s), Base (142MB, ~8s), Small (466MB). Your call." },
                 { flag: "--license GPL-3.0", color: "text-amber", hover: "hover:border-amber/15", desc: "Free, open source. Read the code, verify, contribute." },
@@ -367,7 +367,7 @@ export default function Home() {
               <div className="glass p-5">
                 <div className="font-mono text-[11px] text-teal mb-3">stack:</div>
                 <div className="space-y-1.5 text-[11px] font-mono">
-                  {[["backend", "Rust + Tauri 2"], ["frontend", "SolidJS"], ["stt", "whisper.cpp"], ["audio", "cpal"], ["inject", "xdotool"]].map(([k, v]) => (
+                  {[["backend", "Rust + Tauri 2"], ["frontend", "SolidJS"], ["stt", "whisper.cpp"], ["audio", "cpal"], ["inject", "xdotool / wtype"]].map(([k, v]) => (
                     <div key={k} className="flex justify-between"><span className="text-glass-text">{k}</span><span className="text-glass-light">{v}</span></div>
                   ))}
                 </div>
@@ -397,8 +397,8 @@ export default function Home() {
             </div>
             <div className="glass p-4 text-left font-mono text-[11px] max-w-md mx-auto">
               <div className="text-glass-text/25"># quick install</div>
-              <div className="text-teal/70 mt-1">wget <span className="text-glass-text/40">https://github.com/murmurlinux/murmur/releases/latest</span></div>
-              <div className="text-teal/70">chmod +x <span className="text-glass-text/40">latest.AppImage &amp;&amp; ./latest.AppImage</span></div>
+              <div className="text-teal/70 mt-1">Download <span className="text-glass-text/40">.deb or .AppImage from the</span> <a href="/download" className="text-teal hover:underline">download page</a></div>
+              <div className="text-teal/70">chmod +x <span className="text-glass-text/40">Murmur_*.AppImage &amp;&amp; ./Murmur_*.AppImage</span></div>
             </div>
           </div>
         </section>

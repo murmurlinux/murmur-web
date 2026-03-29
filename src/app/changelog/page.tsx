@@ -92,7 +92,7 @@ export default function ChangelogPage() {
               <div>
                 <h3 className="font-mono text-[11px] text-teal font-semibold mb-2">feat: Slice 1: Transparent skinned gadget</h3>
                 <p className="text-xs text-glass-text leading-relaxed">
-                  Transparent borderless window with click-through. Gemini v1 skin with interactive zones (mic button, gear button, status LEDs). Skin loader with hot zone definitions from JSON config.
+                  Transparent borderless window with click-through. Comm Badge skin with interactive zones (mic button, gear button, status LEDs). Skin loader with hot zone definitions from JSON config.
                 </p>
               </div>
 
