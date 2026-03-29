@@ -20,8 +20,8 @@ export default function VocalinuxComparison() {
         { label: "gui", murmur: "Floating widget", murmurColor: "text-amber", competitor: "GTK tray" },
         { label: "skins", murmur: "Multiple + custom", murmurColor: "text-amber", competitor: "Standard" },
         { label: "engines", murmur: "whisper.cpp", competitor: "whisper.cpp / VOSK / Whisper" },
-        { label: "gpu", murmur: "Planned (Vulkan)", competitor: "Vulkan" },
-        { label: "wayland", murmur: "X11 (Wayland in V2)", competitor: "X11 + Wayland" },
+        { label: "gpu", murmur: "Vulkan", murmurColor: "text-teal", competitor: "Vulkan" },
+        { label: "wayland", murmur: "X11 + Wayland", murmurColor: "text-teal", competitor: "X11 + Wayland" },
         { label: "install", murmur: "AppImage / .deb", competitor: "pip / installer script" },
         { label: "cost", murmur: "Free", competitor: "Free" },
       ]}

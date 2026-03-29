@@ -30,9 +30,14 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Too many requests" }, { status: 429 });
     }
 
-    // CSRF: verify origin (allow murmurlinux.com + its Vercel preview deploys only)
+    // CSRF: verify origin (allow murmurlinux.com and Vercel preview deploys only)
     const origin = request.headers.get("origin");
-    if (origin && origin !== ALLOWED_ORIGIN && !origin.includes("murmurlinux")) {
+    if (
+      origin &&
+      origin !== "https://murmurlinux.com" &&
+      origin !== "https://www.murmurlinux.com" &&
+      !origin.endsWith(".vercel.app")
+    ) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 

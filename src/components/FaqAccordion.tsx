@@ -11,12 +11,12 @@ const faqs: FaqItem[] = [
   {
     question: "Is it really 100% offline?",
     answer:
-      "Yes. Only the model download. Then zero network. Open source \u2014 verify.",
+      "Yes. Only the model download. Then zero network. Open source, verify it yourself.",
   },
   {
     question: "Wayland?",
     answer:
-      "X11 now. Wayland via ydotool in V2. Recording works on both.",
+      "Supported since v0.2.0. Murmur auto-detects X11 or Wayland and uses the correct backend (xdotool or wtype). No configuration needed.",
   },
   {
     question: "How does Murmur compare to other tools?",
