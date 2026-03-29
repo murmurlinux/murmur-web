@@ -58,12 +58,16 @@ export default function AboutPage() {
             <h2 className="text-xl font-extrabold text-glass-white pt-4">Roadmap</h2>
             <div className="space-y-2 text-xs font-mono">
               <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Core dictation + settings (v0.1.0)</span></div>
-              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">GPU acceleration (Vulkan) (v0.2.0)</span></div>
+              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Additional skins (v0.1.1)</span></div>
               <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Wayland support via wtype (v0.2.0)</span></div>
               <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Voice Activity Detection (v0.2.0)</span></div>
-              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Onboarding + auto-update (v0.2.0)</span></div>
-              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Multi-language support (v0.2.0)</span></div>
-              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Additional skins (v0.1.1)</span></div>
+              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">GPU acceleration via Vulkan (v0.3.0)</span></div>
+              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">First-run onboarding wizard (v0.3.0)</span></div>
+              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Start on login / XDG autostart (v0.3.0)</span></div>
+              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Auto-update system (v0.3.0)</span></div>
+              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Multi-language support, 19 languages (v0.3.0)</span></div>
+              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Translation toggle (v0.3.0)</span></div>
+              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">CI/CD pipeline with automated releases (v0.3.0)</span></div>
               <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>Cloud STT (Pro)</span></div>
               <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>CLI mode (murmur-cli)</span></div>
             </div>
