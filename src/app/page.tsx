@@ -224,10 +224,12 @@ export default function Home() {
             <div className="grid md:grid-cols-3 gap-4">
               {[
                 { flag: "--no-cloud", color: "text-teal", hover: "hover:border-teal/15", desc: "0ms cloud latency. There is no cloud. No account, no telemetry, no network." },
-                { flag: "--skin comm-badge", color: "text-amber", hover: "hover:border-amber/15", desc: "Floating desktop gadget with customisable skins and accent colours." },
+                { flag: "--gpu vulkan", color: "text-amber", hover: "hover:border-amber/15", desc: "GPU-accelerated transcription via Vulkan. Faster results on supported hardware." },
                 { flag: "--target any", color: "text-teal", hover: "hover:border-teal/15", desc: "X11 (XTEST) and Wayland (wtype) injection. Terminals, IDEs, browsers, anything." },
+                { flag: "--lang auto|19", color: "text-amber", hover: "hover:border-amber/15", desc: "19 languages with auto-detect. Translate any language to English on the fly." },
+                { flag: "--skin comm-badge", color: "text-teal", hover: "hover:border-teal/15", desc: "Floating desktop gadget with customisable skins and accent colours." },
                 { flag: "--bind Super+V", color: "text-amber", hover: "hover:border-amber/15", desc: "Configurable global hotkey. Hold to record, release to transcribe." },
-                { flag: "--model tiny|base|small", color: "text-teal", hover: "hover:border-teal/15", desc: "Tiny (75MB, ~3s), Base (142MB, ~8s), Small (466MB). Your call." },
+                { flag: "--auto-update", color: "text-teal", hover: "hover:border-teal/15", desc: "Built-in updater for AppImage, apt repo for .deb. Always on the latest version." },
                 { flag: "--license GPL-3.0", color: "text-amber", hover: "hover:border-amber/15", desc: "Free, open source. Read the code, verify, contribute." },
               ].map((f) => (
                 <div key={f.flag} className={`glass p-6 transition-all ${f.hover}`}>
