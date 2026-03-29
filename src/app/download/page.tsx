@@ -25,8 +25,8 @@ export default function DownloadPage() {
 
           {/* Download buttons */}
           <div className="flex flex-wrap gap-4 mb-12">
-            <a href="https://github.com/murmurlinux/murmur/releases/download/v0.2.0/Murmur_0.2.0_amd64.deb" className="cta-grad text-base font-mono flex items-center gap-3"><DownloadIcon /> Download .deb</a>
-            <a href="https://github.com/murmurlinux/murmur/releases/download/v0.2.0/Murmur_0.2.0_amd64.AppImage" className="glass px-8 py-4 text-base font-mono text-glass-white hover:bg-white/5 transition-colors flex items-center gap-3 rounded-xl"><DownloadIcon /> Download .AppImage</a>
+            <a href="https://github.com/murmurlinux/murmur/releases/download/v0.3.0/Murmur_0.3.0_amd64.deb" className="cta-grad text-base font-mono flex items-center gap-3"><DownloadIcon /> Download .deb</a>
+            <a href="https://github.com/murmurlinux/murmur/releases/download/v0.3.0/Murmur_0.3.0_amd64.AppImage" className="glass px-8 py-4 text-base font-mono text-glass-white hover:bg-white/5 transition-colors flex items-center gap-3 rounded-xl"><DownloadIcon /> Download .AppImage</a>
           </div>
 
           {/* Distro guides */}
@@ -40,7 +40,7 @@ export default function DownloadPage() {
                 <div className="term-bar"><div className="term-dot bg-teal/50" /><span className="ml-2 text-[9px] font-mono text-white/15">bash</span></div>
                 <div className="p-4 font-mono text-[12px] text-white/40 leading-relaxed">
                   <div className="text-glass-text/25"># Download .deb from GitHub Releases, then install</div>
-                  <div className="text-teal/70">sudo dpkg -i <span className="text-glass-text/40">Murmur_0.2.0_amd64.deb</span></div>
+                  <div className="text-teal/70">sudo dpkg -i <span className="text-glass-text/40">Murmur_0.3.0_amd64.deb</span></div>
                   <div className="mt-2 text-glass-text/25"># Run</div>
                   <div className="text-teal/70">murmur</div>
                 </div>
@@ -54,8 +54,8 @@ export default function DownloadPage() {
                 <div className="term-bar"><div className="term-dot bg-amber/50" /><span className="ml-2 text-[9px] font-mono text-white/15">bash</span></div>
                 <div className="p-4 font-mono text-[12px] text-white/40 leading-relaxed">
                   <div className="text-glass-text/25"># Download AppImage from GitHub Releases, then run</div>
-                  <div className="text-teal/70">chmod +x <span className="text-glass-text/40">Murmur_0.2.0_amd64.AppImage</span></div>
-                  <div className="text-teal/70">./Murmur_0.2.0_amd64.AppImage</div>
+                  <div className="text-teal/70">chmod +x <span className="text-glass-text/40">Murmur_0.3.0_amd64.AppImage</span></div>
+                  <div className="text-teal/70">./Murmur_0.3.0_amd64.AppImage</div>
                 </div>
               </div>
             </div>
