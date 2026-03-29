@@ -24,8 +24,9 @@ export default function DocsPage() {
 
               <h3 className="text-lg font-bold text-glass-light pt-2">1. Install</h3>
               <div className="glass p-4 font-mono text-[12px]">
-                <div className="text-teal/70">wget <span className="text-glass-text/40">https://github.com/murmurlinux/murmur/releases/latest</span></div>
-                <div className="text-teal/70">chmod +x <span className="text-glass-text/40">latest.AppImage && ./latest.AppImage</span></div>
+                <div className="text-glass-text/25"># Download .AppImage from <a href="https://github.com/murmurlinux/murmur/releases" className="text-teal/70 hover:underline">GitHub Releases</a></div>
+                <div className="text-teal/70">chmod +x <span className="text-glass-text/40">Murmur_0.2.0_amd64.AppImage</span></div>
+                <div className="text-teal/70">./Murmur_0.2.0_amd64.AppImage</div>
               </div>
 
               <h3 className="text-lg font-bold text-glass-light pt-2">2. First run</h3>
@@ -40,7 +41,7 @@ export default function DocsPage() {
           <section className="mb-12">
             <h2 className="text-2xl font-extrabold text-glass-white tracking-tight mb-4">Settings</h2>
             <p className="text-sm text-glass-text leading-relaxed mb-4">
-              Click the gear icon on the Comm Badge to open settings. Settings are stored at <code className="text-teal/70 font-mono text-xs">~/.local/share/murmur/settings.json</code>.
+              Click the gear icon on the Comm Badge to open settings. Settings are stored at <code className="text-teal/70 font-mono text-xs">~/.local/share/com.murmurlinux.murmur/settings.json</code>.
             </p>
             <div className="glass p-5">
               <div className="space-y-3 text-[12px] font-mono">
@@ -48,7 +49,7 @@ export default function DocsPage() {
                   ["Hotkey", "Global keyboard shortcut for push-to-talk. Default: Ctrl+Shift+Space"],
                   ["Model", "Whisper model size. Tiny (~3s), Base (~8s), Small (~20s). Auto-downloads on first use."],
                   ["Accent Colour", "Customise the Comm Badge glow colour via hue rotation."],
-                  ["Skin", "Select your widget style. Currently: Gemini v1. More coming."],
+                  ["Skin", "Select your widget style. Currently: Comm Badge. More coming."],
                 ].map(([k, v]) => (
                   <div key={k}>
                     <span className="text-teal font-semibold">{k}</span>
@@ -89,10 +90,10 @@ export default function DocsPage() {
             <h2 className="text-2xl font-extrabold text-glass-white tracking-tight mb-4">FAQ</h2>
             <div className="space-y-3">
               {[
-                { q: "Where are models stored?", a: "~/.local/share/murmur/models/. Models auto-download from Hugging Face on first use." },
+                { q: "Where are models stored?", a: "~/.local/share/com.murmurlinux.murmur/models/. Models auto-download from Hugging Face on first use." },
                 { q: "Can I use my own Whisper model?", a: "Not yet. Custom model paths are planned for a future release." },
                 { q: "Does it work without internet?", a: "Yes, 100%. After the initial model download, Murmur never makes network requests." },
-                { q: "Why xdotool?", a: "xdotool uses the XTEST extension to simulate keystrokes, which works in any X11 application. Wayland support via ydotool is planned." },
+                { q: "How does text injection work?", a: "On X11, Murmur uses xdotool (XTEST extension) to simulate keystrokes. On Wayland, it uses wtype. The correct backend is auto-detected at startup." },
                 { q: "How do I report a bug?", a: "Open an issue at github.com/murmurlinux/murmur/issues with your distro, desktop environment, and steps to reproduce." },
               ].map((faq) => (
                 <div key={faq.q} className="glass p-5">

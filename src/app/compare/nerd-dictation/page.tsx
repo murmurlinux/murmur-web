@@ -21,7 +21,7 @@ export default function NerdDictationComparison() {
         { label: "memory", murmur: "~50MB", competitor: "~200MB" },
         { label: "skins", murmur: "Multiple + custom", murmurColor: "text-amber", competitor: "N/A" },
         { label: "hotkey", murmur: "Configurable GUI", murmurColor: "text-teal", competitor: "Manual evdev/xdotool" },
-        { label: "text inject", murmur: "XTEST", competitor: "xdotool" },
+        { label: "text inject", murmur: "xdotool / wtype", murmurColor: "text-teal", competitor: "xdotool" },
         { label: "cost", murmur: "Free", competitor: "Free" },
       ]}
       whySwitch={[
