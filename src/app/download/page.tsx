@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import CodeBlock from "@/components/CodeBlock";
 
 export const metadata: Metadata = {
   title: "Download",
-  description: "Download Murmur for Linux. AppImage, .deb, or build from source. Ubuntu 22.04+, Fedora 38+, Arch.",
+  description: "Download Murmur for Linux. APT repository, AppImage, or .deb. Ubuntu 22.04+, Fedora 38+, Arch.",
 };
 
 function DownloadIcon() {
@@ -25,57 +26,55 @@ export default function DownloadPage() {
 
           {/* Download buttons */}
           <div className="flex flex-wrap gap-4 mb-12">
-            <a href="https://github.com/murmurlinux/murmur/releases/download/v0.3.0/Murmur_0.3.0_amd64.deb" className="cta-grad text-base font-mono flex items-center gap-3"><DownloadIcon /> Download .deb</a>
-            <a href="https://github.com/murmurlinux/murmur/releases/download/v0.3.0/Murmur_0.3.0_amd64.AppImage" className="glass px-8 py-4 text-base font-mono text-glass-white hover:bg-white/5 transition-colors flex items-center gap-3 rounded-xl"><DownloadIcon /> Download .AppImage</a>
+            <a href="https://github.com/murmurlinux/murmur/releases/download/v0.3.2/Murmur_0.3.2_amd64.deb" className="cta-grad text-base font-mono flex items-center gap-3"><DownloadIcon /> Download .deb</a>
+            <a href="https://github.com/murmurlinux/murmur/releases/download/v0.3.2/Murmur_0.3.2_amd64.AppImage" className="glass px-8 py-4 text-base font-mono text-glass-white hover:bg-white/5 transition-colors flex items-center gap-3 rounded-xl"><DownloadIcon /> Download .AppImage</a>
           </div>
 
-          {/* Distro guides */}
-          <h2 className="text-2xl font-extrabold text-glass-white tracking-tight mb-6">Install by distro</h2>
+          {/* Install methods */}
+          <h2 className="text-2xl font-extrabold text-glass-white tracking-tight mb-6">Install methods</h2>
 
-          <div className="space-y-4 mb-12">
-            {/* Ubuntu / Debian */}
+          <div className="space-y-6 mb-12">
+            {/* APT Repository */}
             <div className="glass p-6">
-              <h3 className="font-bold text-glass-white mb-3">Ubuntu / Debian</h3>
-              <div className="term">
-                <div className="term-bar"><div className="term-dot bg-teal/50" /><span className="ml-2 text-[9px] font-mono text-white/15">bash</span></div>
-                <div className="p-4 font-mono text-[12px] text-white/40 leading-relaxed">
-                  <div className="text-glass-text/25"># Download .deb from GitHub Releases, then install</div>
-                  <div className="text-teal/70">sudo dpkg -i <span className="text-glass-text/40">Murmur_0.3.0_amd64.deb</span></div>
-                  <div className="mt-2 text-glass-text/25"># Run</div>
-                  <div className="text-teal/70">murmur</div>
-                </div>
-              </div>
+              <h3 className="font-bold text-glass-white mb-1">APT Repository <span className="text-[10px] font-mono text-amber ml-2">recommended</span></h3>
+              <p className="text-xs text-glass-text mb-4">Add the repository, then install with apt.</p>
+              <CodeBlock
+                label="bash"
+                code={`curl -fsSL https://murmurlinux.github.io/apt/gpg.key | sudo tee /etc/apt/keyrings/murmur.asc > /dev/null\necho "deb [signed-by=/etc/apt/keyrings/murmur.asc] https://murmurlinux.github.io/apt/ stable main" | sudo tee /etc/apt/sources.list.d/murmur.list\nsudo apt update && sudo apt install murmur`}
+              />
+              <p className="text-[11px] text-glass-text/60 mt-3">Updates automatically via <code className="font-mono">sudo apt upgrade</code></p>
             </div>
 
-            {/* Fedora / Arch */}
+            {/* AppImage */}
             <div className="glass p-6">
-              <h3 className="font-bold text-glass-white mb-3">Fedora / Arch / Any distro (AppImage)</h3>
-              <div className="term">
-                <div className="term-bar"><div className="term-dot bg-amber/50" /><span className="ml-2 text-[9px] font-mono text-white/15">bash</span></div>
-                <div className="p-4 font-mono text-[12px] text-white/40 leading-relaxed">
-                  <div className="text-glass-text/25"># Download AppImage from GitHub Releases, then run</div>
-                  <div className="text-teal/70">chmod +x <span className="text-glass-text/40">Murmur_0.3.0_amd64.AppImage</span></div>
-                  <div className="text-teal/70">./Murmur_0.3.0_amd64.AppImage</div>
-                </div>
-              </div>
+              <h3 className="font-bold text-glass-white mb-1">AppImage</h3>
+              <p className="text-xs text-glass-text mb-4">Works on any distro. No installation required.</p>
+              <CodeBlock
+                label="bash"
+                code={`wget https://github.com/murmurlinux/murmur/releases/download/v0.3.2/Murmur_0.3.2_amd64.AppImage\nchmod +x Murmur_0.3.2_amd64.AppImage\n./Murmur_0.3.2_amd64.AppImage`}
+              />
+              <p className="text-[11px] text-glass-text/60 mt-3">Auto-updates on launch</p>
             </div>
 
-            {/* Build from source */}
+            {/* .deb direct */}
             <div className="glass p-6">
-              <h3 className="font-bold text-glass-white mb-3">Build from source</h3>
-              <div className="term">
-                <div className="term-bar"><div className="term-dot bg-teal/50" /><span className="ml-2 text-[9px] font-mono text-white/15">bash</span></div>
-                <div className="p-4 font-mono text-[12px] text-white/40 leading-relaxed">
-                  <div className="text-glass-text/25"># Prerequisites (Ubuntu/Debian)</div>
-                  <div className="text-teal/70">sudo apt install <span className="text-glass-text/40">libwebkit2gtk-4.1-dev libayatana-appindicator3-dev xdotool wtype</span></div>
-                  <div className="mt-2 text-glass-text/25"># Clone and build</div>
-                  <div className="text-teal/70">git clone <span className="text-glass-text/40">https://github.com/murmurlinux/murmur.git</span></div>
-                  <div className="text-teal/70">cd <span className="text-glass-text/40">murmur</span></div>
-                  <div className="text-teal/70">pnpm install</div>
-                  <div className="text-teal/70">pnpm tauri build</div>
-                </div>
-              </div>
+              <h3 className="font-bold text-glass-white mb-1">.deb direct</h3>
+              <p className="text-xs text-glass-text mb-4">Ubuntu / Debian. Download and install manually.</p>
+              <CodeBlock
+                label="bash"
+                code={`wget https://github.com/murmurlinux/murmur/releases/download/v0.3.2/Murmur_0.3.2_amd64.deb\nsudo dpkg -i Murmur_0.3.2_amd64.deb`}
+              />
+              <p className="text-[11px] text-glass-text/60 mt-3">Manual download required for updates</p>
             </div>
+          </div>
+
+          {/* Uninstall */}
+          <h2 className="text-2xl font-extrabold text-glass-white tracking-tight mb-4">Uninstall</h2>
+          <div className="glass p-6 mb-12">
+            <CodeBlock
+              label="bash"
+              code="sudo apt remove murmur"
+            />
           </div>
 
           {/* Requirements */}
@@ -87,7 +86,7 @@ export default function DownloadPage() {
                 ["Display", "X11 + Wayland"],
                 ["Audio", "PipeWire or PulseAudio"],
                 ["Deps", "xdotool (X11) / wtype (Wayland)"],
-                ["Disk", "~5MB binary + ~75MB model (auto-downloads)"],
+                ["Disk", "~15MB binary + ~75MB model (auto-downloads)"],
               ].map(([k, v]) => (
                 <div key={k} className="flex justify-between">
                   <span className="text-glass-text">{k}</span>
