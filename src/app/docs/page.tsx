@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import CodeBlock from "@/components/CodeBlock";
 
 export const metadata: Metadata = {
   title: "Documentation",
@@ -23,11 +24,30 @@ export default function DocsPage() {
               </p>
 
               <h3 className="text-lg font-bold text-glass-light pt-2">1. Install</h3>
-              <div className="glass p-4 font-mono text-[12px]">
-                <div className="text-glass-text/25"># Download .AppImage from <a href="https://github.com/murmurlinux/murmur/releases" className="text-teal/70 hover:underline">GitHub Releases</a></div>
-                <div className="text-teal/70">chmod +x <span className="text-glass-text/40">Murmur_0.2.0_amd64.AppImage</span></div>
-                <div className="text-teal/70">./Murmur_0.2.0_amd64.AppImage</div>
-              </div>
+
+              <p className="text-xs text-glass-text">
+                <strong className="text-glass-light">APT Repository</strong> (recommended):
+              </p>
+              <CodeBlock
+                label="bash"
+                code={`curl -fsSL https://murmurlinux.github.io/apt/gpg.key | sudo tee /etc/apt/keyrings/murmur.asc > /dev/null\necho "deb [signed-by=/etc/apt/keyrings/murmur.asc] https://murmurlinux.github.io/apt/ stable main" | sudo tee /etc/apt/sources.list.d/murmur.list\nsudo apt update && sudo apt install murmur`}
+              />
+
+              <p className="text-xs text-glass-text mt-4">
+                <strong className="text-glass-light">AppImage</strong> (any distro):
+              </p>
+              <CodeBlock
+                label="bash"
+                code={`wget https://github.com/murmurlinux/murmur/releases/download/v0.3.2/Murmur_0.3.2_amd64.AppImage\nchmod +x Murmur_0.3.2_amd64.AppImage\n./Murmur_0.3.2_amd64.AppImage`}
+              />
+
+              <p className="text-xs text-glass-text mt-4">
+                <strong className="text-glass-light">.deb direct</strong> (Ubuntu / Debian):
+              </p>
+              <CodeBlock
+                label="bash"
+                code={`wget https://github.com/murmurlinux/murmur/releases/download/v0.3.2/Murmur_0.3.2_amd64.deb\nsudo dpkg -i Murmur_0.3.2_amd64.deb`}
+              />
 
               <h3 className="text-lg font-bold text-glass-light pt-2">2. First run</h3>
               <p>On first launch, Murmur will download the Whisper Tiny model (~75MB). This is a one-time download.</p>

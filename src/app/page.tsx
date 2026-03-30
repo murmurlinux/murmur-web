@@ -2,6 +2,7 @@ import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal";
 import FaqAccordion from "@/components/FaqAccordion";
 import WaitlistForm from "@/components/WaitlistForm";
+import CodeBlock from "@/components/CodeBlock";
 
 /* ── SVG Icons ── */
 function GitHubIcon() {
@@ -63,7 +64,7 @@ export default function Home() {
 
               <div className="flex gap-6 text-[11px] font-mono text-glass-text">
                 <span><span className="text-teal">&#x2713;</span> no account</span>
-                <span><span className="text-amber">&#x2713;</span> ~5MB</span>
+                <span><span className="text-amber">&#x2713;</span> ~15MB</span>
                 <span><span className="text-teal">&#x2713;</span> GPL v3</span>
               </div>
 
@@ -300,7 +301,7 @@ export default function Home() {
                     </tr>
                     <tr className="border-b border-white/[0.03]">
                       <td className="text-left py-2.5 px-4 text-glass-light">binary</td>
-                      <td className="py-2.5 px-3 text-teal">~5MB</td>
+                      <td className="py-2.5 px-3 text-teal">~15MB</td>
                       <td className="py-2.5 px-3 text-glass-text">~50MB</td>
                       <td className="py-2.5 px-3 text-glass-text">unknown</td>
                       <td className="py-2.5 px-3 text-glass-text">~1MB</td>
@@ -354,7 +355,7 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
               {[
-                { value: "~5MB", label: ".deb" },
+                { value: "~15MB", label: ".deb" },
                 { value: "~50MB", label: "ram" },
                 { value: "<1s", label: "startup" },
                 { value: "~3s", label: "transcribe" },
@@ -397,10 +398,11 @@ export default function Home() {
               <a href="/download" className="cta-grad text-sm font-mono flex items-center gap-2"><DownloadIcon /> .deb</a>
               <a href="/download" className="glass px-6 py-3.5 text-sm font-mono text-glass-white hover:bg-white/5 transition-colors flex items-center gap-2 rounded-xl"><DownloadIcon /> .AppImage</a>
             </div>
-            <div className="glass p-4 text-left font-mono text-[11px] max-w-md mx-auto">
-              <div className="text-glass-text/25"># quick install</div>
-              <div className="text-teal/70 mt-1">Download <span className="text-glass-text/40">.deb or .AppImage from the</span> <a href="/download" className="text-teal hover:underline">download page</a></div>
-              <div className="text-teal/70">chmod +x <span className="text-glass-text/40">Murmur_*.AppImage &amp;&amp; ./Murmur_*.AppImage</span></div>
+            <div className="max-w-lg mx-auto text-left">
+              <CodeBlock
+                label="bash"
+                code={`curl -fsSL https://murmurlinux.github.io/apt/gpg.key | sudo tee /etc/apt/keyrings/murmur.asc > /dev/null\necho "deb [signed-by=/etc/apt/keyrings/murmur.asc] https://murmurlinux.github.io/apt/ stable main" | sudo tee /etc/apt/sources.list.d/murmur.list\nsudo apt update && sudo apt install murmur`}
+              />
             </div>
           </div>
         </section>
