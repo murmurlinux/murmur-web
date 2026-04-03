@@ -15,8 +15,6 @@ export default function Footer() {
               <li><a href="/#features" className="hover:text-teal transition-colors">Features</a></li>
               <li><a href="/pricing" className="hover:text-teal transition-colors">Pricing</a></li>
               <li><a href="/download" className="hover:text-teal transition-colors">Download</a></li>
-              <li><a href="/compare/vocalinux" className="hover:text-teal transition-colors">vs Vocalinux</a></li>
-              <li><a href="/compare/wispr-flow" className="hover:text-teal transition-colors">vs Wispr Flow</a></li>
             </ul>
           </div>
           <div>

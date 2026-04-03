@@ -133,7 +133,7 @@ Q: How do I report a bug?
 A: Open an issue at github.com/murmurlinux/murmur/issues with your distro, desktop environment, and steps to reproduce.
 
 Q: How does Murmur compare to other tools?
-A: Murmur uses Rust and Tauri for a small, fast binary with a floating widget UI. Other great tools like Vocalinux and Nerd Dictation take different approaches. We recommend trying a few and using what works best for you.
+A: Murmur uses Rust and Tauri for a small, fast binary with a floating widget UI. There are other great Linux dictation tools that take different approaches. We recommend trying a few and using what works best for you.
 
 ## Useful Links
 
