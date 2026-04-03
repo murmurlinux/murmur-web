@@ -38,7 +38,7 @@ export default function DocsPage() {
               </p>
               <CodeBlock
                 label="bash"
-                code={`wget https://github.com/murmurlinux/murmur/releases/download/v0.3.2/Murmur_0.3.2_amd64.AppImage\nchmod +x Murmur_0.3.2_amd64.AppImage\n./Murmur_0.3.2_amd64.AppImage`}
+                code={`wget https://github.com/murmurlinux/murmur/releases/download/v0.3.3/Murmur_0.3.3_amd64.AppImage\nchmod +x Murmur_0.3.3_amd64.AppImage\n./Murmur_0.3.3_amd64.AppImage`}
               />
 
               <p className="text-xs text-glass-text mt-4">
@@ -46,7 +46,7 @@ export default function DocsPage() {
               </p>
               <CodeBlock
                 label="bash"
-                code={`wget https://github.com/murmurlinux/murmur/releases/download/v0.3.2/Murmur_0.3.2_amd64.deb\nsudo dpkg -i Murmur_0.3.2_amd64.deb`}
+                code={`wget https://github.com/murmurlinux/murmur/releases/download/v0.3.3/Murmur_0.3.3_amd64.deb\nsudo dpkg -i Murmur_0.3.3_amd64.deb`}
               />
 
               <h3 className="text-lg font-bold text-glass-light pt-2">2. First run</h3>
