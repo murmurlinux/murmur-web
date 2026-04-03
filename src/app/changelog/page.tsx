@@ -14,6 +14,42 @@ export default function ChangelogPage() {
           <p className="text-[11px] font-mono uppercase tracking-widest text-teal mb-5">git log</p>
           <h1 className="text-4xl md:text-5xl font-extrabold text-glass-white tracking-tight mb-12">Changelog</h1>
 
+          {/* v0.3.3 */}
+          <div className="mb-12">
+            <div className="flex items-center gap-4 mb-4">
+              <span className="text-lg font-extrabold text-glass-white font-mono">v0.3.3</span>
+              <span className="text-[10px] font-mono text-glass-text/30 px-2 py-0.5 border border-glass-border rounded">2026-04-03</span>
+              <span className="text-[10px] font-mono text-teal px-2 py-0.5 bg-teal/10 rounded">Polish + Blind Tests</span>
+            </div>
+
+            <div className="glass p-6 space-y-4">
+              <div>
+                <h3 className="font-mono text-[11px] text-teal font-semibold mb-2">feat: Settings keyboard shortcut</h3>
+                <p className="text-xs text-glass-text leading-relaxed">
+                  Press Ctrl+Shift+, to open the settings window from anywhere. Registered alongside the recording hotkey.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-mono text-[11px] text-teal font-semibold mb-2">feat: Dynamic tray tooltip</h3>
+                <p className="text-xs text-glass-text leading-relaxed">
+                  The system tray icon now shows the current state: &ldquo;Recording...&rdquo;, &ldquo;Processing...&rdquo;, or &ldquo;Voice to Text&rdquo;.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-mono text-[11px] text-teal font-semibold mb-2">fix: Audio trimming bugs</h3>
+                <p className="text-xs text-glass-text leading-relaxed">
+                  Fixed: all-silence audio was returned unchanged (caused Whisper hallucinations). Short utterances in leading audio chunks are no longer silently dropped.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-mono text-[11px] text-teal font-semibold mb-2">chore: Blind property test suite</h3>
+                <p className="text-xs text-glass-text leading-relaxed">
+                  58 property tests (32 Rust, 26 TypeScript) now run in CI. Tests were written without reading source code to catch real bugs, and they did.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* v0.3.0 */}
           <div className="mb-12">
             <div className="flex items-center gap-4 mb-4">

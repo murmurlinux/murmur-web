@@ -26,8 +26,8 @@ export default function DownloadPage() {
 
           {/* Download buttons */}
           <div className="flex flex-wrap gap-4 mb-12">
-            <a href="https://github.com/murmurlinux/murmur/releases/download/v0.3.2/Murmur_0.3.2_amd64.deb" className="cta-grad text-base font-mono flex items-center gap-3"><DownloadIcon /> Download .deb</a>
-            <a href="https://github.com/murmurlinux/murmur/releases/download/v0.3.2/Murmur_0.3.2_amd64.AppImage" className="glass px-8 py-4 text-base font-mono text-glass-white hover:bg-white/5 transition-colors flex items-center gap-3 rounded-xl"><DownloadIcon /> Download .AppImage</a>
+            <a href="https://github.com/murmurlinux/murmur/releases/download/v0.3.3/Murmur_0.3.3_amd64.deb" className="cta-grad text-base font-mono flex items-center gap-3"><DownloadIcon /> Download .deb</a>
+            <a href="https://github.com/murmurlinux/murmur/releases/download/v0.3.3/Murmur_0.3.3_amd64.AppImage" className="glass px-8 py-4 text-base font-mono text-glass-white hover:bg-white/5 transition-colors flex items-center gap-3 rounded-xl"><DownloadIcon /> Download .AppImage</a>
           </div>
 
           {/* Install methods */}
@@ -51,7 +51,7 @@ export default function DownloadPage() {
               <p className="text-xs text-glass-text mb-4">Works on any distro. No installation required.</p>
               <CodeBlock
                 label="bash"
-                code={`wget https://github.com/murmurlinux/murmur/releases/download/v0.3.2/Murmur_0.3.2_amd64.AppImage\nchmod +x Murmur_0.3.2_amd64.AppImage\n./Murmur_0.3.2_amd64.AppImage`}
+                code={`wget https://github.com/murmurlinux/murmur/releases/download/v0.3.3/Murmur_0.3.3_amd64.AppImage\nchmod +x Murmur_0.3.3_amd64.AppImage\n./Murmur_0.3.3_amd64.AppImage`}
               />
               <p className="text-[11px] text-glass-text/60 mt-3">Auto-updates on launch</p>
             </div>
@@ -62,7 +62,7 @@ export default function DownloadPage() {
               <p className="text-xs text-glass-text mb-4">Ubuntu / Debian. Download and install manually.</p>
               <CodeBlock
                 label="bash"
-                code={`wget https://github.com/murmurlinux/murmur/releases/download/v0.3.2/Murmur_0.3.2_amd64.deb\nsudo dpkg -i Murmur_0.3.2_amd64.deb`}
+                code={`wget https://github.com/murmurlinux/murmur/releases/download/v0.3.3/Murmur_0.3.3_amd64.deb\nsudo dpkg -i Murmur_0.3.3_amd64.deb`}
               />
               <p className="text-[11px] text-glass-text/60 mt-3">Manual download required for updates</p>
             </div>

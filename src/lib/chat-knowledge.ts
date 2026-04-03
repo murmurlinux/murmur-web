@@ -8,7 +8,7 @@ export const MURMUR_KNOWLEDGE = `
 
 Murmur is a desktop voice dictation gadget for Linux. Hold a hotkey, speak, and text appears at your cursor in any application. 100% offline, open source (GPL-3.0), powered by whisper.cpp with Vulkan GPU acceleration.
 
-Current version: v0.3.2
+Current version: v0.3.3
 
 ## How It Works
 
@@ -27,13 +27,13 @@ echo "deb [signed-by=/etc/apt/keyrings/murmur.asc] https://murmurlinux.github.io
 sudo apt update && sudo apt install murmur
 
 ### AppImage (any distro, no installation required, auto-updates on launch):
-wget https://github.com/murmurlinux/murmur/releases/download/v0.3.2/Murmur_0.3.2_amd64.AppImage
-chmod +x Murmur_0.3.2_amd64.AppImage
-./Murmur_0.3.2_amd64.AppImage
+wget https://github.com/murmurlinux/murmur/releases/download/v0.3.3/Murmur_0.3.3_amd64.AppImage
+chmod +x Murmur_0.3.3_amd64.AppImage
+./Murmur_0.3.3_amd64.AppImage
 
 ### .deb direct (Ubuntu/Debian, manual updates):
-wget https://github.com/murmurlinux/murmur/releases/download/v0.3.2/Murmur_0.3.2_amd64.deb
-sudo dpkg -i Murmur_0.3.2_amd64.deb
+wget https://github.com/murmurlinux/murmur/releases/download/v0.3.3/Murmur_0.3.3_amd64.deb
+sudo dpkg -i Murmur_0.3.3_amd64.deb
 
 ### Uninstall:
 sudo apt remove murmur
