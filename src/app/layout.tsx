@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import ChatWidget from "@/components/ChatWidget";
 import "./globals.css";
 
 const sora = Sora({
@@ -81,6 +82,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <ChatWidget />
         <Analytics />
         <SpeedInsights />
       </body>

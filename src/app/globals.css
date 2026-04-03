@@ -197,6 +197,12 @@ body {
   50% { transform: translate(20px, 35px); }
 }
 
+/* Chat widget slide up */
+@keyframes chatSlideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* Scroll reveal */
 .reveal {
   opacity: 0;
