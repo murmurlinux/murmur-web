@@ -23,7 +23,7 @@ export default function AboutPage() {
 
             <p>
               Voice dictation on other platforms has been polished for years. We wanted to bring that same quality to Linux: a native
-              Rust/Tauri app that&apos;s 5MB, starts instantly, and actually looks good on your desktop.
+              Rust/Tauri app that&apos;s ~15MB, starts instantly, and actually looks good on your desktop.
             </p>
 
             <h2 className="text-xl font-extrabold text-glass-white pt-4">Open source commitment</h2>
@@ -33,7 +33,7 @@ export default function AboutPage() {
             </p>
             <p>
               A Pro tier is planned for power users who want cloud STT speed (&lt;200ms via Groq/Deepgram), LLM text cleanup,
-              multi-language support (99+ languages), and a CLI mode for scripting. The free tier is not a trial. It&apos;s the complete product.
+              voice commands, custom dictionaries, and a CLI mode for scripting. The free tier is not a trial. It&apos;s the complete product.
             </p>
 
             <h2 className="text-xl font-extrabold text-glass-white pt-4">Built with</h2>
@@ -58,18 +58,23 @@ export default function AboutPage() {
             <h2 className="text-xl font-extrabold text-glass-white pt-4">Roadmap</h2>
             <div className="space-y-2 text-xs font-mono">
               <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Core dictation + settings (v0.1.0)</span></div>
-              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Additional skins (v0.1.1)</span></div>
+              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Tap-to-toggle + skins (v0.1.1)</span></div>
               <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Wayland support via wtype (v0.2.0)</span></div>
               <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Voice Activity Detection (v0.2.0)</span></div>
               <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">GPU acceleration via Vulkan (v0.3.0)</span></div>
               <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">First-run onboarding wizard (v0.3.0)</span></div>
               <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Start on login / XDG autostart (v0.3.0)</span></div>
               <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Auto-update system (v0.3.0)</span></div>
-              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Multi-language support, 19 languages (v0.3.0)</span></div>
-              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Translation toggle (v0.3.0)</span></div>
-              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">CI/CD pipeline with automated releases (v0.3.0)</span></div>
-              <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>Cloud STT (Pro)</span></div>
-              <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>CLI mode (murmur-cli)</span></div>
+              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Multi-language support + translation (v0.3.0)</span></div>
+              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Settings keyboard shortcut (v0.3.3)</span></div>
+              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Dynamic tray tooltip (v0.3.3)</span></div>
+              <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>Transcript history (Pro)</span></div>
+              <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>Voice commands (Pro)</span></div>
+              <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>Cloud STT: Groq Whisper + Deepgram Nova-3 (Pro)</span></div>
+              <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>LLM text cleanup (Pro)</span></div>
+              <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>Custom dictionaries / hot words (Pro)</span></div>
+              <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>CLI mode: murmur-cli (Pro)</span></div>
+              <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>Premium skins (Pro)</span></div>
             </div>
 
             <h2 className="text-xl font-extrabold text-glass-white pt-4">Contact</h2>
