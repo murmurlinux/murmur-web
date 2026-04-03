@@ -21,7 +21,7 @@ const faqs: FaqItem[] = [
   {
     question: "How does Murmur compare to other tools?",
     answer:
-      "Murmur uses Rust and Tauri for a small, fast binary with a floating widget UI. Other great tools like Vocalinux and Nerd Dictation take different approaches. We recommend trying a few and using what works best for you.",
+      "Murmur uses Rust and Tauri for a small, fast binary with a floating widget UI. There are other great Linux dictation tools that take different approaches. We recommend trying a few and using what works best for you.",
   },
   {
     question: "Paid version?",

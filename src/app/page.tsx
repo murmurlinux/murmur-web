@@ -260,10 +260,10 @@ export default function Home() {
                     <tr className="border-b border-white/5">
                       <th className="text-left py-3 px-4 text-glass-text font-normal">field</th>
                       <th className="py-3 px-3 text-teal font-bold">murmur</th>
-                      <th className="py-3 px-3 text-glass-text font-normal"><a href="/compare/wispr-flow" className="hover:text-teal transition-colors">wispr</a></th>
+                      <th className="py-3 px-3 text-glass-text font-normal">wispr</th>
                       <th className="py-3 px-3 text-glass-text font-normal">glaido</th>
-                      <th className="py-3 px-3 text-glass-text font-normal"><a href="/compare/nerd-dictation" className="hover:text-teal transition-colors">nerd_dict</a></th>
-                      <th className="py-3 px-3 text-glass-text font-normal"><a href="/compare/vocalinux" className="hover:text-teal transition-colors">vocalinux</a></th>
+                      <th className="py-3 px-3 text-glass-text font-normal">nerd_dict</th>
+                      <th className="py-3 px-3 text-glass-text font-normal">vocalinux</th>
                     </tr>
                   </thead>
                   <tbody className="text-center">
@@ -305,7 +305,7 @@ export default function Home() {
                       <td className="py-2.5 px-3 text-glass-text">~50MB</td>
                       <td className="py-2.5 px-3 text-glass-text">unknown</td>
                       <td className="py-2.5 px-3 text-glass-text">~1MB</td>
-                      <td className="py-2.5 px-3 text-glass-text">~200MB+</td>
+                      <td className="py-2.5 px-3 text-glass-text">python</td>
                     </tr>
                     <tr>
                       <td className="text-left py-2.5 px-4 text-glass-light">cost</td>
