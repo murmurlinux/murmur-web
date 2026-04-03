@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     origin !== "https://murmurlinux.com" &&
     origin !== "https://www.murmurlinux.com" &&
     !origin.endsWith(".vercel.app") &&
-    origin !== "http://localhost:3000"
+    !origin.startsWith("http://localhost:")
   ) {
     return new Response("Forbidden", { status: 403 });
   }
@@ -67,7 +67,7 @@ export async function POST(request: Request) {
   }
 
   const result = streamText({
-    model: google("gemini-2.0-flash"),
+    model: google("gemini-2.5-flash"),
     system: SYSTEM_PROMPT,
     messages: await convertToModelMessages(messages),
     maxOutputTokens: 400,
