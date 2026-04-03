@@ -14,26 +14,52 @@ export default function ChatWidget() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { messages, sendMessage, status } = useChat({ transport });
+  const { messages, sendMessage, status, error } = useChat({ transport });
 
   const isStreaming = status === "streaming" || status === "submitted";
   const userMessageCount = messages.filter((m) => m.role === "user").length;
   const limitReached = userMessageCount >= SESSION_LIMIT;
+  const panelRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   // Auto-scroll on new messages
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // Focus input when opened
+  // Focus input when opened, return focus to toggle on close
   useEffect(() => {
-    if (open) inputRef.current?.focus();
+    if (open) {
+      inputRef.current?.focus();
+    } else {
+      toggleRef.current?.focus();
+    }
   }, [open]);
 
-  // Escape to close
+  // Escape to close + basic focus trap
   useEffect(() => {
+    if (!open) return;
     function handleKey(e: KeyboardEvent) {
-      if (e.key === "Escape" && open) setOpen(false);
+      if (e.key === "Escape") {
+        setOpen(false);
+        return;
+      }
+      // Trap Tab within the panel
+      if (e.key === "Tab" && panelRef.current) {
+        const focusable = panelRef.current.querySelectorAll<HTMLElement>(
+          'button, input, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     }
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
@@ -52,7 +78,10 @@ export default function ChatWidget() {
       {/* Expanded chat panel */}
       {open && (
         <div
-          className="absolute bottom-16 right-0 w-[360px] sm:w-[400px] flex flex-col rounded-2xl border border-glass-border overflow-hidden shadow-2xl shadow-black/30"
+          ref={panelRef}
+          role="dialog"
+          aria-label="Chat with Murmur assistant"
+          className="absolute bottom-16 right-0 w-[calc(100vw-48px)] max-w-[400px] flex flex-col rounded-2xl border border-glass-border overflow-hidden shadow-2xl shadow-black/30"
           style={{
             background: "rgba(6, 13, 24, 0.92)",
             backdropFilter: "blur(24px)",
@@ -142,6 +171,22 @@ export default function ChatWidget() {
               </div>
             )}
 
+            {/* Error state */}
+            {error && (
+              <div className="flex gap-2">
+                <div className="shrink-0 w-6 h-6 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center mt-0.5">
+                  <svg className="w-3 h-3 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                  </svg>
+                </div>
+                <div className="bg-red-500/5 border border-red-500/10 rounded-xl px-3 py-2 text-xs text-red-300/70">
+                  {error.message?.includes("429")
+                    ? "Too many messages. Please wait a moment and try again."
+                    : "Something went wrong. Please try again."}
+                </div>
+              </div>
+            )}
+
             <div ref={messagesEndRef} />
           </div>
 
@@ -194,6 +239,7 @@ export default function ChatWidget() {
 
       {/* Toggle button */}
       <button
+        ref={toggleRef}
         type="button"
         onClick={() => setOpen(!open)}
         className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200 ${
