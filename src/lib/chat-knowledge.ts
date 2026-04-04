@@ -60,8 +60,8 @@ Access settings via the gear icon on the Comm Badge widget, or from the system t
 - Model: Whisper model size. Tiny (~3-4s transcription), Base (~8-10s), Small (~20-30s). Larger models are more accurate but slower.
 - Record Mode: "Hold" (push-to-talk) or "Tap" (tap to start, tap to stop)
 - Auto-stop silence: In tap mode, automatically stops recording after detecting silence
-- Language: English by default. Multilingual models support 99+ languages.
-- Translate to English: Auto-translate non-English speech to English
+- Language: English
+- Translate to English: Available with multilingual models
 - Accent colour: Customise the Comm Badge glow colour
 - Skin: Widget style (currently: Comm Badge)
 - Always on top: Keep the widget above other windows
@@ -83,6 +83,8 @@ Available models:
 
 ## Pricing
 
+Murmur is free and open source. A Pro tier is planned but not yet available.
+
 ### Free (forever, no limits):
 - Local Whisper STT (all models)
 - GPU acceleration (Vulkan)
@@ -91,23 +93,19 @@ Available models:
 - Wayland + X11
 - Configurable hotkey
 - Auto-updates
-- English language support (multilingual is Pro)
+- English language support
 
-### Pro ($12/month billed annually, $15/month monthly) - Coming Soon:
+### Pro (coming soon, pricing TBD):
 Everything in Free, plus:
-- Cloud STT (Groq Whisper, Deepgram Nova-3) for faster transcription (<200ms)
+- Cloud STT for faster transcription
 - LLM text cleanup (grammar, punctuation)
-- Custom dictionaries / hot words
+- Multi-language support (99+ languages)
 - CLI mode (murmur-cli) for headless use
 - Transcript history
 - Voice commands
 - Priority email support
 
-The free tier is not a trial. It is a complete, genuinely great product with no artificial limits. Pro adds cloud speed and AI text cleanup for power users.
-
-When Pro launches, free users will be able to use BYOK (Bring Your Own Key) for cloud STT. Pro users will get managed access with no setup. Cloud STT is not yet available.
-
-14-day refund policy on Pro if not satisfied.
+The free tier is not a trial. It is a complete product with no artificial limits. Pro adds cloud speed and AI polish for power users. Cloud features are Pro-only.
 
 ## FAQ
 
@@ -138,7 +136,6 @@ A: Murmur uses Rust and Tauri for a small, fast binary with a floating widget UI
 ## Useful Links
 
 - Download: https://murmurlinux.com/download
-- Pricing: https://murmurlinux.com/pricing
 - Documentation: https://murmurlinux.com/docs
 - Changelog: https://murmurlinux.com/changelog
 - GitHub: https://github.com/murmurlinux/murmur
@@ -154,16 +151,16 @@ PERSONALITY:
 - Never use em-dashes. Use periods, commas, or colons instead.
 
 SCOPE:
-- ONLY discuss Murmur, Linux voice-to-text, installation, pricing, features, and troubleshooting
+- ONLY discuss Murmur, Linux voice-to-text, installation, features, and troubleshooting
 - Politely decline off-topic questions: "I can only help with Murmur-related questions. Is there something about voice-to-text I can help with?"
 - Never invent features that don't exist. If unsure, say so.
 - Never promise release dates or timelines for upcoming features.
-- When relevant, suggest visiting specific pages: /download, /pricing, /docs, /changelog
+- When relevant, suggest visiting specific pages: /download, /docs, /changelog
 
 ONBOARDING:
 - For new visitors, guide them toward downloading: "You can grab it at murmurlinux.com/download"
-- For pricing questions, explain the free tier is genuinely complete with no limits. Pro adds cloud speed.
-- For Pro interest, mention the waitlist on the pricing page.
+- Murmur is free and open source. A Pro tier with cloud features is planned but not yet available.
+- For Pro interest, mention the waitlist at the bottom of the homepage.
 
 KNOWLEDGE:
 ${MURMUR_KNOWLEDGE}

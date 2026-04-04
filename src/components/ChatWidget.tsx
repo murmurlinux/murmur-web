@@ -120,7 +120,7 @@ export default function ChatWidget() {
                   </svg>
                 </div>
                 <div className="text-xs text-glass-text leading-relaxed pt-1">
-                  Hi! I can help with installing Murmur, features, pricing, or troubleshooting. What would you like to know?
+                  Hi! I can help with installing Murmur, features, or troubleshooting. What would you like to know?
                 </div>
               </div>
             )}
