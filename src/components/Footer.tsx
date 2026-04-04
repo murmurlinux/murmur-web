@@ -13,7 +13,6 @@ export default function Footer() {
             <h4 className="text-[10px] font-mono text-glass-text/30 uppercase tracking-wider mb-3">product</h4>
             <ul className="space-y-1.5 text-xs text-glass-text">
               <li><a href="/#features" className="hover:text-teal transition-colors">Features</a></li>
-              <li><a href="/pricing" className="hover:text-teal transition-colors">Pricing</a></li>
               <li><a href="/download" className="hover:text-teal transition-colors">Download</a></li>
             </ul>
           </div>

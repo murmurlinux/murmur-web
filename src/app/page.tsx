@@ -227,7 +227,7 @@ export default function Home() {
                 { flag: "--no-cloud", color: "text-teal", hover: "hover:border-teal/15", desc: "0ms cloud latency. There is no cloud. No account, no telemetry, no network." },
                 { flag: "--gpu vulkan", color: "text-amber", hover: "hover:border-amber/15", desc: "GPU-accelerated transcription via Vulkan. Faster results on supported hardware." },
                 { flag: "--target any", color: "text-teal", hover: "hover:border-teal/15", desc: "X11 (XTEST) and Wayland (wtype) injection. Terminals, IDEs, browsers, anything." },
-                { flag: "--lang auto|19", color: "text-amber", hover: "hover:border-amber/15", desc: "19 languages with auto-detect. Translate any language to English on the fly." },
+                { flag: "--lang en", color: "text-amber", hover: "hover:border-amber/15", desc: "English transcription out of the box. Multi-language support coming with Pro." },
                 { flag: "--skin comm-badge", color: "text-teal", hover: "hover:border-teal/15", desc: "Floating desktop gadget with customisable skins and accent colours." },
                 { flag: "--bind Super+V", color: "text-amber", hover: "hover:border-amber/15", desc: "Configurable global hotkey. Hold to record, release to transcribe." },
                 { flag: "--auto-update", color: "text-teal", hover: "hover:border-teal/15", desc: "Built-in updater for AppImage, apt repo for .deb. Always on the latest version." },
