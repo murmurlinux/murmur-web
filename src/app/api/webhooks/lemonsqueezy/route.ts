@@ -40,10 +40,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
   }
 
-  const payload = JSON.parse(rawBody);
-  const eventName: string = payload.meta?.event_name;
-  const customData = payload.meta?.custom_data;
-  const attrs = payload.data?.attributes;
+  let payload: Record<string, unknown>;
+  try {
+    payload = JSON.parse(rawBody);
+  } catch {
+    return NextResponse.json({ error: "Malformed JSON" }, { status: 400 });
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const p = payload as any;
+  const eventName: string = p.meta?.event_name;
+  const customData = p.meta?.custom_data;
+  const attrs = p.data?.attributes;
 
   if (!attrs || !eventName) {
     return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
@@ -65,7 +73,7 @@ export async function POST(request: Request) {
   const email: string = attrs.user_email;
   const status: string = attrs.status;
   const customerId: number = attrs.customer_id;
-  const subscriptionId = Number(payload.data?.id);
+  const subscriptionId = Number(p.data?.id);
   const isPro = PRO_STATUSES.has(status);
 
   const userId: string | undefined = customData?.user_id;
@@ -90,22 +98,38 @@ export async function POST(request: Request) {
 
   const supabase = getSupabase();
 
-  let error;
+  let query;
   if (userId) {
-    ({ error } = await supabase
+    query = supabase
       .from("profiles")
       .update(cleanData as never)
-      .eq("id", userId));
+      .eq("id", userId)
+      .select("id");
   } else {
-    ({ error } = await supabase
+    console.warn(
+      "[webhook] user_id missing from custom_data, falling back to email lookup:",
+      email
+    );
+    query = supabase
       .from("profiles")
       .update(cleanData as never)
-      .eq("email", email));
+      .eq("email", email)
+      .select("id");
   }
+
+  const { data, error } = await query;
 
   if (error) {
     console.error("[webhook] profile update failed:", error);
     return NextResponse.json({ error: "Update failed" }, { status: 500 });
+  }
+
+  if (!data || data.length === 0) {
+    console.error("[webhook] no profile matched for update:", { userId, email });
+    return NextResponse.json(
+      { error: "No matching profile" },
+      { status: 404 }
+    );
   }
 
   return NextResponse.json({ received: true });
