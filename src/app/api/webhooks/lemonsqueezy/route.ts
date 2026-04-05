@@ -2,17 +2,22 @@ import { NextResponse } from "next/server";
 import crypto from "node:crypto";
 import { createClient } from "@supabase/supabase-js";
 
-const WEBHOOK_SECRET = process.env.LEMONSQUEEZY_WEBHOOK_SECRET!;
-
-// Service role client bypasses RLS to update Pro fields
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+// Lazy-init: avoid crashing at build time when env vars are absent
+let _supabase: ReturnType<typeof createClient> | null = null;
+function getSupabase() {
+  if (!_supabase) {
+    _supabase = createClient(
+      process.env.SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    );
+  }
+  return _supabase;
+}
 
 function verifySignature(rawBody: string, signature: string | null): boolean {
-  if (!signature || !WEBHOOK_SECRET) return false;
-  const hmac = crypto.createHmac("sha256", WEBHOOK_SECRET);
+  const secret = process.env.LEMONSQUEEZY_WEBHOOK_SECRET;
+  if (!signature || !secret) return false;
+  const hmac = crypto.createHmac("sha256", secret);
   hmac.update(rawBody);
   const digest = hmac.digest("hex");
   try {
@@ -65,32 +70,36 @@ export async function POST(request: Request) {
 
   const userId: string | undefined = customData?.user_id;
 
-  const updateData = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const cleanData: Record<string, any> = {
     is_pro: isPro,
     lemon_customer_id: customerId,
     lemon_subscription_id: subscriptionId,
     subscription_status: status,
-    pro_since: isPro ? new Date().toISOString() : undefined,
-    pro_expires_at: isPro
-      ? null
-      : new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
     updated_at: new Date().toISOString(),
   };
 
-  const cleanData = Object.fromEntries(
-    Object.entries(updateData).filter(([, v]) => v !== undefined)
-  );
+  if (isPro) {
+    cleanData.pro_since = new Date().toISOString();
+    cleanData.pro_expires_at = null;
+  } else {
+    cleanData.pro_expires_at = new Date(
+      Date.now() + 7 * 24 * 60 * 60 * 1000
+    ).toISOString();
+  }
+
+  const supabase = getSupabase();
 
   let error;
   if (userId) {
     ({ error } = await supabase
       .from("profiles")
-      .update(cleanData)
+      .update(cleanData as never)
       .eq("id", userId));
   } else {
     ({ error } = await supabase
       .from("profiles")
-      .update(cleanData)
+      .update(cleanData as never)
       .eq("email", email));
   }
 
