@@ -262,12 +262,11 @@ export default function HomePage() {
     <>
       {/* SCREEN 1: HERO */}
       <section className="screen" id="screen-hero">
-        <pre className="ascii-logo logo-full" aria-label="Murmur Linux">
-          {ASCII_LOGO_FULL}
-        </pre>
-        <div className="ascii-logo logo-mobile" aria-label="Murmur Linux">
-          <pre className="ascii-logo" style={{ margin: 0 }}>{ASCII_LOGO_MURMUR}</pre>
-          <pre className="ascii-logo" style={{ margin: "6px 0 0" }}>{ASCII_LOGO_LINUX}</pre>
+        <div className="site-header">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="Murmur" className="site-logo" />
+          <pre className="ascii-logo" aria-label="Murmur">{ASCII_LOGO_MURMUR}</pre>
+          <span className="site-version">v0.3.3</span>
         </div>
         <div id="boot-screen" ref={bootRef}></div>
 

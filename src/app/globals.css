@@ -57,6 +57,27 @@ a:hover { text-decoration: underline; }
 }
 .logo-mobile { display: none; }
 
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 40px;
+}
+.site-header .ascii-logo {
+  margin: -12px 0 0 0;
+  font-size: 14px;
+}
+.site-logo {
+  width: 72px;
+  height: 72px;
+}
+.site-version {
+  font-size: 12px;
+  color: var(--text-dim);
+  align-self: flex-end;
+  margin-bottom: 3px;
+}
+
 .ascii-icon {
   color: var(--accent);
   font-size: 13px;
@@ -744,9 +765,9 @@ a:hover { text-decoration: underline; }
 @media (max-width: 760px) {
   body { padding: 28px 22px 70px; font-size: 13px; }
   #terminal-input { padding: 14px 22px; }
-  .ascii-logo { font-size: 10px; }
-  .logo-full { display: none; }
-  .logo-mobile { display: block; margin: 0 0 30px; }
+  .ascii-logo { font-size: 8px; }
+  .site-logo { width: 32px; height: 32px; }
+  .site-header .ascii-logo { margin-top: -6px; }
   .scroll-hint { display: none; }
   .screen-cta .or { display: none; }
   .screen-cta { gap: 8px; }
