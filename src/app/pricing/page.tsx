@@ -31,13 +31,25 @@ export default function PricingPage() {
         wrap.className = "video-lb-body";
         const placeholder = document.createElement("div");
         placeholder.className = "video-placeholder";
-        const playIcon = document.createElement("div");
-        playIcon.className = "play-icon";
-        playIcon.textContent = "\u25B6";
-        placeholder.appendChild(playIcon);
-        const placeholderText = document.createElement("div");
-        placeholderText.textContent = "demo video";
-        placeholder.appendChild(placeholderText);
+
+        const line1 = document.createElement("p");
+        line1.textContent = "Demo video coming soon.";
+        line1.style.fontSize = "15px";
+        line1.style.marginBottom = "10px";
+        placeholder.appendChild(line1);
+
+        const line2 = document.createElement("p");
+        line2.style.fontSize = "13px";
+        line2.style.opacity = "0.8";
+        line2.appendChild(document.createTextNode("In the meantime, the best demo is trying it yourself. "));
+        const link = document.createElement("a");
+        link.href = "/download";
+        link.textContent = "Download the free version";
+        link.style.textDecoration = "underline";
+        line2.appendChild(link);
+        line2.appendChild(document.createTextNode(" \u2014 a 30-second install that works in every app."));
+        placeholder.appendChild(line2);
+
         wrap.appendChild(placeholder);
         body.appendChild(wrap);
       }
