@@ -32,10 +32,10 @@ export default function IntroducingProPage() {
         <p>If you&apos;re not comfortable with cloud processing, don&apos;t use it. The local engine is always available, always offline, and always free.</p>
 
         <h3>founding member pricing</h3>
-        <p>We&apos;re offering early adopter pricing for people who sign up during this launch period. These prices are locked in for as long as you keep your subscription.</p>
-        <p className="indent"><strong>Monthly:</strong> $12/month (will be $15/month)</p>
-        <p className="indent"><strong>Annual:</strong> $69/year (normally $99/year)</p>
-        <p className="indent"><strong>Lifetime:</strong> $149 once (normally $249)</p>
+        <p>We&apos;re offering early adopter pricing on annual and lifetime plans during the launch period. These prices are locked in for as long as you keep your subscription. The monthly price is the same for everyone, founding member or not.</p>
+        <p className="indent"><strong>Monthly:</strong> $12/month (no founding discount)</p>
+        <p className="indent"><strong>Annual:</strong> $69/year (founding price, normally $99/year)</p>
+        <p className="indent"><strong>Lifetime:</strong> $149 once (founding price, normally $249)</p>
         <p>Founding members also get their name in the project&apos;s supporters page, if they want it.</p>
 
         <h3>what the revenue funds</h3>
