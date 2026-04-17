@@ -1,16 +1,29 @@
+import Link from "next/link";
+import ViewAnimation from "@/components/ViewAnimation";
+
 export default function NotFound() {
   return (
-    <div className="min-h-[70vh] flex flex-col items-center justify-center text-center px-6">
-      <p className="font-mono text-[11px] text-amber uppercase tracking-widest mb-4">404</p>
-      <h1 className="text-4xl md:text-5xl font-extrabold text-glass-white tracking-tight mb-4">
-        Page not found
-      </h1>
-      <p className="text-glass-text mb-8 max-w-md">
-        The page you&apos;re looking for doesn&apos;t exist or has been moved.
-      </p>
-      <a href="/" className="cta-grad text-sm font-mono">
-        $ cd ~
-      </a>
-    </div>
+    <ViewAnimation>
+      <p className="view-crumb"><Link href="/">~</Link><span className="sep">/</span>404</p>
+      <div className="cmd-line"><span className="cmd-prompt">$</span><span className="cmd">cd /the-page-you-wanted</span></div>
+      <p className="view-title">page not found</p>
+      <p className="view-sub">No such file or directory. The page you&apos;re looking for doesn&apos;t exist or has been moved.</p>
+
+      <div className="cmd-output">
+        <p className="err">404: not found</p>
+      </div>
+
+      <div className="cta-row" style={{ marginTop: 16 }}>
+        <Link href="/" className="cta primary">home</Link>
+        <Link href="/download" className="cta">download</Link>
+        <Link href="/docs" className="cta">docs</Link>
+      </div>
+
+      <div className="footer">
+        <Link href="/">home</Link><span className="dot">&middot;</span>
+        <Link href="/pricing">pricing</Link><span className="dot">&middot;</span>
+        <Link href="/blog">blog</Link>
+      </div>
+    </ViewAnimation>
   );
 }
