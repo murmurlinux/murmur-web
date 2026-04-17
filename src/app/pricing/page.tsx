@@ -107,7 +107,7 @@ export default function PricingPage() {
             <li>supports independent linux software</li>
           </ul>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap" as const }}>
-            <a href="#" className="cta primary" id="go-pro-btn" onClick={(e) => { e.preventDefault(); alert("checkout is being finalised. subscribe below to get notified when it goes live."); }}>get murmur pro</a>
+            <button type="button" className="cta primary" id="go-pro-btn" disabled style={{ cursor: "not-allowed", opacity: 0.6 }} aria-disabled="true">coming soon</button>
             <a href="#" className="cta" onClick={openDemo}>watch demo</a>
           </div>
         </div>
