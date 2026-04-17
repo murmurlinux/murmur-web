@@ -42,8 +42,8 @@ chmod +x Murmur_0.3.3_amd64.AppImage
       </div>
 
       <div className="cta-row" style={{ marginTop: 14 }}>
-        <a href="#" className="cta">download .deb</a>
-        <a href="#" className="cta">download .AppImage</a>
+        <a href="https://github.com/murmurlinux/murmur/releases/download/v0.3.3/Murmur_0.3.3_amd64.deb" className="cta">download .deb</a>
+        <a href="https://github.com/murmurlinux/murmur/releases/download/v0.3.3/Murmur_0.3.3_amd64.AppImage" className="cta">download .AppImage</a>
         <Link href="/pricing" className="cta primary">get pro</Link>
       </div>
 
