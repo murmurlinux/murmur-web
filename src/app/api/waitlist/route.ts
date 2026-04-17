@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 
+export const runtime = "nodejs";
+
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const ALLOWED_ORIGIN = "https://murmurlinux.com";
 
 // Simple in-memory rate limiter: max 5 requests per IP per minute
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();

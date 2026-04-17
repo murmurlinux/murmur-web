@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import crypto from "node:crypto";
 import { createClient } from "@supabase/supabase-js";
 
+export const runtime = "nodejs";
+
 // Lazy-init: avoid crashing at build time when env vars are absent
 let _supabase: ReturnType<typeof createClient> | null = null;
 function getSupabase() {
