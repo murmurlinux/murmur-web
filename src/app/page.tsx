@@ -1,370 +1,395 @@
-import Image from "next/image";
-import ScrollReveal from "@/components/ScrollReveal";
-import FaqAccordion from "@/components/FaqAccordion";
-import WaitlistForm from "@/components/WaitlistForm";
-import CodeBlock from "@/components/CodeBlock";
+"use client";
 
-/* ── SVG Icons ── */
-function GitHubIcon() {
-  return (
-    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-    </svg>
-  );
+import { useEffect, useRef, useCallback } from "react";
+import Link from "next/link";
+import GithubIcon from "@/components/GithubIcon";
+
+const ASCII_LOGO_FULL = ` __  __                                    _     _
+|  \\/  |_   _ _ __ _ __ ___  _   _ _ __   | |   (_)_ __  _   ___  __
+| |\\/| | | | | '__| '_ \` _ \\| | | | '__|  | |   | | '_ \\| | | \\ \\/ /
+| |  | | |_| | |  | | | | | | |_| | |     | |___| | | | | |_| |>  <
+|_|  |_|\\__,_|_|  |_| |_| |_|\\__,_|_|     |_____|_|_| |_|\\__,_/_/\\_\\`;
+
+const ASCII_LOGO_MURMUR = ` __  __
+|  \\/  |_   _ _ __ _ __ ___  _   _ _ __
+| |\\/| | | | | '__| '_ \` _ \\| | | | '__|
+| |  | | |_| | |  | | | | | | |_| | |
+|_|  |_|\\__,_|_|  |_| |_| |_|\\__,_|_|`;
+
+const ASCII_LOGO_LINUX = ` _     _
+| |   (_)_ __  _   ___  __
+| |   | | '_ \\| | | \\ \\/ /
+| |___| | | | | |_| |>  <
+|_____|_|_| |_|\\__,_/_/\\_\\`;
+
+interface BootLineSpec {
+  text: string;
+  status?: string;
+  statusClass?: string;
+  isFinal?: boolean;
 }
 
-function DownloadIcon() {
-  return (
-    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-      <path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-    </svg>
-  );
+const BOOT_LINES: BootLineSpec[] = [
+  { text: "murmur_os v0.3.3 - booting..." },
+  { text: "loading whisper_engine.pkg              ", status: "[ok]", statusClass: "ok" },
+  { text: "loading silero_vad.pkg                  ", status: "[ok]", statusClass: "ok" },
+  { text: "loading global_hotkeys.pkg              ", status: "[ok]", statusClass: "ok" },
+  { text: "mounting /microphone                    ", status: "[live]", statusClass: "live" },
+  { text: "checking pro_release_status             ", status: "[ok]", statusClass: "ok" },
+  { text: "ready.", isFinal: true },
+];
+
+function wait(ms: number) {
+  return new Promise((r) => setTimeout(r, ms));
 }
 
-/* ── Waveform Bar helper ── */
-function WaveBar({ min, max, duration, delay, color = "bg-teal/40" }: { min: number; max: number; duration: number; delay: number; color?: string }) {
-  return (
-    <div
-      className={`wave-bar w-1 ${color} rounded-sm`}
-      style={{ "--wave-min": `${min}px`, "--wave-max": `${max}px`, "--wave-duration": `${duration}s`, "--wave-delay": `${delay}s` } as React.CSSProperties}
-    />
-  );
+function randBetween(min: number, max: number) {
+  return min + Math.random() * (max - min);
 }
 
-/* ══════════════════════════════════════════════════════════ */
+function createBootLine(spec: BootLineSpec): HTMLDivElement {
+  const div = document.createElement("div");
+  div.className = "boot-line";
+  if (spec.isFinal) {
+    const span = document.createElement("span");
+    span.style.color = "var(--accent)";
+    span.style.fontWeight = "700";
+    span.style.letterSpacing = "0.06em";
+    span.textContent = spec.text;
+    div.appendChild(span);
+  } else {
+    div.appendChild(document.createTextNode(spec.text));
+    if (spec.status && spec.statusClass) {
+      const statusSpan = document.createElement("span");
+      statusSpan.className = spec.statusClass;
+      statusSpan.textContent = spec.status;
+      div.appendChild(statusSpan);
+    }
+  }
+  return div;
+}
 
-export default function Home() {
+export default function HomePage() {
+  const bootRef = useRef<HTMLDivElement>(null);
+  const hasBooted = useRef(false);
+
+  const reveal = useCallback((id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.remove("typed-hidden");
+    el.classList.add("typed-visible");
+  }, []);
+
+  const addCursor = useCallback((container: HTMLElement) => {
+    const c = document.createElement("span");
+    c.className = "cursor";
+    container.appendChild(c);
+    return c;
+  }, []);
+
+  const typeChars = useCallback(
+    async (textEl: HTMLElement, text: string, speed: number) => {
+      const cur = addCursor(textEl);
+      for (let i = 0; i < text.length; i++) {
+        textEl.insertBefore(document.createTextNode(text[i]), cur);
+        await wait(speed);
+      }
+      cur.remove();
+    },
+    [addCursor]
+  );
+
+  const typePromptAndReveal = useCallback(
+    async (
+      promptId: string,
+      cmdTextId: string,
+      cmdString: string,
+      revealIds: string[],
+      cmdSpeed = 38
+    ) => {
+      const promptEl = document.getElementById(promptId);
+      const cmdEl = document.getElementById(cmdTextId);
+      if (!promptEl || !cmdEl) return;
+
+      promptEl.classList.remove("typed-hidden");
+      promptEl.classList.add("typed-visible");
+      const cur = addCursor(cmdEl);
+      await wait(2800);
+
+      cur.remove();
+      await typeChars(cmdEl, cmdString, cmdSpeed);
+      await wait(180);
+
+      for (const rid of revealIds) {
+        reveal(rid);
+        await wait(80);
+      }
+    },
+    [addCursor, typeChars, reveal]
+  );
+
+  const initScrollObservers = useCallback(
+    (skipAnimation: boolean) => {
+      const scrollSections: Record<
+        string,
+        { prompted: boolean; cmd: string; reveals: string[] }
+      > = {
+        demo: {
+          prompted: skipAnimation,
+          cmd: "cat how-it-works.txt",
+          reveals: ["demo-panels", "demo-ctas", "demo-scroll"],
+        },
+        "pricing-home": {
+          prompted: skipAnimation,
+          cmd: "cat pricing.txt",
+          reveals: [
+            "pricing-home-output",
+            "pricing-home-ctas",
+            "footer-home",
+          ],
+        },
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const key = (entry.target as HTMLElement).dataset.typewriter;
+            if (!key) return;
+            const sec = scrollSections[key];
+            if (!sec || sec.prompted) return;
+            sec.prompted = true;
+            typePromptAndReveal(
+              key + "-prompt",
+              key + "-cmd-text",
+              sec.cmd,
+              sec.reveals,
+              35
+            );
+          });
+        },
+        { threshold: 0.4 }
+      );
+
+      document
+        .querySelectorAll("[data-typewriter]")
+        .forEach((el) => observer.observe(el));
+    },
+    [typePromptAndReveal]
+  );
+
+  useEffect(() => {
+    if (hasBooted.current) return;
+    hasBooted.current = true;
+
+    async function runBoot() {
+      const bootEl = bootRef.current;
+      if (!bootEl) return;
+      const delays = [90, 180, 60, 250, 110, 70, 320, 0];
+      for (let i = 0; i < BOOT_LINES.length; i++) {
+        const div = createBootLine(BOOT_LINES[i]);
+        bootEl.appendChild(div);
+        if (i < BOOT_LINES.length - 1) {
+          await wait(delays[i] + randBetween(-30, 50));
+        }
+      }
+      const readyEl = bootEl.lastElementChild;
+      const readyText = readyEl?.querySelector("span") || (readyEl as HTMLElement);
+      const dotsSpan = document.createElement("span");
+      readyText?.appendChild(dotsSpan);
+      for (let d = 0; d < 4; d++) {
+        await wait(randBetween(280, 520));
+        dotsSpan.textContent += ".";
+      }
+      await wait(350);
+      dotsSpan.remove();
+      if (readyText) readyText.textContent = "done.";
+      await wait(1000);
+    }
+
+    async function collapseBoot() {
+      const bootEl = bootRef.current;
+      if (!bootEl) return;
+      await wait(350);
+      bootEl.style.opacity = "0";
+      bootEl.style.maxHeight = "0";
+      bootEl.style.marginBottom = "0";
+      await wait(450);
+      bootEl.style.display = "none";
+    }
+
+    async function runHeroSequence() {
+      await runBoot();
+      await collapseBoot();
+      await typePromptAndReveal(
+        "hero-prompt",
+        "hero-cmd-text",
+        "whoami",
+        ["hero-output", "hero-compare", "hero-ctas"],
+        45
+      );
+      await wait(600);
+      reveal("scroll-hint");
+      initScrollObservers(false);
+    }
+
+    runHeroSequence();
+  }, [typePromptAndReveal, reveal, initScrollObservers]);
+
+  function scrollToNext(e: React.MouseEvent) {
+    const hint = (e.target as HTMLElement).closest(".scroll-hint");
+    if (!hint) return;
+    const screen = hint.closest(".screen");
+    if (screen) {
+      const next = screen.nextElementSibling;
+      if (next && next.classList.contains("screen")) {
+        const top = (next as HTMLElement).offsetTop - 24;
+        window.scrollTo({ top, behavior: "smooth" });
+      }
+    }
+  }
+
+  function openDemo(e: React.MouseEvent) {
+    e.preventDefault();
+    const lb = document.getElementById("lightbox");
+    if (lb) {
+      lb.classList.add("active");
+      lb.setAttribute("aria-hidden", "false");
+    }
+  }
+
   return (
     <>
-      <ScrollReveal />
+      {/* SCREEN 1: HERO */}
+      <section className="screen" id="screen-hero">
+        <div className="site-header">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="Murmur" className="site-logo" />
+          <pre className="ascii-logo" aria-label="Murmur">{ASCII_LOGO_MURMUR}</pre>
+          <span className="site-version">v0.3.3</span>
+        </div>
+        <div id="boot-screen" ref={bootRef}></div>
 
-      <div className="relative z-10">
-        {/* ════════════════════ HERO ════════════════════ */}
-        <section className="min-h-screen flex items-center pt-14">
-          <div className="max-w-6xl mx-auto px-6 py-28 grid md:grid-cols-2 gap-14 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs font-mono text-teal mb-8">
-                <span className="w-1.5 h-1.5 rounded-full bg-teal led" />
-                linux-native &middot; offline &middot; open-source
-              </div>
-
-              <h1 className="text-5xl md:text-6xl lg:text-[68px] font-extrabold text-glass-white leading-[1.05] tracking-tight mb-8">
-                AI voice to text<br />for Linux.<br /><span className="grad-text">Finally.</span>
-              </h1>
-
-              <p className="text-base text-glass-text leading-relaxed max-w-md mb-10">
-                Press a hotkey, speak, text at your cursor. In any app.{" "}
-                <span className="text-glass-light font-medium">Your voice never leaves your machine.</span>
-              </p>
-
-              <div className="flex flex-wrap gap-4 mb-10">
-                <a href="/download" className="cta-grad text-sm font-mono">$ murmur --install</a>
-                <a href="#how" className="text-sm font-medium px-6 py-3.5 text-glass-text hover:text-glass-white transition-colors">How it works &darr;</a>
-              </div>
-
-              <div className="flex gap-6 text-[11px] font-mono text-glass-text">
-                <span><span className="text-teal">&#x2713;</span> no account</span>
-                <span><span className="text-amber">&#x2713;</span> ~15MB</span>
-                <span><span className="text-teal">&#x2713;</span> GPL v3</span>
-              </div>
-
-              <p className="text-[11px] text-glass-text/50 mt-4">
-                Pro coming soon. Cloud STT, LLM cleanup, 99+ languages.{" "}
-                <a href="#waitlist" className="text-amber hover:text-amber/80 transition-colors underline underline-offset-2">Get notified</a>
-              </p>
-            </div>
-
-            {/* Right - Comm Badge + terminal */}
-            <div className="relative flex flex-col items-center gap-3">
-              <div className="relative z-10">
-                <Image
-                  src="/images/comm-badge.png"
-                  alt="Murmur Comm Badge"
-                  width={480}
-                  height={262}
-                  priority
-                  draggable={false}
-                  className="max-w-full pointer-events-none"
-                  style={{ filter: "drop-shadow(0 4px 30px rgba(20,184,166,0.25)) drop-shadow(0 0 60px rgba(20,184,166,0.1)) hue-rotate(-30deg)" }}
-                />
-              </div>
-
-              <div className="relative z-20 w-full glass p-1.5">
-                <div className="term">
-                  <div className="term-bar">
-                    <div className="term-dot bg-teal/50" />
-                    <div className="term-dot bg-amber/50" />
-                    <div className="term-dot bg-teal/50" />
-                    <span className="ml-2 text-[10px] font-mono text-white/15">murmur - session</span>
-                  </div>
-                  <div className="px-4 py-3 font-mono text-[11px] text-white/40 leading-relaxed">
-                    <div><span className="text-teal/60">&#x276f;</span> murmur --start --model tiny.en</div>
-                    <div className="text-teal/40 mt-0.5">[INFO] Engine: whisper.cpp (75MB)</div>
-                    <div className="text-teal/40">[INFO] Hotkey: Ctrl+Shift+Space</div>
-                    <div className="text-amber/50">[READY] Hold hotkey to record.</div>
-                    <div className="mt-2 text-white/25">&#x276f; recording...</div>
-                    <div className="flex items-end gap-px h-4 my-1.5">
-                      <WaveBar min={2} max={12} duration={0.7} delay={0} />
-                      <WaveBar min={2} max={16} duration={1} delay={0.1} color="bg-amber/30" />
-                      <WaveBar min={2} max={8} duration={0.8} delay={0.2} />
-                      <WaveBar min={2} max={14} duration={1.1} delay={0.05} color="bg-amber/30" />
-                      <WaveBar min={2} max={6} duration={0.6} delay={0.15} />
-                    </div>
-                    <div className="text-amber/50">[OK] &quot;Ship it to production, tests are passing&quot;</div>
-                    <div className="text-teal/40">[OK] 42 chars &#x2192; Code ~/app</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div className="hero-body">
+          <div className="cmd-line typed-hidden" id="hero-prompt">
+            <span className="cmd-prompt">$</span>
+            <span className="cmd" id="hero-cmd-text"></span>
           </div>
-        </section>
-
-        {/* ════════════════════ VALUE BAR ════════════════════ */}
-        <section className="py-5">
-          <div className="max-w-5xl mx-auto px-6">
-            <div className="glass px-6 py-3.5 flex flex-wrap justify-center gap-x-8 gap-y-2 text-[11px] font-mono text-glass-text">
-              <span>offline=true</span><span className="text-white/8">|</span>
-              <span>engine=whisper.cpp</span><span className="text-white/8">|</span>
-              <span>platform=linux</span><span className="text-white/8">|</span>
-              <span>display=x11+wayland</span><span className="text-white/8">|</span>
-              <span>license=GPL-3.0</span>
-            </div>
-          </div>
-        </section>
-
-        {/* ════════════════════ PROBLEM ════════════════════ */}
-        <section className="py-28 reveal">
-          <div className="max-w-3xl mx-auto px-6 text-center">
-            <p className="text-[11px] font-mono uppercase tracking-widest text-amber mb-5">motivation</p>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-glass-white leading-tight tracking-tight mb-8">
-              Built for how we work
-            </h2>
-            <p className="text-base text-glass-text leading-relaxed max-w-xl mx-auto">
-              We wanted voice dictation that felt native to Linux: tiny, offline, and with a UI worth keeping on your desktop. <span className="text-glass-light font-semibold">So we built it.</span>
+          <div className="cmd-output typed-hidden" id="hero-output">
+            <p>Murmur. Voice dictation for Linux that doesn&apos;t suck.</p>
+            <p>
+              Built in Rust and Tauri.{" "}
+              <span className="ok">100% local by default.</span> Zero telemetry.
+            </p>
+            <p className="muted">
+              Press a hotkey, speak, text at your cursor. In any app. ~15 MB.
+              Free forever, Pro available.
             </p>
           </div>
-        </section>
-
-        {/* ════════════════════ HOW IT WORKS ════════════════════ */}
-        <section id="how" className="py-28 reveal">
-          <div className="max-w-5xl mx-auto px-6">
-            <div className="text-center mb-14">
-              <p className="text-[11px] font-mono uppercase tracking-widest text-teal mb-5">man murmur</p>
-              <h2 className="text-3xl md:text-5xl font-extrabold text-glass-white tracking-tight">Three seconds.</h2>
-            </div>
-            <div className="grid md:grid-cols-3 gap-5">
-              {/* Step 1 */}
-              <div className="glass p-6 reveal d1">
-                <div className="term mb-4">
-                  <div className="term-bar">
-                    <div className="term-dot bg-amber/50" />
-                    <span className="ml-2 text-[9px] font-mono text-white/15">step:01</span>
-                  </div>
-                  <div className="p-3 font-mono text-[11px]">
-                    <div className="text-white/25">$ bind</div>
-                    <div className="flex gap-1 mt-1">
-                      <kbd className="px-1 py-0.5 bg-white/5 border border-white/8 rounded text-[9px] text-glass-light">Ctrl</kbd>
-                      <span className="text-white/15">+</span>
-                      <kbd className="px-1 py-0.5 bg-white/5 border border-white/8 rounded text-[9px] text-glass-light">Shift</kbd>
-                      <span className="text-white/15">+</span>
-                      <kbd className="px-1 py-0.5 bg-teal/10 border border-teal/20 rounded text-[9px] text-teal">Space</kbd>
-                    </div>
-                  </div>
-                </div>
-                <h3 className="font-bold text-glass-white mb-1">Press hotkey</h3>
-                <p className="text-xs text-glass-text">Configurable. Hold to record.</p>
-              </div>
-
-              {/* Step 2 */}
-              <div className="glass p-6 reveal d2">
-                <div className="term mb-4">
-                  <div className="term-bar">
-                    <div className="term-dot bg-teal/50" />
-                    <span className="ml-2 text-[9px] font-mono text-white/15">step:02</span>
-                  </div>
-                  <div className="p-3 font-mono text-[11px]">
-                    <div className="text-white/25">$ record --hold</div>
-                    <div className="flex items-end gap-px h-4 mt-1">
-                      <WaveBar min={1} max={12} duration={0.8} delay={0} />
-                      <WaveBar min={1} max={14} duration={1} delay={0.1} color="bg-amber/30" />
-                      <WaveBar min={1} max={8} duration={0.7} delay={0.2} />
-                      <WaveBar min={1} max={12} duration={1.1} delay={0.15} color="bg-amber/30" />
-                    </div>
-                  </div>
-                </div>
-                <h3 className="font-bold text-glass-white mb-1">Speak</h3>
-                <p className="text-xs text-glass-text">Whisper transcribes locally.</p>
-              </div>
-
-              {/* Step 3 */}
-              <div className="glass p-6 reveal d3">
-                <div className="term mb-4">
-                  <div className="term-bar">
-                    <div className="term-dot bg-amber/50" />
-                    <span className="ml-2 text-[9px] font-mono text-white/15">step:03</span>
-                  </div>
-                  <div className="p-3 font-mono text-[11px]">
-                    <div className="text-white/25">$ inject --cursor</div>
-                    <div className="text-glass-light mt-1">Hello world<span className="blink text-teal">&#x258a;</span></div>
-                  </div>
-                </div>
-                <h3 className="font-bold text-glass-white mb-1">Text at cursor</h3>
-                <p className="text-xs text-glass-text">Any app. Universal.</p>
-              </div>
-            </div>
+          <div className="hero-compare typed-hidden" id="hero-compare">
+            <div className="hdr">feature</div>
+            <div className="hdr">free</div>
+            <div className="hdr">pro</div>
+            <div>local whisper.cpp (3 models)</div><div className="on">[+]</div><div className="on">[+]</div>
+            <div>gpu acceleration (vulkan)</div><div className="on">[+]</div><div className="on">[+]</div>
+            <div>push-to-talk + voice detection</div><div className="on">[+]</div><div className="on">[+]</div>
+            <div>universal text injection</div><div className="on">[+]</div><div className="on">[+]</div>
+            <div>99+ languages + translation</div><div className="on">[+]</div><div className="on">[+]</div>
+            <div>cloud stt (groq + deepgram)</div><div className="off">[-]</div><div className="on">[+]</div>
+            <div>llm cleanup + punctuation</div><div className="off">[-]</div><div className="on">[+]</div>
+            <div>custom dictionaries + hot words</div><div className="off">[-]</div><div className="on">[+]</div>
+            <div>context-aware conditioning</div><div className="off">[-]</div><div className="on">[+]</div>
+            <div>transcript history</div><div className="off">[-]</div><div className="on">[+]</div>
+            <div>voice commands + cli mode</div><div className="off">[-]</div><div className="on">[+]</div>
           </div>
-        </section>
-
-        {/* ════════════════════ FEATURES ════════════════════ */}
-        <section id="features" className="py-28 reveal">
-          <div className="max-w-5xl mx-auto px-6">
-            <div className="text-center mb-14">
-              <p className="text-[11px] font-mono uppercase tracking-widest text-amber mb-5">murmur --help</p>
-              <h2 className="text-3xl md:text-5xl font-extrabold text-glass-white tracking-tight mb-3">Feature flags</h2>
-            </div>
-            <div className="grid md:grid-cols-3 gap-4">
-              {[
-                { flag: "--no-cloud", color: "text-teal", hover: "hover:border-teal/15", desc: "0ms cloud latency. There is no cloud. No account, no telemetry, no network." },
-                { flag: "--gpu vulkan", color: "text-amber", hover: "hover:border-amber/15", desc: "GPU-accelerated transcription via Vulkan. Faster results on supported hardware." },
-                { flag: "--target any", color: "text-teal", hover: "hover:border-teal/15", desc: "X11 (XTEST) and Wayland (wtype) injection. Terminals, IDEs, browsers, anything." },
-                { flag: "--lang en", color: "text-amber", hover: "hover:border-amber/15", desc: "English transcription out of the box. Multi-language support coming with Pro." },
-                { flag: "--skin comm-badge", color: "text-teal", hover: "hover:border-teal/15", desc: "Floating desktop gadget with customisable skins and accent colours." },
-                { flag: "--bind Super+V", color: "text-amber", hover: "hover:border-amber/15", desc: "Configurable global hotkey. Hold to record, release to transcribe." },
-                { flag: "--auto-update", color: "text-teal", hover: "hover:border-teal/15", desc: "Built-in updater for AppImage, apt repo for .deb. Always on the latest version." },
-                { flag: "--license GPL-3.0", color: "text-amber", hover: "hover:border-amber/15", desc: "Free, open source. Read the code, verify, contribute." },
-              ].map((f) => (
-                <div key={f.flag} className={`glass p-6 transition-all ${f.hover}`}>
-                  <div className={`font-mono text-[11px] ${f.color} mb-2 font-semibold`}>{f.flag}</div>
-                  <p className="text-xs text-glass-text leading-relaxed">{f.desc}</p>
-                </div>
-              ))}
-            </div>
+          <div className="screen-cta typed-hidden" id="hero-ctas">
+            <Link href="/pricing" className="cta primary">get murmur pro</Link>
+            <span className="or">or</span>
+            <Link href="/download" className="cta">download free</Link>
+            <span className="or">&middot;</span>
+            <a href="https://github.com/murmurlinux" className="cta"><GithubIcon />github</a>
           </div>
-        </section>
+        </div>
+        <div className="scroll-hint typed-hidden" id="scroll-hint" onClick={scrollToNext}>
+          click or scroll for more &darr;
+        </div>
+      </section>
 
+      {/* SCREEN 2: HOW IT WORKS */}
+      <section className="screen" id="screen-demo" data-typewriter="demo">
+        <div className="cmd-line typed-hidden" id="demo-prompt">
+          <span className="cmd-prompt">$</span>
+          <span className="cmd" id="demo-cmd-text"></span>
+        </div>
 
-        {/* ════════════════════ USE CASES ════════════════════ */}
-        <section className="py-28 reveal">
-          <div className="max-w-5xl mx-auto px-6">
-            <div className="text-center mb-14">
-              <p className="text-[11px] font-mono uppercase tracking-widest text-amber mb-5">use cases</p>
-              <h2 className="text-3xl md:text-5xl font-extrabold text-glass-white tracking-tight">Who it&apos;s for</h2>
-            </div>
-            <div className="grid md:grid-cols-2 gap-4">
-              {[
-                { path: "~/dev", color: "text-teal", title: "Developers", desc: "Voice-code in your IDE. Dictate commits. VS Code, Neovim, Cursor, terminals." },
-                { path: "~/write", color: "text-amber", title: "Writers", desc: "Draft at the speed of speech. 3x faster than typing." },
-                { path: "~/a11y", color: "text-teal", title: "Accessibility", desc: "RSI, motor disabilities, tired hands. Voice input for Linux." },
-                { path: "~/secure", color: "text-amber", title: "Air-Gapped", desc: "No internet needed. No cloud. Sensitive environments." },
-              ].map((uc) => (
-                <div key={uc.path} className="glass p-7">
-                  <div className={`font-mono text-[11px] ${uc.color} mb-1`}>{uc.path}</div>
-                  <h3 className="font-bold text-glass-white text-lg mb-2">{uc.title}</h3>
-                  <p className="text-xs text-glass-text leading-relaxed">{uc.desc}</p>
-                </div>
-              ))}
-            </div>
+        <div className="typed-hidden" id="demo-panels">
+          <div className="demo-block">
+            <span className="demo-label">murmur free : 100% offline</span>
+            <p className="step">1. hold your hotkey (default: Ctrl+Shift+Space)</p>
+            <p className="step">2. speak naturally</p>
+            <p className="step">3. release</p>
+            <p className="output">&quot;The quick brown fox jumps over the lazy dog.&quot;</p>
+            <p className="meta">Text appears at your cursor. Any app. Nothing leaves your machine, ever. Runs whisper.cpp locally on your CPU. Free, open source (GPL v3), no account needed. For anyone who wants solid voice dictation without the overhead.</p>
           </div>
-        </section>
 
-        {/* ════════════════════ SPECS ════════════════════ */}
-        <section id="specs" className="py-28 reveal">
-          <div className="max-w-5xl mx-auto px-6">
-            <div className="text-center mb-14">
-              <p className="text-[11px] font-mono uppercase tracking-widest text-teal mb-5">neofetch</p>
-              <h2 className="text-3xl md:text-5xl font-extrabold text-glass-white tracking-tight">Specs</h2>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-              {[
-                { value: "~15MB", label: ".deb" },
-                { value: "~50MB", label: "ram" },
-                { value: "<1s", label: "startup" },
-                { value: "~3s", label: "transcribe" },
-              ].map((s) => (
-                <div key={s.label} className="glass p-5 text-center">
-                  <div className="text-2xl font-extrabold grad-text mb-0.5">{s.value}</div>
-                  <div className="text-[10px] font-mono text-glass-text uppercase tracking-wider">{s.label}</div>
-                </div>
-              ))}
-            </div>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="glass p-5">
-                <div className="font-mono text-[11px] text-teal mb-3">stack:</div>
-                <div className="space-y-1.5 text-[11px] font-mono">
-                  {[["backend", "Rust + Tauri 2"], ["frontend", "SolidJS"], ["stt", "whisper.cpp"], ["audio", "cpal"], ["inject", "xdotool / wtype"]].map(([k, v]) => (
-                    <div key={k} className="flex justify-between"><span className="text-glass-text">{k}</span><span className="text-glass-light">{v}</span></div>
-                  ))}
-                </div>
-              </div>
-              <div className="glass p-5">
-                <div className="font-mono text-[11px] text-amber mb-3">models:</div>
-                <div className="space-y-1.5 text-[11px] font-mono">
-                  {[["tiny.en", "75MB · ~3-4s"], ["base.en", "142MB · ~8-10s"], ["small.en", "466MB · ~20-30s"]].map(([k, v]) => (
-                    <div key={k} className="flex justify-between"><span className="text-glass-text">{k}</span><span className="text-glass-light">{v}</span></div>
-                  ))}
-                </div>
-                <div className="text-[9px] font-mono text-glass-text/30 mt-2">auto-download · sha256</div>
-              </div>
-            </div>
+          <div className="demo-block" style={{ borderColor: "var(--accent)" }}>
+            <span className="demo-label">murmur pro : cloud + cli<span className="pro-tag">pro</span></span>
+            <p><span className="cmd-prompt">$</span> murmur-cli record --clipboard</p>
+            <p className="step">Recording... press Ctrl+C to stop</p>
+            <p className="step">Captured 2.3s of audio</p>
+            <p className="step">Transcribing...</p>
+            <p className="output">&quot;The quick brown fox jumps over the lazy dog.&quot;</p>
+            <p className="meta">Copied to clipboard.</p>
+            <p className="meta">Everything in free, plus cloud engines (Groq, Deepgram) for faster, more accurate transcription. Audio goes directly to the provider, never to us. Adds CLI mode, LLM cleanup, custom dictionaries, and more. Closed source. For professionals and heavy users.</p>
           </div>
-        </section>
+        </div>
 
-        {/* ════════════════════ DOWNLOAD ════════════════════ */}
-        <section id="download" className="py-28 reveal">
-          <div className="max-w-3xl mx-auto px-6 text-center">
-            <p className="text-[11px] font-mono uppercase tracking-widest text-amber mb-5">install</p>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-glass-white tracking-tight mb-3">Ready in 30 seconds</h2>
-            <p className="text-glass-text mb-10 text-sm">No account. No cloud.</p>
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
-              <a href="/download" className="cta-grad text-sm font-mono flex items-center gap-2"><DownloadIcon /> .deb</a>
-              <a href="/download" className="glass px-6 py-3.5 text-sm font-mono text-glass-white hover:bg-white/5 transition-colors flex items-center gap-2 rounded-xl"><DownloadIcon /> .AppImage</a>
-            </div>
-            <div className="max-w-lg mx-auto text-left">
-              <CodeBlock
-                label="bash"
-                code={`curl -fsSL https://murmurlinux.github.io/apt/gpg.key | sudo tee /etc/apt/keyrings/murmur.asc > /dev/null\necho "deb [signed-by=/etc/apt/keyrings/murmur.asc] https://murmurlinux.github.io/apt/ stable main" | sudo tee /etc/apt/sources.list.d/murmur.list\nsudo apt update && sudo apt install murmur`}
-              />
-            </div>
+        <div className="screen-cta typed-hidden" id="demo-ctas">
+          <a href="#" className="cta" onClick={openDemo}>watch demo</a>
+          <span className="or">&middot;</span>
+          <Link href="/pricing" className="cta primary">get murmur pro</Link>
+          <span className="or">&middot;</span>
+          <Link href="/download" className="cta">download free</Link>
+        </div>
+        <div className="scroll-hint typed-hidden" id="demo-scroll" onClick={scrollToNext}>
+          click or scroll for more &darr;
+        </div>
+      </section>
+
+      {/* SCREEN 3: PRICING + CLOSE */}
+      <section className="screen" id="screen-pricing" data-typewriter="pricing-home">
+        <div className="cmd-line typed-hidden" id="pricing-home-prompt">
+          <span className="cmd-prompt">$</span>
+          <span className="cmd" id="pricing-home-cmd-text"></span>
+        </div>
+        <div className="cmd-output typed-hidden" id="pricing-home-output">
+          <p><span className="accent">FREE</span> <span className="muted">&middot;</span> The full desktop app with local whisper.cpp transcription. Unlimited use, 99+ languages, zero telemetry. Open source under GPL v3, no account required, yours forever. Everything you need for everyday voice dictation.</p>
+          <p style={{ marginTop: 10 }}><span className="accent">PRO</span> <span className="muted">&middot;</span> Everything in free, plus cloud engines (Groq Whisper, Deepgram Nova-3) for faster, more accurate results. Adds LLM text cleanup, custom dictionaries, voice commands, CLI mode, and priority support. For professionals and heavy users who want the best.</p>
+
+          <div style={{ marginTop: 14, padding: "12px 16px", border: "1px solid var(--border)", background: "var(--card)", maxWidth: 480 }}>
+            <p style={{ margin: "0 0 6px" }}><span className="accent" style={{ fontWeight: 700 }}>Founding member special:</span> <span style={{ textDecoration: "line-through", color: "var(--text-dim)" }}>$249</span> <strong>$149</strong> one-time lifetime purchase. Limited availability.</p>
+            <p style={{ margin: 0, fontSize: 12 }} className="muted">Or subscribe: $69/year (founding price, normally $99) &middot; $12/month. Cancel anytime.</p>
           </div>
-        </section>
 
-        {/* ════════════════════ WAITLIST ════════════════════ */}
-        <section id="waitlist" className="py-20 reveal">
-          <div className="max-w-2xl mx-auto px-6 text-center">
-            <p className="text-[11px] font-mono uppercase tracking-widest text-amber mb-5">pro tier</p>
-            <h2 className="text-2xl font-extrabold text-glass-white tracking-tight mb-3">
-              Get notified when Pro launches
-            </h2>
-            <p className="text-sm text-glass-text mb-8">
-              Cloud STT, LLM cleanup, 99+ languages, CLI mode. Be first to know.
-            </p>
-            <WaitlistForm />
-          </div>
-        </section>
+          <p className="muted" style={{ marginTop: 10, fontSize: 12 }}>Want to stay in the loop? Type <span className="accent">subscribe you@email.com</span> below.</p>
+        </div>
+        <div className="screen-cta typed-hidden" id="pricing-home-ctas">
+          <Link href="/pricing" className="cta">see full pricing</Link>
+          <span className="or">or</span>
+          <Link href="/pricing" className="cta primary">get murmur pro</Link>
+        </div>
 
-        {/* ════════════════════ OPEN SOURCE ════════════════════ */}
-        <section className="py-28 reveal">
-          <div className="max-w-3xl mx-auto px-6 text-center">
-            <h2 className="text-3xl md:text-5xl font-extrabold text-glass-white tracking-tight mb-4">Open source</h2>
-            <p className="text-glass-text mb-8 max-w-md mx-auto text-sm">GPL v3. Read it. Verify it. Contribute.</p>
-            <a href="https://github.com/murmurlinux/murmur" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 glass px-7 py-3.5 rounded-xl text-sm font-mono text-glass-white hover:bg-white/5 transition-colors">
-              <GitHubIcon /> git clone murmur
-            </a>
-          </div>
-        </section>
-
-        {/* ════════════════════ FAQ ════════════════════ */}
-        <section className="py-28 reveal">
-          <div className="max-w-2xl mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-2xl font-extrabold text-glass-white tracking-tight">Questions</h2>
-            </div>
-            <FaqAccordion />
-          </div>
-        </section>
-
-        {/* Footer is now in layout.tsx */}
-      </div>
+        <div className="footer typed-hidden" id="footer-home">
+          <Link href="/about">about</Link><span className="dot">&middot;</span>
+          <Link href="/docs">docs</Link><span className="dot">&middot;</span>
+          <Link href="/changelog">changelog</Link><span className="dot">&middot;</span>
+          <Link href="/blog">blog</Link><span className="dot">&middot;</span>
+          <Link href="/privacy">privacy</Link><span className="dot">&middot;</span>
+          <Link href="/terms">terms</Link><span className="dot">&middot;</span>
+          <a href="https://github.com/murmurlinux">github</a><span className="dot">&middot;</span>
+          <a href="mailto:hello@murmurlinux.com">hello@murmurlinux.com</a>
+        </div>
+      </section>
     </>
   );
 }

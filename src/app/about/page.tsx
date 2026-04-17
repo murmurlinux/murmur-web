@@ -1,91 +1,71 @@
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "About",
-  description: "Murmur is a Linux-native voice dictation gadget. Free, open source, 100% offline. Built with Rust, Tauri 2, and whisper.cpp.",
-};
+import Link from "next/link";
+import GithubIcon from "@/components/GithubIcon";
+import ViewAnimation from "@/components/ViewAnimation";
 
 export default function AboutPage() {
+  function openDemo(e: React.MouseEvent) {
+    e.preventDefault();
+    const lb = document.getElementById("lightbox");
+    if (lb) {
+      const title = document.getElementById("lightbox-title");
+      if (title) title.textContent = "murmur demo";
+      const body = document.getElementById("lightbox-body");
+      if (body) {
+        body.textContent = "";
+        body.style.whiteSpace = "normal";
+        const wrap = document.createElement("div");
+        wrap.className = "video-lb-body";
+        const placeholder = document.createElement("div");
+        placeholder.className = "video-placeholder";
+        const playIcon = document.createElement("div");
+        playIcon.className = "play-icon";
+        playIcon.textContent = "\u25B6";
+        placeholder.appendChild(playIcon);
+        const placeholderText = document.createElement("div");
+        placeholderText.textContent = "demo video";
+        placeholder.appendChild(placeholderText);
+        wrap.appendChild(placeholder);
+        body.appendChild(wrap);
+      }
+      lb.classList.add("active");
+      lb.setAttribute("aria-hidden", "false");
+    }
+  }
+
   return (
-    <>
+    <ViewAnimation>
+      <p className="view-crumb"><Link href="/">~</Link><span className="sep">/</span>about</p>
+      <div className="cmd-line"><span className="cmd-prompt">$</span><span className="cmd">cat about.txt</span></div>
+      <p className="view-title">about</p>
 
-      <div className="pt-24 pb-20">
-        <div className="max-w-3xl mx-auto px-6">
-          <p className="text-[11px] font-mono uppercase tracking-widest text-teal mb-5">cat README</p>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-glass-white tracking-tight mb-8">About Murmur</h1>
+      <div className="manpage">
+        <h3>why murmur exists</h3>
+        <p>Linux has had good options for almost everything, except voice dictation. Other platforms have had polished tools for years. We wanted to fix that.</p>
+        <p>Murmur Free is for privacy-conscious and everyday users. It runs whisper.cpp entirely on your machine. Nothing goes online, no account needed, and it&apos;s open source under GPL v3. Murmur Pro is for professionals and power users who want cloud-speed transcription via Groq and Deepgram. Audio goes directly to the provider, never to us.</p>
 
-          <div className="space-y-6 text-sm text-glass-text leading-relaxed">
-            <p>
-              Murmur is a voice dictation gadget for Linux. Press a hotkey, speak, and text appears at your cursor, in any application.
-              It&apos;s powered by <a href="https://github.com/ggerganov/whisper.cpp" className="text-teal hover:underline">whisper.cpp</a> for
-              fast, accurate, 100% offline transcription.
-            </p>
+        <h3>the philosophy</h3>
+        <p>We built Murmur because we wanted something we&apos;d actually use ourselves, every day. Something that worked quietly, respected the user, and didn&apos;t try to be clever about monetisation. Local first. No telemetry. No dark patterns. The free version is genuinely free. Pro funds continued open source development.</p>
 
-            <p>
-              Voice dictation on other platforms has been polished for years. We wanted to bring that same quality to Linux: a native
-              Rust/Tauri app that&apos;s ~15MB, starts instantly, and actually looks good on your desktop.
-            </p>
-
-            <h2 className="text-xl font-extrabold text-glass-white pt-4">Open source commitment</h2>
-            <p>
-              Murmur is free and open source under the <a href="https://github.com/murmurlinux/murmur/blob/main/LICENSE" className="text-teal hover:underline">GPL v3</a> license.
-              The core app (local whisper transcription, all skins, push-to-talk, text injection) will always be free with no limits.
-            </p>
-            <p>
-              A Pro tier is planned for power users who want cloud STT speed (&lt;200ms via Groq/Deepgram), LLM text cleanup,
-              voice commands, custom dictionaries, and a CLI mode for scripting. The free tier is not a trial. It&apos;s the complete product.
-            </p>
-
-            <h2 className="text-xl font-extrabold text-glass-white pt-4">Built with</h2>
-            <div className="glass p-5">
-              <div className="space-y-1.5 text-[12px] font-mono">
-                {[
-                  ["Backend", "Rust + Tauri 2"],
-                  ["Frontend", "SolidJS + TypeScript"],
-                  ["STT Engine", "whisper.cpp (via whisper-rs)"],
-                  ["Audio", "cpal (PipeWire / PulseAudio)"],
-                  ["Text Injection", "xdotool (X11) / wtype (Wayland)"],
-                  ["Website", "Next.js + Tailwind CSS on Vercel"],
-                ].map(([k, v]) => (
-                  <div key={k} className="flex justify-between">
-                    <span className="text-glass-text">{k}</span>
-                    <span className="text-glass-light">{v}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <h2 className="text-xl font-extrabold text-glass-white pt-4">Roadmap</h2>
-            <div className="space-y-2 text-xs font-mono">
-              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Core dictation + settings (v0.1.0)</span></div>
-              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Tap-to-toggle + skins (v0.1.1)</span></div>
-              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Wayland support via wtype (v0.2.0)</span></div>
-              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Voice Activity Detection (v0.2.0)</span></div>
-              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">GPU acceleration via Vulkan (v0.3.0)</span></div>
-              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">First-run onboarding wizard (v0.3.0)</span></div>
-              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Start on login / XDG autostart (v0.3.0)</span></div>
-              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Auto-update system (v0.3.0)</span></div>
-              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Multi-language support + translation (v0.3.0)</span></div>
-              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Settings keyboard shortcut (v0.3.3)</span></div>
-              <div className="flex items-center gap-3"><span className="text-teal">&#x2713;</span> <span className="text-glass-light">Dynamic tray tooltip (v0.3.3)</span></div>
-              <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>Transcript history (Pro)</span></div>
-              <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>Voice commands (Pro)</span></div>
-              <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>Cloud STT: Groq Whisper + Deepgram Nova-3 (Pro)</span></div>
-              <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>LLM text cleanup (Pro)</span></div>
-              <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>Custom dictionaries / hot words (Pro)</span></div>
-              <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>CLI mode: murmur-cli (Pro)</span></div>
-              <div className="flex items-center gap-3"><span className="text-glass-text/30">&#x25cb;</span> <span>Premium skins (Pro)</span></div>
-            </div>
-
-            <h2 className="text-xl font-extrabold text-glass-white pt-4">Contact</h2>
-            <p>
-              <a href="mailto:hello@murmurlinux.com" className="text-teal hover:underline">hello@murmurlinux.com</a> &middot;{" "}
-              <a href="https://github.com/murmurlinux/murmur" className="text-teal hover:underline">GitHub</a> &middot;{" "}
-              <a href="https://github.com/murmurlinux/murmur/discussions" className="text-teal hover:underline">Discussions</a>
-            </p>
-          </div>
-        </div>
+        <h3>who</h3>
+        <p>A small, independent team and a growing community of contributors. No investors, no VC, no growth hacking. Just the app. <a href="mailto:hello@murmurlinux.com">hello@murmurlinux.com</a></p>
       </div>
-    </>
+
+      <p className="muted" style={{ marginTop: 10, fontSize: 12 }}>Stay in the loop: type <span className="accent">subscribe you@email.com</span> below.</p>
+
+      <div className="cta-row" style={{ marginTop: 16 }}>
+        <a href="#" className="cta" onClick={openDemo}>watch demo</a>
+        <Link href="/pricing" className="cta primary">get murmur pro</Link>
+        <a href="https://github.com/murmurlinux" className="cta"><GithubIcon />github</a>
+      </div>
+
+      <div className="footer">
+        <Link href="/">home</Link><span className="dot">&middot;</span>
+        <Link href="/pricing">pricing</Link><span className="dot">&middot;</span>
+        <Link href="/docs">docs</Link><span className="dot">&middot;</span>
+        <Link href="/privacy">privacy</Link>
+      </div>
+    </ViewAnimation>
   );
 }

@@ -1,118 +1,68 @@
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description: "Murmur privacy policy: what data we collect, how we use it, and your rights.",
-  alternates: { canonical: "https://murmurlinux.com/privacy" },
-};
+import Link from "next/link";
+import ViewAnimation from "@/components/ViewAnimation";
 
 export default function PrivacyPage() {
   return (
-    <div className="pt-24 pb-20">
-      <div className="max-w-3xl mx-auto px-6">
-        <p className="text-[11px] font-mono uppercase tracking-widest text-teal mb-5">cat /etc/privacy</p>
-        <h1 className="text-4xl md:text-5xl font-extrabold text-glass-white tracking-tight mb-4">Privacy Policy</h1>
-        <p className="text-xs text-glass-text mb-12">Last updated: 25 March 2026</p>
+    <ViewAnimation>
+      <p className="view-crumb"><Link href="/">~</Link><span className="sep">/</span>privacy</p>
+      <div className="cmd-line"><span className="cmd-prompt">$</span><span className="cmd">cat privacy.txt</span></div>
+      <p className="view-title">privacy policy</p>
+      <p className="view-sub">tl;dr: we don&apos;t spy on you. Scroll down for the lawyer-friendly version. Last updated: 2026-04-15.</p>
 
-        <div className="space-y-8 text-sm text-glass-text leading-relaxed">
-          <section>
-            <h2 className="text-lg font-bold text-glass-white mb-3">The short version</h2>
-            <p>
-              Murmur is built for privacy. The desktop app processes your voice <strong className="text-glass-light">entirely on your machine</strong>. No
-              audio is sent anywhere. This website collects minimal data and we never sell or share it.
-            </p>
-          </section>
+      <div className="manpage">
+        <h3>the short version</h3>
+        <p>The free version of Murmur runs entirely on your machine. Your audio, your transcriptions, and your configuration never leave your computer. There is no telemetry, no analytics, no phone-home. We cannot see what you dictate, when you use the app, or how often. We designed it this way on purpose.</p>
 
-          <section>
-            <h2 className="text-lg font-bold text-glass-white mb-3">The Murmur desktop app</h2>
-            <ul className="list-disc list-inside space-y-2">
-              <li>All speech-to-text processing happens locally using whisper.cpp. <strong className="text-glass-light">No audio data leaves your machine.</strong></li>
-              <li>No telemetry, analytics, or usage tracking of any kind.</li>
-              <li>No account required. No sign-up. No login.</li>
-              <li>The only network request is downloading the Whisper model on first use (~75MB from Hugging Face). After that, zero network activity.</li>
-              <li>Settings are stored locally at <code className="text-teal/70 font-mono text-xs">~/.local/share/com.murmurlinux.murmur/</code>.</li>
-              <li>The app is open source (GPL v3). You can <a href="https://github.com/murmurlinux/murmur" className="text-teal hover:underline">read the code</a> and verify these claims.</li>
-            </ul>
-          </section>
+        <h3>what we collect</h3>
+        <p className="indent">- <strong>Free users:</strong> nothing. Zero data leaves your machine.</p>
+        <p className="indent">- <strong>Pro subscribers:</strong> your email address (for account and billing). That&apos;s it.</p>
+        <p className="indent">- <strong>Waitlist/newsletter:</strong> your email address, if you choose to subscribe.</p>
 
-          <section>
-            <h2 className="text-lg font-bold text-glass-white mb-3">This website (murmurlinux.com)</h2>
-            <h3 className="text-sm font-semibold text-glass-light mb-2">Data we collect</h3>
-            <ul className="list-disc list-inside space-y-2">
-              <li><strong className="text-glass-light">Waitlist emails:</strong> If you sign up for Pro launch notifications, we store your email address and the date you signed up. That&apos;s it.</li>
-              <li><strong className="text-glass-light">Error monitoring:</strong> We use Sentry to catch website errors. Sentry may collect your IP address, browser type, and error context. No personally identifiable information is intentionally collected.</li>
-              <li><strong className="text-glass-light">No analytics:</strong> We do not use Google Analytics, Facebook Pixel, or any tracking scripts. No cookies are set for tracking purposes.</li>
-            </ul>
-          </section>
+        <h3>what we don&apos;t collect</h3>
+        <p className="indent">- Audio recordings.</p>
+        <p className="indent">- Transcribed text.</p>
+        <p className="indent">- Usage metrics or session data.</p>
+        <p className="indent">- Device fingerprints or hardware identifiers.</p>
+        <p className="indent">- Crash reports (unless you opt in via Sentry, which is off by default).</p>
 
-          <section>
-            <h2 className="text-lg font-bold text-glass-white mb-3">How we use your data</h2>
-            <ul className="list-disc list-inside space-y-2">
-              <li>Waitlist emails are used solely to notify you when the Pro tier launches. We will not send marketing emails or share your email with third parties.</li>
-              <li>Error data is used to fix bugs and improve the website.</li>
-            </ul>
-          </section>
+        <h3>pro tier: cloud speech engines</h3>
+        <p>Pro unlocks the ability to use cloud STT engines (Groq Whisper, Deepgram Nova-3) with your own API keys. The key points:</p>
+        <p className="indent">- You provide your own API keys. We do not supply, manage, or have access to them.</p>
+        <p className="indent">- Audio goes directly from your machine to the provider. It does not pass through our servers.</p>
+        <p className="indent">- We never receive, store, or have access to your audio or transcriptions.</p>
+        <p className="indent">- Usage and costs are between you and the provider.</p>
+        <p className="indent">- You can switch back to the local engine at any time. Cloud is always opt-in.</p>
+        <p>Provider data handling is governed by each provider&apos;s own privacy policy:</p>
+        <p className="indent">- <strong>Groq:</strong> does not retain audio after transcription completes (as of writing).</p>
+        <p className="indent">- <strong>Deepgram:</strong> configurable retention, supports zero-retention mode.</p>
 
-          <section>
-            <h2 className="text-lg font-bold text-glass-white mb-3">Data storage</h2>
-            <ul className="list-disc list-inside space-y-2">
-              <li>Waitlist emails are stored in Supabase (hosted in Sydney, Australia).</li>
-              <li>Error data is stored by Sentry (US-based).</li>
-              <li>The website is hosted on Vercel.</li>
-            </ul>
-          </section>
+        <h3>website</h3>
+        <p>This website uses Vercel Speed Insights (privacy-preserving, no cookies). We do not use tracking cookies, advertising pixels, or third-party analytics. The AI chat assistant is powered by Gemini and does not store conversation history.</p>
 
-          <section>
-            <h2 className="text-lg font-bold text-glass-white mb-3">Your rights</h2>
-            <ul className="list-disc list-inside space-y-2">
-              <li><strong className="text-glass-light">Deletion:</strong> Email <a href="mailto:dev@murmurlinux.com" className="text-teal hover:underline">dev@murmurlinux.com</a> to request deletion of your waitlist email.</li>
-              <li><strong className="text-glass-light">Access:</strong> You can request a copy of any data we hold about you.</li>
-              <li><strong className="text-glass-light">Correction:</strong> You can request corrections to your data.</li>
-            </ul>
-          </section>
+        <h3>data storage</h3>
+        <p>Pro account data (email, subscription status) is stored in Supabase (hosted in ap-southeast-2, Sydney). Waitlist emails are stored in the same database. We use row-level security and encrypted connections.</p>
 
-          <section>
-            <h2 className="text-lg font-bold text-glass-white mb-3">Third-party services</h2>
-            <div className="glass p-5">
-              <div className="space-y-2 text-[12px] font-mono">
-                {[
-                  ["Supabase", "Waitlist email storage", "supabase.com/privacy"],
-                  ["Sentry", "Error monitoring", "sentry.io/privacy"],
-                  ["Vercel", "Website hosting", "vercel.com/legal/privacy-policy"],
-                  ["Hugging Face", "Model downloads (app only)", "huggingface.co/privacy"],
-                ].map(([name, purpose, url]) => (
-                  <div key={name} className="flex justify-between flex-wrap gap-2">
-                    <span className="text-glass-light">{name}: {purpose}</span>
-                    <span className="text-glass-text/30">{url}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
+        <h3>your rights</h3>
+        <p>You can request deletion of your data at any time by emailing <a href="mailto:privacy@murmurlinux.com">privacy@murmurlinux.com</a>. We will delete your account, subscription records, and any associated data within 14 days. Newsletter subscribers can unsubscribe via the link in any email.</p>
 
-          <section>
-            <h2 className="text-lg font-bold text-glass-white mb-3">Future Pro tier</h2>
-            <p>
-              When the Pro tier launches (with cloud STT and LLM cleanup), additional data processing will occur on third-party servers (Groq, Deepgram).
-              This policy will be updated before launch with full details. The free tier will always remain 100% local.
-            </p>
-          </section>
+        <h3>children</h3>
+        <p>Murmur is not directed at children under 13. We do not knowingly collect data from children.</p>
 
-          <section>
-            <h2 className="text-lg font-bold text-glass-white mb-3">Changes to this policy</h2>
-            <p>
-              We will update this page if our practices change. Significant changes will be announced via the website.
-            </p>
-          </section>
+        <h3>changes</h3>
+        <p>We may update this policy. Material changes will be emailed to Pro subscribers. The latest version is always available at this page.</p>
 
-          <section>
-            <h2 className="text-lg font-bold text-glass-white mb-3">Contact</h2>
-            <p>
-              Questions about privacy? Email <a href="mailto:dev@murmurlinux.com" className="text-teal hover:underline">dev@murmurlinux.com</a>.
-            </p>
-          </section>
-        </div>
+        <h3>contact</h3>
+        <p className="indent">Privacy questions: <a href="mailto:privacy@murmurlinux.com">privacy@murmurlinux.com</a></p>
+        <p className="indent">General: <a href="mailto:hello@murmurlinux.com">hello@murmurlinux.com</a></p>
       </div>
-    </div>
+
+      <div className="footer">
+        <Link href="/">home</Link><span className="dot">&middot;</span>
+        <Link href="/terms">terms</Link><span className="dot">&middot;</span>
+        <Link href="/about">about</Link>
+      </div>
+    </ViewAnimation>
   );
 }

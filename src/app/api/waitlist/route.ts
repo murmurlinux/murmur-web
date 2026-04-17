@@ -36,7 +36,8 @@ export async function POST(request: Request) {
       origin &&
       origin !== "https://murmurlinux.com" &&
       origin !== "https://www.murmurlinux.com" &&
-      !origin.endsWith(".vercel.app")
+      !origin.endsWith(".vercel.app") &&
+      !origin.startsWith("http://localhost:")
     ) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
