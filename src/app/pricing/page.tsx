@@ -7,8 +7,8 @@ import ViewAnimation from "@/components/ViewAnimation";
 
 const PLANS = {
   monthly: { amount: "$12", strike: "", period: " / month", note: "billed monthly. cancel anytime.", save: "most flexible", founding: false, footer: "no long-term commitment. cancel anytime from your account." },
-  yearly: { amount: "$69", strike: "$99", period: " / year", note: "founding member price. billed annually.", save: "founding price \u00b7 save 52%", founding: true, footer: "billed as one payment of $69/year. standard price $99/year after launch." },
-  lifetime: { amount: "$149", strike: "$249", period: "", note: "one-time purchase. yours forever.", save: "founding price \u00b7 best value", founding: true, footer: "founding member lifetime deal. standard price $249 after launch. no recurring charges." },
+  yearly: { amount: "$69", strike: "$99", period: " / year", note: "founding member price. billed annually.", save: "save 52%", founding: true, footer: "billed as one payment of $69/year. standard price $99/year after launch." },
+  lifetime: { amount: "$149", strike: "$249", period: "", note: "one-time purchase. yours forever.", save: "best value", founding: true, footer: "founding member lifetime deal. standard price $249 after launch. no recurring charges." },
 } as const;
 
 type PlanKey = keyof typeof PLANS;
