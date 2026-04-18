@@ -766,13 +766,6 @@ a:hover { text-decoration: underline; }
   body { padding: 28px 22px 70px; font-size: 13px; }
   #terminal-input { padding: 14px 22px; }
   .ascii-logo { font-size: 8px; }
-  /* Force the pricing-save descriptor onto its own line on mobile.
-     Without this, the layout shifted between states depending on
-     whether the label fit next to the toggle -- 'most flexible' fit,
-     'save 52%' / 'best value' sometimes did, sometimes didn't. Stack
-     consistently below on narrow screens; desktop keeps the side-by-
-     side layout. */
-  .price-save { display: block; margin-left: 0; margin-top: 8px; }
   /* Keep ~5x logo-to-ASCII ratio on mobile so the mark reads as
      confident next to the ASCII wordmark, matching desktop proportions
      (72px logo vs 14px ASCII). The .site-header .ascii-logo override
