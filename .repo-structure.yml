@@ -1,0 +1,47 @@
+# Explicit allowlist of every path permitted in this public repo.
+# Any tracked file that does not match a pattern below fails CI
+# (see .github/workflows/repo-structure.yml).
+#
+# To add a new allowed path, update this file in the same PR that adds
+# the file. Prefer narrow patterns over broad ones: a narrower pattern
+# forces the conversation "does this really belong in a public repo?"
+#
+# Glob syntax is gitignore-style: `*` matches one path component,
+# `**` matches any depth, `?` matches a single character.
+#
+# The principle this enforces: public repos contain ONLY what ships to
+# users. Everything else (internal planning, design exploration,
+# competitor research, audits) lives in murmurlinux/internal.
+
+allowed:
+  # --- Meta: the allowlist and its enforcement machinery ---
+  - .gitignore
+  - .repo-structure.yml
+  - .pre-commit-config.yaml
+  - .github/CODEOWNERS
+  - .github/scripts/check-repo-structure.py
+  - .github/workflows/public-hygiene.yml
+  - .github/workflows/repo-structure.yml
+  - .github/workflows/gitleaks.yml
+
+  # --- Community + customer-facing docs ---
+  - LICENSE
+  - README.md
+
+  # --- Next.js + platform config ---
+  - package.json
+  - pnpm-lock.yaml
+  - tsconfig.json
+  - next.config.ts
+  - middleware.ts
+  - eslint.config.mjs
+  - vercel.json
+  - sentry.client.config.ts
+  - sentry.edge.config.ts
+  - sentry.server.config.ts
+
+  # --- Next.js app source ---
+  - src/**
+
+  # --- Static assets served to browsers ---
+  - public/**
