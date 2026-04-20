@@ -30,7 +30,7 @@ interface BootLineSpec {
 }
 
 const BOOT_LINES: BootLineSpec[] = [
-  { text: "murmur_os v0.3.3 - booting..." },
+  { text: "murmur_os v0.3.4 - booting..." },
   { text: "loading whisper_engine.pkg              ", status: "[ok]", statusClass: "ok" },
   { text: "loading silero_vad.pkg                  ", status: "[ok]", statusClass: "ok" },
   { text: "loading global_hotkeys.pkg              ", status: "[ok]", statusClass: "ok" },
@@ -266,7 +266,7 @@ export default function HomePage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.png" alt="Murmur" className="site-logo" />
           <pre className="ascii-logo" aria-label="Murmur">{ASCII_LOGO_MURMUR}</pre>
-          <span className="site-version">v0.3.3</span>
+          <span className="site-version">v0.3.4</span>
         </div>
         <div id="boot-screen" ref={bootRef}></div>
 

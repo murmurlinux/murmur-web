@@ -8,7 +8,7 @@ export const MURMUR_KNOWLEDGE = `
 
 Murmur is a desktop voice dictation gadget for Linux. Hold a hotkey, speak, and text appears at your cursor in any application. 100% offline, open source (GPL-3.0), powered by whisper.cpp with Vulkan GPU acceleration.
 
-Current version: v0.3.3
+Current version: v0.3.4
 
 ## How It Works
 
@@ -17,7 +17,7 @@ Current version: v0.3.3
 3. Release the hotkey
 4. Text appears at your cursor in any application
 
-Murmur runs as a floating widget (the "Comm Badge") with a system tray icon. It auto-detects X11 or Wayland and uses the correct text injection backend (xdotool or wtype).
+Murmur runs as a system tray icon. Left-click the tray icon to open Settings; right-click for the menu. It auto-detects X11 or Wayland and uses the correct text injection backend (xdotool or wtype).
 
 ## Installation
 
@@ -27,13 +27,13 @@ echo "deb [signed-by=/etc/apt/keyrings/murmur.asc] https://murmurlinux.github.io
 sudo apt update && sudo apt install murmur
 
 ### AppImage (any distro, no installation required, auto-updates on launch):
-wget https://github.com/murmurlinux/murmur/releases/download/v0.3.3/Murmur_0.3.3_amd64.AppImage
-chmod +x Murmur_0.3.3_amd64.AppImage
-./Murmur_0.3.3_amd64.AppImage
+wget https://github.com/murmurlinux/murmur/releases/download/v0.3.4/Murmur_0.3.4_amd64.AppImage
+chmod +x Murmur_0.3.4_amd64.AppImage
+./Murmur_0.3.4_amd64.AppImage
 
 ### .deb direct (Ubuntu/Debian, manual updates):
-wget https://github.com/murmurlinux/murmur/releases/download/v0.3.3/Murmur_0.3.3_amd64.deb
-sudo dpkg -i Murmur_0.3.3_amd64.deb
+wget https://github.com/murmurlinux/murmur/releases/download/v0.3.4/Murmur_0.3.4_amd64.deb
+sudo dpkg -i Murmur_0.3.4_amd64.deb
 
 ### Uninstall:
 sudo apt remove murmur
@@ -54,7 +54,7 @@ An onboarding wizard guides you through microphone selection and settings.
 
 ## Settings
 
-Access settings via the gear icon on the Comm Badge widget, or from the system tray menu.
+Left-click the system tray icon to open Settings. Right-click the tray icon for the menu.
 
 - Hotkey: Global keyboard shortcut. Default: Ctrl+Shift+Space
 - Model: Whisper model size. Tiny (~3-4s transcription), Base (~8-10s), Small (~20-30s). Larger models are more accurate but slower.
@@ -62,9 +62,6 @@ Access settings via the gear icon on the Comm Badge widget, or from the system t
 - Auto-stop silence: In tap mode, automatically stops recording after detecting silence
 - Language: English
 - Translate to English: Available with multilingual models
-- Accent colour: Customise the Comm Badge glow colour
-- Skin: Widget style (currently: Comm Badge)
-- Always on top: Keep the widget above other windows
 - Start on login: Auto-start Murmur when you log in
 
 Settings are stored at ~/.local/share/com.murmurlinux.murmur/settings.json
@@ -131,7 +128,7 @@ Q: How do I report a bug?
 A: Open an issue at github.com/murmurlinux/murmur/issues with your distro, desktop environment, and steps to reproduce.
 
 Q: How does Murmur compare to other tools?
-A: Murmur uses Rust and Tauri for a small, fast binary with a floating widget UI. There are other great Linux dictation tools that take different approaches. We recommend trying a few and using what works best for you.
+A: Murmur uses Rust and Tauri for a small, fast binary that runs from the system tray. There are other great Linux dictation tools that take different approaches. We recommend trying a few and using what works best for you.
 
 ## Useful Links
 
