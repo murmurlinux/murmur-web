@@ -3,6 +3,7 @@
 import Link from "next/link";
 import CopyButton from "@/components/CopyButton";
 import ViewAnimation from "@/components/ViewAnimation";
+import { debFilename, appImageFilename, debUrl, appImageUrl } from "@/lib/app-version";
 
 export default function DownloadPage() {
   return (
@@ -27,8 +28,8 @@ sudo apt update && sudo apt install murmur`}</pre>
           <span className="label">.deb direct download</span>
           <CopyButton targetId="deb-install" />
         </div>
-        <pre id="deb-install">{`wget https://github.com/murmurlinux/murmur/releases/download/v0.3.4/Murmur_0.3.4_amd64.deb
-sudo dpkg -i Murmur_0.3.4_amd64.deb`}</pre>
+        <pre id="deb-install">{`wget ${debUrl}
+sudo dpkg -i ${debFilename}`}</pre>
       </div>
 
       <div className="shell-block">
@@ -36,14 +37,14 @@ sudo dpkg -i Murmur_0.3.4_amd64.deb`}</pre>
           <span className="label">.appimage (any distro, auto-updates on launch)</span>
           <CopyButton targetId="appimage-install" />
         </div>
-        <pre id="appimage-install">{`wget https://github.com/murmurlinux/murmur/releases/download/v0.3.4/Murmur_0.3.4_amd64.AppImage
-chmod +x Murmur_0.3.4_amd64.AppImage
-./Murmur_0.3.4_amd64.AppImage`}</pre>
+        <pre id="appimage-install">{`wget ${appImageUrl}
+chmod +x ${appImageFilename}
+./${appImageFilename}`}</pre>
       </div>
 
       <div className="cta-row" style={{ marginTop: 14 }}>
-        <a href="https://github.com/murmurlinux/murmur/releases/download/v0.3.4/Murmur_0.3.4_amd64.deb" className="cta">download .deb</a>
-        <a href="https://github.com/murmurlinux/murmur/releases/download/v0.3.4/Murmur_0.3.4_amd64.AppImage" className="cta">download .AppImage</a>
+        <a href={debUrl} className="cta">download .deb</a>
+        <a href={appImageUrl} className="cta">download .AppImage</a>
         <Link href="/pricing" className="cta primary">get pro</Link>
       </div>
 

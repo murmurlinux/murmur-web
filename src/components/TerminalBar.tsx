@@ -2,6 +2,7 @@
 
 import { useRef, useState, useCallback, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import { APP_VERSION } from "@/lib/app-version";
 
 const NAV_MAP: Record<string, string> = {
   home: "/", "cd /": "/", "cd ~": "/", cd: "/",
@@ -210,7 +211,7 @@ export default function TerminalBar() {
       } else if (c === "rm -rf" || c === "rm -rf /" || c === "rm -rf /*" || c === "rm -rf ~") {
         appendOutput(para("err", "please do not."));
       } else if (c === "uname -a" || c === "uname") {
-        appendOutput(para(null, "murmur_os 0.3.4 #1 SMP PREEMPT Linux rust/tauri GNU/Linux"));
+        appendOutput(para(null, `murmur_os ${APP_VERSION} #1 SMP PREEMPT Linux rust/tauri GNU/Linux`));
       } else if (c === "make me a sandwich") {
         appendOutput(para("err", "what? make it yourself."));
       } else if (c === "cowsay" || c.startsWith("cowsay ")) {
@@ -239,7 +240,7 @@ export default function TerminalBar() {
         nfPre.style.fontSize = "13px";
         nfPre.textContent =
           "       m)))          murmur@linux\n" +
-          "      -------        OS: murmur_os 0.3.4\n" +
+          `      -------        OS: murmur_os ${APP_VERSION}\n` +
           "                     Host: your machine, not ours\n" +
           "                     Kernel: rust + tauri 2\n" +
           "                     Shell: this website\n" +
