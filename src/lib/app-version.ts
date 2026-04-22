@@ -8,7 +8,7 @@
 // the derived URLs / filenames below) from here. Adding a new surface
 // that shows the app version? Import, do not duplicate.
 
-export const APP_VERSION = "0.3.4";
+export const APP_VERSION = "0.3.5";
 export const APP_VERSION_TAG = `v${APP_VERSION}`;
 
 export const debFilename = `Murmur_${APP_VERSION}_amd64.deb`;
