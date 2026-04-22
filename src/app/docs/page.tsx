@@ -4,6 +4,7 @@ import Link from "next/link";
 import CopyButton from "@/components/CopyButton";
 import GithubIcon from "@/components/GithubIcon";
 import ViewAnimation from "@/components/ViewAnimation";
+import { debFilename, appImageFilename, debUrl, appImageUrl } from "@/lib/app-version";
 
 export default function DocsPage() {
   return (
@@ -62,8 +63,8 @@ sudo apt update && sudo apt install murmur`}</pre>
             <span className="label">.deb direct download</span>
             <CopyButton targetId="docs-deb" />
           </div>
-          <pre id="docs-deb">{`wget https://github.com/murmurlinux/murmur/releases/download/v0.3.4/Murmur_0.3.4_amd64.deb
-sudo dpkg -i Murmur_0.3.4_amd64.deb`}</pre>
+          <pre id="docs-deb">{`wget ${debUrl}
+sudo dpkg -i ${debFilename}`}</pre>
         </div>
 
         <div className="shell-block" style={{ marginLeft: 24, maxWidth: 600 }}>
@@ -71,9 +72,9 @@ sudo dpkg -i Murmur_0.3.4_amd64.deb`}</pre>
             <span className="label">appimage (portable, auto-updates on launch)</span>
             <CopyButton targetId="docs-appimage" />
           </div>
-          <pre id="docs-appimage">{`wget https://github.com/murmurlinux/murmur/releases/download/v0.3.4/Murmur_0.3.4_amd64.AppImage
-chmod +x Murmur_0.3.4_amd64.AppImage
-./Murmur_0.3.4_amd64.AppImage`}</pre>
+          <pre id="docs-appimage">{`wget ${appImageUrl}
+chmod +x ${appImageFilename}
+./${appImageFilename}`}</pre>
         </div>
         <p className="indent" style={{ fontSize: 12, color: "var(--text-dim)" }}>AppImages run without installing. Just download, make executable, and run. The app checks for updates each time it launches.</p>
 

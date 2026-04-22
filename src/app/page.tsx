@@ -3,6 +3,7 @@
 import { useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import GithubIcon from "@/components/GithubIcon";
+import { APP_VERSION } from "@/lib/app-version";
 
 const ASCII_LOGO_FULL = ` __  __                                    _     _
 |  \\/  |_   _ _ __ _ __ ___  _   _ _ __   | |   (_)_ __  _   ___  __
@@ -30,7 +31,7 @@ interface BootLineSpec {
 }
 
 const BOOT_LINES: BootLineSpec[] = [
-  { text: "murmur_os v0.3.4 - booting..." },
+  { text: `murmur_os v${APP_VERSION} - booting...` },
   { text: "loading whisper_engine.pkg              ", status: "[ok]", statusClass: "ok" },
   { text: "loading silero_vad.pkg                  ", status: "[ok]", statusClass: "ok" },
   { text: "loading global_hotkeys.pkg              ", status: "[ok]", statusClass: "ok" },
@@ -266,7 +267,7 @@ export default function HomePage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.png" alt="Murmur" className="site-logo" />
           <pre className="ascii-logo" aria-label="Murmur">{ASCII_LOGO_MURMUR}</pre>
-          <span className="site-version">v0.3.4</span>
+          <span className="site-version">v{APP_VERSION}</span>
         </div>
         <div id="boot-screen" ref={bootRef}></div>
 

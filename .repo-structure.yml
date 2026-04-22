@@ -20,10 +20,12 @@ allowed:
   - .pre-commit-config.yaml
   - .github/CODEOWNERS
   - .github/scripts/check-repo-structure.py
+  - .github/scripts/sync-version.mjs
   - .github/workflows/public-hygiene.yml
   - .github/workflows/repo-structure.yml
   - .github/workflows/secret-scan.yml
   - .github/workflows/history-scan.yml
+  - .github/workflows/version-sync.yml
 
   # --- Community + customer-facing docs ---
   - LICENSE

@@ -1,14 +1,18 @@
 /**
  * Knowledge base for the Murmur website chatbot.
  * This is stuffed into the system prompt. Update manually when docs change.
+ * Version string + download URLs flow from src/lib/app-version.ts — never
+ * hand-edit the version here.
  */
+
+import { APP_VERSION, debUrl, debFilename, appImageUrl, appImageFilename } from "./app-version";
 
 export const MURMUR_KNOWLEDGE = `
 # Murmur: AI Voice to Text for Linux
 
 Murmur is a desktop voice dictation gadget for Linux. Hold a hotkey, speak, and text appears at your cursor in any application. 100% offline, open source (GPL-3.0), powered by whisper.cpp with Vulkan GPU acceleration.
 
-Current version: v0.3.4
+Current version: v${APP_VERSION}
 
 ## How It Works
 
@@ -27,13 +31,13 @@ echo "deb [signed-by=/etc/apt/keyrings/murmur.asc] https://murmurlinux.github.io
 sudo apt update && sudo apt install murmur
 
 ### AppImage (any distro, no installation required, auto-updates on launch):
-wget https://github.com/murmurlinux/murmur/releases/download/v0.3.4/Murmur_0.3.4_amd64.AppImage
-chmod +x Murmur_0.3.4_amd64.AppImage
-./Murmur_0.3.4_amd64.AppImage
+wget ${appImageUrl}
+chmod +x ${appImageFilename}
+./${appImageFilename}
 
 ### .deb direct (Ubuntu/Debian, manual updates):
-wget https://github.com/murmurlinux/murmur/releases/download/v0.3.4/Murmur_0.3.4_amd64.deb
-sudo dpkg -i Murmur_0.3.4_amd64.deb
+wget ${debUrl}
+sudo dpkg -i ${debFilename}
 
 ### Uninstall:
 sudo apt remove murmur
