@@ -1,0 +1,106 @@
+name: Version Sync
+
+# Receives a murmur-release dispatch from murmurlinux/murmur on every new
+# release cut, rewrites src/lib/app-version.ts to the new version, and
+# opens a PR with auto-merge enabled. Vercel builds a preview on the PR;
+# the PR squash-merges the moment CI is green, at which point Vercel
+# rebuilds main and the website shows the new version.
+#
+# Also triggerable manually via workflow_dispatch for testing without
+# a real release (the dry-run entry point).
+#
+# Cross-repo auth: short-lived installation token from the
+# murmurlinux-automation GitHub App, scoped to this repo only.
+# All untrusted inputs flow through env vars before reaching shell.
+
+on:
+  repository_dispatch:
+    types: [murmur-release]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Semver version to sync (dry-run entry point)"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: version-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Mint App token
+        id: app-token
+        uses: actions/create-github-app-token@a8d616148505b5069dccd32f177bb87d7f39123b # v1.11.0
+        with:
+          app-id: ${{ secrets.MURMURLINUX_BOT_APP_ID }}
+          private-key: ${{ secrets.MURMURLINUX_BOT_PRIVATE_KEY }}
+          owner: murmurlinux
+          repositories: murmur-web
+
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+
+      - name: Resolve version from trigger
+        id: resolve
+        env:
+          DISPATCH_VERSION: ${{ github.event.client_payload.version }}
+          INPUT_VERSION: ${{ github.event.inputs.version }}
+        run: |
+          set -euo pipefail
+          V="${DISPATCH_VERSION:-$INPUT_VERSION}"
+          if ! printf '%s' "$V" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "::error::Invalid or missing version: $V"
+            exit 1
+          fi
+          echo "version=$V" >> "$GITHUB_OUTPUT"
+          echo "tag=v$V" >> "$GITHUB_OUTPUT"
+
+      - name: Sync APP_VERSION in src/lib/app-version.ts
+        env:
+          VERSION: ${{ steps.resolve.outputs.version }}
+        run: node .github/scripts/sync-version.mjs "$VERSION"
+
+      - name: Create PR if changed and enable auto-merge
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          VERSION: ${{ steps.resolve.outputs.version }}
+          TAG: ${{ steps.resolve.outputs.tag }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No changes; website already at ${VERSION}."
+            exit 0
+          fi
+
+          BRANCH="chore/sync-murmur-${TAG}"
+          git config user.name "murmurlinux-automation[bot]"
+          git config user.email "murmurlinux-automation[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add src/lib/app-version.ts
+          git commit -m "chore: sync website to murmur ${TAG}"
+          git push -u origin "$BRANCH"
+
+          PR_URL=$(gh pr create \
+            --title "chore: sync website to murmur ${TAG}" \
+            --body "Automated version sync triggered by release of \`${TAG}\` on murmurlinux/murmur. Updates \`src/lib/app-version.ts\` only. Vercel preview attached; auto-merge enabled, squash-merges when CI is green." \
+            --base main \
+            --head "$BRANCH")
+
+          echo "PR created: $PR_URL"
+          gh pr merge --auto --squash "$PR_URL"
