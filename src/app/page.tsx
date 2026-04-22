@@ -3,6 +3,7 @@
 import { useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import GithubIcon from "@/components/GithubIcon";
+import JsonLd from "@/components/JsonLd";
 import { APP_VERSION } from "@/lib/app-version";
 
 const ASCII_LOGO_FULL = ` __  __                                    _     _
@@ -261,6 +262,7 @@ export default function HomePage() {
 
   return (
     <>
+      <JsonLd />
       {/* SCREEN 1: HERO */}
       <section className="screen" id="screen-hero">
         <div className="site-header">
