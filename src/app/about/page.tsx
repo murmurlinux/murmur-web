@@ -19,13 +19,25 @@ export default function AboutPage() {
         wrap.className = "video-lb-body";
         const placeholder = document.createElement("div");
         placeholder.className = "video-placeholder";
-        const playIcon = document.createElement("div");
-        playIcon.className = "play-icon";
-        playIcon.textContent = "\u25B6";
-        placeholder.appendChild(playIcon);
-        const placeholderText = document.createElement("div");
-        placeholderText.textContent = "demo video";
-        placeholder.appendChild(placeholderText);
+
+        const line1 = document.createElement("p");
+        line1.textContent = "Demo coming soon.";
+        line1.style.fontSize = "15px";
+        line1.style.marginBottom = "10px";
+        placeholder.appendChild(line1);
+
+        const line2 = document.createElement("p");
+        line2.style.fontSize = "13px";
+        line2.style.opacity = "0.8";
+        line2.appendChild(document.createTextNode("Drop a line to "));
+        const mail = document.createElement("a");
+        mail.href = "mailto:hello@murmurlinux.com";
+        mail.textContent = "hello@murmurlinux.com";
+        mail.style.textDecoration = "underline";
+        line2.appendChild(mail);
+        line2.appendChild(document.createTextNode(" and we'll send it when it's ready."));
+        placeholder.appendChild(line2);
+
         wrap.appendChild(placeholder);
         body.appendChild(wrap);
       }
@@ -49,7 +61,7 @@ export default function AboutPage() {
         <p>We built Murmur because we wanted something we&apos;d actually use ourselves, every day. Something that worked quietly, respected the user, and didn&apos;t try to be clever about monetisation. Local first. No telemetry. No dark patterns. The free version is genuinely free. Pro funds continued open source development.</p>
 
         <h3>who</h3>
-        <p>A small, independent team and a growing community of contributors. No investors, no VC, no growth hacking. Just the app. <a href="mailto:hello@murmurlinux.com">hello@murmurlinux.com</a></p>
+        <p>A solo developer sharing a solution to a problem they faced. No investors, no VC, no growth hacking. Just the app. <a href="mailto:hello@murmurlinux.com">hello@murmurlinux.com</a></p>
       </div>
 
       <p className="muted" style={{ marginTop: 10, fontSize: 12 }}>Stay in the loop: type <span className="accent">subscribe you@email.com</span> below.</p>

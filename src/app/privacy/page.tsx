@@ -39,7 +39,7 @@ export default function PrivacyPage() {
         <p className="indent">- <strong>Deepgram:</strong> configurable retention, supports zero-retention mode.</p>
 
         <h3>website</h3>
-        <p>This website uses Vercel Speed Insights (privacy-preserving, no cookies). We do not use tracking cookies, advertising pixels, or third-party analytics. The AI chat assistant is powered by Gemini and does not store conversation history.</p>
+        <p>This website uses Vercel Speed Insights (privacy-preserving, no cookies). We do not use tracking cookies, advertising pixels, or third-party analytics.</p>
 
         <h3>data storage</h3>
         <p>Pro account data (email, subscription status) is stored in Supabase (hosted in ap-southeast-2, Sydney). Waitlist emails are stored in the same database. We use row-level security and encrypted connections.</p>

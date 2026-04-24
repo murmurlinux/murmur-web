@@ -255,6 +255,38 @@ export default function HomePage() {
     e.preventDefault();
     const lb = document.getElementById("lightbox");
     if (lb) {
+      const title = document.getElementById("lightbox-title");
+      if (title) title.textContent = "murmur demo";
+      const body = document.getElementById("lightbox-body");
+      if (body) {
+        body.textContent = "";
+        body.style.whiteSpace = "normal";
+        const wrap = document.createElement("div");
+        wrap.className = "video-lb-body";
+        const placeholder = document.createElement("div");
+        placeholder.className = "video-placeholder";
+
+        const line1 = document.createElement("p");
+        line1.textContent = "Demo coming soon.";
+        line1.style.fontSize = "15px";
+        line1.style.marginBottom = "10px";
+        placeholder.appendChild(line1);
+
+        const line2 = document.createElement("p");
+        line2.style.fontSize = "13px";
+        line2.style.opacity = "0.8";
+        line2.appendChild(document.createTextNode("Drop a line to "));
+        const mail = document.createElement("a");
+        mail.href = "mailto:hello@murmurlinux.com";
+        mail.textContent = "hello@murmurlinux.com";
+        mail.style.textDecoration = "underline";
+        line2.appendChild(mail);
+        line2.appendChild(document.createTextNode(" and we'll send it when it's ready."));
+        placeholder.appendChild(line2);
+
+        wrap.appendChild(placeholder);
+        body.appendChild(wrap);
+      }
       lb.classList.add("active");
       lb.setAttribute("aria-hidden", "false");
     }
@@ -370,7 +402,7 @@ export default function HomePage() {
           <p style={{ marginTop: 10 }}><span className="accent">PRO</span> <span className="muted">&middot;</span> Everything in free, plus cloud engines (Groq Whisper, Deepgram Nova-3) for faster, more accurate results. Adds LLM text cleanup, custom dictionaries, voice commands, CLI mode, and priority support. For professionals and heavy users who want the best.</p>
 
           <div style={{ marginTop: 14, padding: "12px 16px", border: "1px solid var(--border)", background: "var(--card)", maxWidth: 480 }}>
-            <p style={{ margin: "0 0 6px" }}><span className="accent" style={{ fontWeight: 700 }}>Founding member special:</span> <span style={{ textDecoration: "line-through", color: "var(--text-dim)" }}>$249</span> <strong>$149</strong> one-time lifetime purchase. Limited availability.</p>
+            <p style={{ margin: "0 0 6px" }}><span className="accent" style={{ fontWeight: 700 }}>Founding member special:</span> <span style={{ textDecoration: "line-through", color: "var(--text-dim)" }}>$249</span> <strong>$149</strong> one-time lifetime purchase.</p>
             <p style={{ margin: 0, fontSize: 12 }} className="muted">Or subscribe: $69/year (founding price, normally $99) &middot; $12/month. Cancel anytime.</p>
           </div>
 
