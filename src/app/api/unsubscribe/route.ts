@@ -107,7 +107,7 @@ export async function GET(request: Request) {
     console.error("[unsubscribe] UNSUBSCRIBE_TOKEN_SECRET not set");
     return htmlResponse(
       "Unsubscribe unavailable",
-      "The unsubscribe service is misconfigured on our side. Please email support@murmurlinux.com and we'll remove you manually.",
+      "The unsubscribe service is misconfigured on our side. Please email hello@murmurlinux.com and we'll remove you manually.",
       500,
     );
   }
@@ -118,7 +118,7 @@ export async function GET(request: Request) {
   if (!token) {
     return htmlResponse(
       "Invalid link",
-      "This unsubscribe link is missing its token. Please use the exact link from the email we sent you, or email support@murmurlinux.com.",
+      "This unsubscribe link is missing its token. Please use the exact link from the email we sent you, or email hello@murmurlinux.com.",
       400,
     );
   }
@@ -127,7 +127,7 @@ export async function GET(request: Request) {
   if (!result.ok) {
     return htmlResponse(
       "Link expired or invalid",
-      "This unsubscribe link could not be verified. Please use a recent link, or email support@murmurlinux.com and we'll remove you manually.",
+      "This unsubscribe link could not be verified. Please use a recent link, or email hello@murmurlinux.com and we'll remove you manually.",
       400,
     );
   }
@@ -141,7 +141,7 @@ export async function GET(request: Request) {
     console.error("[unsubscribe] delete error:", error.code || error.message);
     return htmlResponse(
       "Error",
-      "Something went wrong on our end. Please try again in a moment, or email support@murmurlinux.com.",
+      "Something went wrong on our end. Please try again in a moment, or email hello@murmurlinux.com.",
       500,
     );
   }

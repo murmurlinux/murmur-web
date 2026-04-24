@@ -18,7 +18,7 @@ export default function TermsPage() {
 
         <h3>pro tier</h3>
         <p>Pro is a paid subscription covering access to cloud STT engines, LLM text cleanup, and other premium features. Payment is processed by LemonSqueezy (Merchant of Record), who handles billing, tax, and refunds on our behalf.</p>
-        <p>You can cancel your subscription at any time from your account page or by contacting <a href="mailto:billing@murmurlinux.com">billing@murmurlinux.com</a>. Access continues until the end of your current billing period. Lifetime purchases do not expire.</p>
+        <p>You can cancel your subscription at any time from your account page or by contacting <a href="mailto:hello@murmurlinux.com">hello@murmurlinux.com</a>. Access continues until the end of your current billing period. Lifetime purchases do not expire.</p>
 
         <h3>accounts</h3>
         <p>Your account is created automatically when you purchase Pro. You sign in with the email address you used at checkout via a magic link (no password). One account covers unlimited devices for one user. Do not share your account credentials.</p>
@@ -39,9 +39,7 @@ export default function TermsPage() {
         <p>We may update these terms. Material changes will be emailed to Pro subscribers at least 14 days before they take effect. Continued use after changes constitutes acceptance. The latest version is always available at this page.</p>
 
         <h3>contact</h3>
-        <p className="indent">General: <a href="mailto:hello@murmurlinux.com">hello@murmurlinux.com</a></p>
-        <p className="indent">Billing: <a href="mailto:billing@murmurlinux.com">billing@murmurlinux.com</a></p>
-        <p className="indent">Support: <a href="mailto:support@murmurlinux.com">support@murmurlinux.com</a></p>
+        <p className="indent"><a href="mailto:hello@murmurlinux.com">hello@murmurlinux.com</a></p>
       </div>
 
       <PageFooter />
