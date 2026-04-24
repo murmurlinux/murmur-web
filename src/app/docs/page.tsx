@@ -32,7 +32,7 @@ export default function DocsPage() {
         <p className="indent">On first launch, Murmur downloads the default speech model (~75 MB). After that, it starts in under a second.</p>
 
         <h3>requirements</h3>
-        <p className="indent"><strong>Operating system:</strong> Linux. Tested on Ubuntu 22.04+, Fedora 38+, and Arch. Should work on most modern distros that support PipeWire or PulseAudio.</p>
+        <p className="indent"><strong>Operating system:</strong> Linux. Tested on Ubuntu 22.04+ and Fedora 38+. Arch support planned via AUR. Should work on most modern distros that support PipeWire or PulseAudio.</p>
         <p className="indent"><strong>Audio:</strong> PipeWire or PulseAudio. Most modern Linux distros include one of these by default. If you can hear sound on your computer, you probably have it.</p>
         <p className="indent"><strong>Text injection:</strong> To type text directly into apps, Murmur needs <code>xdotool</code> (if you use X11) or <code>wtype</code> (if you use Wayland). These are small packages that handle sending keystrokes to other applications.</p>
         <p className="indent">Not sure which display server you use? Most older setups are X11. Ubuntu 22.04+ and Fedora 38+ default to Wayland. You can check by running <code>echo $XDG_SESSION_TYPE</code> in a terminal.</p>
