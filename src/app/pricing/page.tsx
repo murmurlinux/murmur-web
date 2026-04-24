@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import GithubIcon from "@/components/GithubIcon";
 import ViewAnimation from "@/components/ViewAnimation";
+import PageFooter from "@/components/PageFooter";
 
 const PLANS = {
   monthly: { amount: "$12", strike: "", period: " / month", note: "billed monthly. cancel anytime.", save: "most flexible", founding: false, footer: "no long-term commitment. cancel anytime from your account." },
@@ -131,14 +132,7 @@ export default function PricingPage() {
         {p.footer}
       </p>
 
-      <div className="footer">
-        <Link href="/">home</Link><span className="dot">&middot;</span>
-        <Link href="/download">download</Link><span className="dot">&middot;</span>
-        <Link href="/docs">docs</Link><span className="dot">&middot;</span>
-        <Link href="/privacy">privacy</Link><span className="dot">&middot;</span>
-        <Link href="/terms">terms</Link><span className="dot">&middot;</span>
-        <Link href="/account">my account</Link>
-      </div>
+      <PageFooter />
     </ViewAnimation>
   );
 }

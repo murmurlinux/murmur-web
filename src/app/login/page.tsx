@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ViewAnimation from "@/components/ViewAnimation";
+import PageFooter from "@/components/PageFooter";
 
 export default function LoginPage() {
   return (
@@ -21,11 +22,7 @@ export default function LoginPage() {
         <p>No account needed. Full local dictation, zero telemetry, all yours. <Link href="/download">Download</Link> and go.</p>
       </div>
 
-      <div className="footer">
-        <Link href="/">home</Link><span className="dot">&middot;</span>
-        <Link href="/pricing">pricing</Link><span className="dot">&middot;</span>
-        <Link href="/download">download</Link>
-      </div>
+      <PageFooter />
     </ViewAnimation>
   );
 }

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import ViewAnimation from "@/components/ViewAnimation";
+import PageFooter from "@/components/PageFooter";
 
 export default function PrivacyPage() {
   return (
@@ -58,11 +59,7 @@ export default function PrivacyPage() {
         <p className="indent">General: <a href="mailto:hello@murmurlinux.com">hello@murmurlinux.com</a></p>
       </div>
 
-      <div className="footer">
-        <Link href="/">home</Link><span className="dot">&middot;</span>
-        <Link href="/terms">terms</Link><span className="dot">&middot;</span>
-        <Link href="/about">about</Link>
-      </div>
+      <PageFooter />
     </ViewAnimation>
   );
 }

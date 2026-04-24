@@ -3,6 +3,7 @@
 import Link from "next/link";
 import GithubIcon from "@/components/GithubIcon";
 import ViewAnimation from "@/components/ViewAnimation";
+import PageFooter from "@/components/PageFooter";
 
 export default function HowItRunsLocalPage() {
   return (
@@ -68,11 +69,7 @@ export default function HowItRunsLocalPage() {
         <a href="https://github.com/murmurlinux" className="cta"><GithubIcon />github</a>
       </div>
 
-      <div className="footer">
-        <Link href="/blog">blog</Link><span className="dot">&middot;</span>
-        <Link href="/">home</Link><span className="dot">&middot;</span>
-        <Link href="/docs">docs</Link>
-      </div>
+      <PageFooter />
     </ViewAnimation>
   );
 }

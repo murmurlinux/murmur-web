@@ -1,6 +1,7 @@
 import Link from "next/link";
 import GithubIcon from "@/components/GithubIcon";
 import ViewAnimation from "@/components/ViewAnimation";
+import PageFooter from "@/components/PageFooter";
 
 export default function AccountPage() {
   return (
@@ -30,11 +31,7 @@ export default function AccountPage() {
         </div>
       </div>
 
-      <div className="footer">
-        <Link href="/">home</Link><span className="dot">&middot;</span>
-        <Link href="/pricing">pricing</Link><span className="dot">&middot;</span>
-        <Link href="/download">download</Link>
-      </div>
+      <PageFooter />
     </ViewAnimation>
   );
 }

@@ -4,6 +4,7 @@ import { useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import GithubIcon from "@/components/GithubIcon";
 import JsonLd from "@/components/JsonLd";
+import PageFooter from "@/components/PageFooter";
 import { APP_VERSION } from "@/lib/app-version";
 
 const ASCII_LOGO_FULL = ` __  __                                    _     _
@@ -414,16 +415,7 @@ export default function HomePage() {
           <Link href="/pricing" className="cta primary">get murmur pro</Link>
         </div>
 
-        <div className="footer typed-hidden" id="footer-home">
-          <Link href="/about">about</Link><span className="dot">&middot;</span>
-          <Link href="/docs">docs</Link><span className="dot">&middot;</span>
-          <Link href="/changelog">changelog</Link><span className="dot">&middot;</span>
-          <Link href="/blog">blog</Link><span className="dot">&middot;</span>
-          <Link href="/privacy">privacy</Link><span className="dot">&middot;</span>
-          <Link href="/terms">terms</Link><span className="dot">&middot;</span>
-          <a href="https://github.com/murmurlinux">github</a><span className="dot">&middot;</span>
-          <a href="mailto:hello@murmurlinux.com">hello@murmurlinux.com</a>
-        </div>
+        <PageFooter className="typed-hidden" id="footer-home" />
       </section>
     </>
   );
