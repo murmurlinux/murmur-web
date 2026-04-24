@@ -330,8 +330,8 @@ export default function HomePage() {
             <div>push-to-talk + voice detection</div><div className="on">[+]</div><div className="on">[+]</div>
             <div>universal text injection</div><div className="on">[+]</div><div className="on">[+]</div>
             <div>99+ languages + translation</div><div className="on">[+]</div><div className="on">[+]</div>
-            <div>cloud stt (groq + deepgram)</div><div className="off">[-]</div><div className="on">[+]</div>
-            <div>llm cleanup + punctuation</div><div className="off">[-]</div><div className="on">[+]</div>
+            <div>cloud stt (groq + deepgram, BYOK)</div><div className="off">[-]</div><div className="on">[+]</div>
+            <div>llm cleanup + punctuation (BYOK)</div><div className="off">[-]</div><div className="on">[+]</div>
             <div>custom dictionaries + hot words</div><div className="off">[-]</div><div className="on">[+]</div>
             <div>context-aware conditioning</div><div className="off">[-]</div><div className="on">[+]</div>
             <div>transcript history</div><div className="off">[-]</div><div className="on">[+]</div>
@@ -399,7 +399,7 @@ export default function HomePage() {
         </div>
         <div className="cmd-output typed-hidden" id="pricing-home-output">
           <p><span className="accent">FREE</span> <span className="muted">&middot;</span> The full desktop app with local whisper.cpp transcription. Unlimited use, 99+ languages, zero telemetry. Open source under GPL v3, no account required, yours forever. Everything you need for everyday voice dictation.</p>
-          <p style={{ marginTop: 10 }}><span className="accent">PRO</span> <span className="muted">&middot;</span> Everything in free, plus cloud engines (Groq Whisper, Deepgram Nova-3) for faster, more accurate results. Adds LLM text cleanup, custom dictionaries, voice commands, CLI mode, and priority support. For professionals and heavy users who want the best.</p>
+          <p style={{ marginTop: 10 }}><span className="accent">PRO</span> <span className="muted">&middot;</span> Everything in free, plus cloud engines (Groq Whisper, Deepgram Nova-3, BYOK: your API keys) for faster, more accurate results. Adds LLM text cleanup, custom dictionaries, voice commands, CLI mode, and priority support. For professionals and heavy users who want the best.</p>
 
           <div style={{ marginTop: 14, padding: "12px 16px", border: "1px solid var(--border)", background: "var(--card)", maxWidth: 480 }}>
             <p style={{ margin: "0 0 6px" }}><span className="accent" style={{ fontWeight: 700 }}>Founding member special:</span> <span style={{ textDecoration: "line-through", color: "var(--text-dim)" }}>$249</span> <strong>$149</strong> one-time lifetime purchase.</p>

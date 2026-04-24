@@ -14,8 +14,8 @@ export default function IntroducingProPage() {
 
       <div className="manpage">
         <h3>why a paid tier</h3>
-        <p>Murmur Free runs whisper.cpp locally and will always be free. No account, no telemetry, no catches. But building and maintaining a desktop app takes time. A paid tier lets us fund continued development without ads, data harvesting, or VC funding.</p>
-        <p>The model is simple: the free version is genuinely useful on its own. Pro adds cloud engine integrations, LLM cleanup, and power-user tools. You bring your own API keys for cloud providers, so you control your own costs and data. If you never need cloud features, you never need to pay.</p>
+        <p>Murmur Free runs whisper.cpp locally and will always be free. No account, no telemetry, no catches. But building and maintaining a desktop app takes time. A paid tier funds continued development without ads, data harvesting, or VC funding.</p>
+        <p>The model is simple: the free version is genuinely useful on its own. Pro adds cloud engine integrations, LLM cleanup, and power-user tools. Pro is BYOK: you bring your own API keys for cloud providers, so you control your own costs and data. If you never need cloud features, you never need to pay.</p>
 
         <h3>what pro includes</h3>
         <p><strong>Cloud speech engines.</strong> Two providers, each with different strengths.</p>
@@ -28,11 +28,11 @@ export default function IntroducingProPage() {
         <p><strong>Transcript history.</strong> Browse and search your past transcriptions. Stored locally on your machine.</p>
 
         <h3>how cloud engines work</h3>
-        <p>You bring your own API keys for Groq and Deepgram. When you use a cloud engine, your audio is sent directly from Murmur on your machine to the provider&apos;s API using your key. It does not pass through our servers. We never see, store, or process your audio. Your voice data goes from your machine to the provider, and the transcription comes back the same way.</p>
+        <p>You bring your own API keys for Groq and Deepgram. When you use a cloud engine, your audio is sent directly from Murmur on your machine to the provider&apos;s API using your key. It does not pass through Murmur servers. Murmur never sees, stores, or processes your audio. Your voice data goes from your machine to the provider, and the transcription comes back the same way.</p>
         <p>If you&apos;re not comfortable with cloud processing, don&apos;t use it. The local engine is always available, always offline, and always free.</p>
 
         <h3>founding member pricing</h3>
-        <p>We&apos;re offering early adopter pricing on annual and lifetime plans during the launch period. These prices are locked in for as long as you keep your subscription. The monthly price is the same for everyone, founding member or not.</p>
+        <p>Murmur is offering early adopter pricing on annual and lifetime plans during the launch period. These prices are locked in for as long as you keep your subscription. The monthly price is the same for everyone, founding member or not.</p>
         <p className="indent"><strong>Monthly:</strong> $12/month (no founding discount)</p>
         <p className="indent"><strong>Annual:</strong> $69/year (founding price, normally $99/year)</p>
         <p className="indent"><strong>Lifetime:</strong> $149 once (founding price, normally $249)</p>
@@ -40,7 +40,7 @@ export default function IntroducingProPage() {
 
         <h3>what the revenue funds</h3>
         <p>Everything goes back into the project. There are no investors to pay, no board to satisfy. Revenue funds full-time development: more cloud provider options, better local models as they become available, a CLI doctor for self-diagnosis, a mobile port exploration, and the infrastructure to keep it all running.</p>
-        <p>The open-core model keeps everyone honest. Free stays free forever. The source stays open. Pro funds the work that makes both tiers better. If we ever stop being worth paying for, you still have a fully functional local dictation app that depends on nothing but your own hardware.</p>
+        <p>The open-core model keeps everyone honest. Free stays free forever. The source stays open. Pro funds the work that makes both tiers better. If Murmur ever stops being worth paying for, you still have a fully functional local dictation app that depends on nothing but your own hardware.</p>
       </div>
 
       <div className="cta-row" style={{ marginTop: 24 }}>

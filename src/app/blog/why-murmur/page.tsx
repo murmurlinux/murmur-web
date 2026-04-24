@@ -38,7 +38,7 @@ export default function WhyMurmurPage() {
 
         <h3>on being open source</h3>
         <p>Murmur&apos;s core is GPL v3. You can read every line of code, build it yourself, and verify every claim on this page. We think that matters, especially for an app that listens to your voice.</p>
-        <p>The Pro tier adds cloud engines (Groq Whisper, Deepgram Nova-3), LLM text cleanup, and other features that require server-side infrastructure. Those features cost us money to provide, so they cost money to use. But the local engine, the thing that makes Murmur useful without an internet connection, is free and will stay free.</p>
+        <p>The Pro tier adds cloud engines (Groq Whisper, Deepgram Nova-3) and LLM text cleanup. Pro is a licensed desktop binary; the cloud providers are BYOK, meaning you supply the API keys and your audio goes direct to them. The Pro license fee funds ongoing Murmur development. The local engine, the thing that makes Murmur useful without an internet connection, is free and will stay free.</p>
         <p>Linux deserved a dictation app that respected its users. We built one.</p>
       </div>
 
