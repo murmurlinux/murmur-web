@@ -3,6 +3,7 @@
 import Link from "next/link";
 import GithubIcon from "@/components/GithubIcon";
 import ViewAnimation from "@/components/ViewAnimation";
+import PageFooter from "@/components/PageFooter";
 
 export default function WhyMurmurPage() {
   return (
@@ -49,11 +50,7 @@ export default function WhyMurmurPage() {
         <a href="https://github.com/murmurlinux" className="cta"><GithubIcon />github</a>
       </div>
 
-      <div className="footer">
-        <Link href="/blog">blog</Link><span className="dot">&middot;</span>
-        <Link href="/">home</Link><span className="dot">&middot;</span>
-        <Link href="/pricing">pricing</Link>
-      </div>
+      <PageFooter />
     </ViewAnimation>
   );
 }

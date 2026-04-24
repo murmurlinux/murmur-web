@@ -4,6 +4,7 @@ import Link from "next/link";
 import CopyButton from "@/components/CopyButton";
 import GithubIcon from "@/components/GithubIcon";
 import ViewAnimation from "@/components/ViewAnimation";
+import PageFooter from "@/components/PageFooter";
 import { debFilename, appImageFilename, debUrl, appImageUrl } from "@/lib/app-version";
 
 export default function DocsPage() {
@@ -255,13 +256,7 @@ pnpm tauri build`}</pre>
         <a href="https://github.com/murmurlinux" className="cta"><GithubIcon />github</a>
       </div>
 
-      <div className="footer">
-        <Link href="/">home</Link><span className="dot">&middot;</span>
-        <Link href="/download">download</Link><span className="dot">&middot;</span>
-        <Link href="/changelog">changelog</Link><span className="dot">&middot;</span>
-        <a href="https://github.com/murmurlinux/murmur/blob/main/CONTRIBUTING.md">contributing</a><span className="dot">&middot;</span>
-        <a href="https://github.com/murmurlinux/murmur/issues">report a bug</a>
-      </div>
+      <PageFooter />
     </ViewAnimation>
   );
 }

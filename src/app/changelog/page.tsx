@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import ViewAnimation from "@/components/ViewAnimation";
+import PageFooter from "@/components/PageFooter";
 
 export default function ChangelogPage() {
   return (
@@ -64,11 +65,7 @@ export default function ChangelogPage() {
         releases: <a href="https://github.com/murmurlinux/murmur/releases">github.com/murmurlinux/murmur/releases</a>
       </p>
 
-      <div className="footer">
-        <Link href="/">home</Link><span className="dot">&middot;</span>
-        <Link href="/download">download</Link><span className="dot">&middot;</span>
-        <Link href="/docs">docs</Link>
-      </div>
+      <PageFooter />
     </ViewAnimation>
   );
 }

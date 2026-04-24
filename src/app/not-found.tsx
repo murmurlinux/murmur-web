@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ViewAnimation from "@/components/ViewAnimation";
+import PageFooter from "@/components/PageFooter";
 
 export default function NotFound() {
   return (
@@ -19,11 +20,7 @@ export default function NotFound() {
         <Link href="/docs" className="cta">docs</Link>
       </div>
 
-      <div className="footer">
-        <Link href="/">home</Link><span className="dot">&middot;</span>
-        <Link href="/pricing">pricing</Link><span className="dot">&middot;</span>
-        <Link href="/blog">blog</Link>
-      </div>
+      <PageFooter />
     </ViewAnimation>
   );
 }

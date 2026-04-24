@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import ViewAnimation from "@/components/ViewAnimation";
+import PageFooter from "@/components/PageFooter";
 
 export default function TermsPage() {
   return (
@@ -43,11 +44,7 @@ export default function TermsPage() {
         <p className="indent">Support: <a href="mailto:support@murmurlinux.com">support@murmurlinux.com</a></p>
       </div>
 
-      <div className="footer">
-        <Link href="/">home</Link><span className="dot">&middot;</span>
-        <Link href="/privacy">privacy</Link><span className="dot">&middot;</span>
-        <Link href="/about">about</Link>
-      </div>
+      <PageFooter />
     </ViewAnimation>
   );
 }

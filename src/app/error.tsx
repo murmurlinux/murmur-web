@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import ViewAnimation from "@/components/ViewAnimation";
+import PageFooter from "@/components/PageFooter";
 
 export default function Error({ reset }: { error: Error; reset: () => void }) {
   return (
@@ -20,11 +21,7 @@ export default function Error({ reset }: { error: Error; reset: () => void }) {
         <Link href="/" className="cta">home</Link>
       </div>
 
-      <div className="footer">
-        <Link href="/">home</Link><span className="dot">&middot;</span>
-        <Link href="/download">download</Link><span className="dot">&middot;</span>
-        <Link href="/docs">docs</Link>
-      </div>
+      <PageFooter />
     </ViewAnimation>
   );
 }

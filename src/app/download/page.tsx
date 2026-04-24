@@ -3,6 +3,7 @@
 import Link from "next/link";
 import CopyButton from "@/components/CopyButton";
 import ViewAnimation from "@/components/ViewAnimation";
+import PageFooter from "@/components/PageFooter";
 import { debFilename, appImageFilename, debUrl, appImageUrl } from "@/lib/app-version";
 
 export default function DownloadPage() {
@@ -48,12 +49,7 @@ chmod +x ${appImageFilename}
         <Link href="/pricing" className="cta primary">get pro</Link>
       </div>
 
-      <div className="footer">
-        <Link href="/">home</Link><span className="dot">&middot;</span>
-        <Link href="/pricing">pricing</Link><span className="dot">&middot;</span>
-        <Link href="/changelog">changelog</Link><span className="dot">&middot;</span>
-        <Link href="/docs">docs</Link>
-      </div>
+      <PageFooter />
     </ViewAnimation>
   );
 }
