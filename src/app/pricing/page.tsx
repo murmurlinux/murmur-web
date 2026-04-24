@@ -105,11 +105,12 @@ export default function PricingPage() {
             {p.period && <span style={{ fontSize: 12, color: "var(--text-dim)", fontWeight: 400 }}>{p.period}</span>}
           </div>
           <div className="price-note" id="pro-note">{p.note}</div>
+          <p className="muted" style={{ fontSize: 12, marginBottom: 10 }}>Pro requires your own API keys for Groq and Deepgram. Audio goes direct to the provider.</p>
           <ul>
             <li>everything in free, plus:</li>
-            <li>groq whisper cloud stt (faster than realtime)</li>
-            <li>deepgram nova-3 cloud stt (best accuracy)</li>
-            <li>llm text cleanup (punctuation, filler removal)</li>
+            <li>groq whisper cloud stt (faster than realtime, BYOK)</li>
+            <li>deepgram nova-3 cloud stt (best accuracy, BYOK)</li>
+            <li>llm text cleanup (punctuation, filler removal, BYOK)</li>
             <li>custom dictionaries + hot words</li>
             <li>context-aware prompt conditioning</li>
             <li>transcript history + search</li>

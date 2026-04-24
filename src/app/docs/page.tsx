@@ -155,7 +155,7 @@ sudo rm /etc/apt/keyrings/murmur.asc`}</pre>
 
         <h3>engines (pro)</h3>
         <p className="indent">The free version always uses the local whisper engine. Nothing goes online.</p>
-        <p className="indent">Pro subscribers can optionally switch to cloud-based engines for faster and more accurate results. When you enable a cloud engine, your audio is sent directly from Murmur to the provider&apos;s servers for transcription. The audio is not routed through us and we never see or store it.</p>
+        <p className="indent">Pro subscribers can optionally switch to cloud-based engines for faster and more accurate results. Pro is BYOK: you supply your own API keys for Groq and Deepgram. When you enable a cloud engine, your audio is sent directly from Murmur to the provider&apos;s servers using your key. The audio is not routed through Murmur servers and Murmur never sees or stores it.</p>
         <div className="indent" style={{ marginBottom: 14 }}>
           <div className="status-grid">
             <dt>groq whisper</dt><dd>the same Whisper model, but running on Groq&apos;s cloud hardware. Faster than realtime. Good choice if you want the local Whisper quality but don&apos;t want to wait.</dd>
