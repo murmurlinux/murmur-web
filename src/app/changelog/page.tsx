@@ -14,7 +14,7 @@ export default function ChangelogPage() {
       <div style={{ marginTop: 16 }}>
         <div className="commit">
           <div><span className="hash">a3f9c1d</span><span className="tag">v0.3.3</span></div>
-          <div className="meta">2026-04-08 &middot; Murmur Team</div>
+          <div className="meta">2026-04-08</div>
           <p className="msg">Hallucination fix + GPU acceleration</p>
           <ul>
             <li>trim trailing silence before whisper to prevent phantom text</li>
@@ -26,7 +26,7 @@ export default function ChangelogPage() {
 
         <div className="commit">
           <div><span className="hash">9e2b4c7</span><span className="tag">v0.3.0</span></div>
-          <div className="meta">2026-03-18 &middot; Murmur Team</div>
+          <div className="meta">2026-03-18</div>
           <p className="msg">Pluggable engines + multi-language</p>
           <ul>
             <li>pluggable STT engine architecture (C1)</li>
@@ -38,7 +38,7 @@ export default function ChangelogPage() {
 
         <div className="commit">
           <div><span className="hash">4d1a830</span><span className="tag">v0.2.1</span></div>
-          <div className="meta">2026-02-24 &middot; Murmur Team</div>
+          <div className="meta">2026-02-24</div>
           <p className="msg">Production hardening</p>
           <ul>
             <li>CLI mode (murmur-cli)</li>
@@ -49,7 +49,7 @@ export default function ChangelogPage() {
 
         <div className="commit">
           <div><span className="hash">c7e5f22</span><span className="tag">v0.2.0</span></div>
-          <div className="meta">2026-02-01 &middot; Murmur Team</div>
+          <div className="meta">2026-02-01</div>
           <p className="msg">Initial public release</p>
           <ul>
             <li>local whisper.cpp transcription</li>

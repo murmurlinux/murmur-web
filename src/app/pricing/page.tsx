@@ -33,7 +33,7 @@ export default function PricingPage() {
         placeholder.className = "video-placeholder";
 
         const line1 = document.createElement("p");
-        line1.textContent = "Demo video coming soon.";
+        line1.textContent = "Demo coming soon.";
         line1.style.fontSize = "15px";
         line1.style.marginBottom = "10px";
         placeholder.appendChild(line1);
@@ -41,13 +41,13 @@ export default function PricingPage() {
         const line2 = document.createElement("p");
         line2.style.fontSize = "13px";
         line2.style.opacity = "0.8";
-        line2.appendChild(document.createTextNode("In the meantime, the best demo is trying it yourself. "));
-        const link = document.createElement("a");
-        link.href = "/download";
-        link.textContent = "Download the free version";
-        link.style.textDecoration = "underline";
-        line2.appendChild(link);
-        line2.appendChild(document.createTextNode(" \u2014 a 30-second install that works in every app."));
+        line2.appendChild(document.createTextNode("Drop a line to "));
+        const mail = document.createElement("a");
+        mail.href = "mailto:hello@murmurlinux.com";
+        mail.textContent = "hello@murmurlinux.com";
+        mail.style.textDecoration = "underline";
+        line2.appendChild(mail);
+        line2.appendChild(document.createTextNode(" and we'll send it when it's ready."));
         placeholder.appendChild(line2);
 
         wrap.appendChild(placeholder);
@@ -63,7 +63,7 @@ export default function PricingPage() {
       <p className="view-crumb"><Link href="/">~</Link><span className="sep">/</span>pricing</p>
       <div className="cmd-line"><span className="cmd-prompt">$</span><span className="cmd">cat pricing.txt</span></div>
       <p className="view-title">pricing</p>
-      <p className="view-sub">Murmur Free gives you fast, accurate local dictation with no restrictions, no account, and no telemetry. It&apos;s the full app. Murmur Pro is for power users and professionals who want cloud-speed transcription, LLM text cleanup, and tools like voice commands and CLI mode. Founding member pricing is available for a limited time.</p>
+      <p className="view-sub">Murmur Free gives you fast, accurate local dictation with no restrictions, no account, and no telemetry. It&apos;s the full app. Murmur Pro is for power users and professionals who want cloud-speed transcription, LLM text cleanup, and tools like voice commands and CLI mode. Founding member pricing.</p>
 
       <div className="price-toggle" id="price-toggle">
         <button type="button" data-plan="monthly" className={plan === "monthly" ? "active" : ""} onClick={() => setPlan("monthly")}>monthly</button>
@@ -88,7 +88,7 @@ export default function PricingPage() {
             <li>start on login + auto-updates</li>
             <li>onboarding wizard</li>
             <li>~15 MB install, ~50 MB RAM</li>
-            <li>zero telemetry, source-available (GPL v3)</li>
+            <li>zero telemetry by default (opt-in crash reporting via Sentry), open source (GPL v3)</li>
           </ul>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap" as const }}>
             <Link href="/download" className="cta">download free</Link>
@@ -116,7 +116,6 @@ export default function PricingPage() {
             <li>voice commands</li>
             <li>cli mode (murmur-cli)</li>
             <li>priority support</li>
-            <li>supports independent linux software</li>
           </ul>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap" as const }}>
             <button type="button" className="cta primary" id="go-pro-btn" disabled style={{ cursor: "not-allowed", opacity: 0.6 }} aria-disabled="true">coming soon</button>
