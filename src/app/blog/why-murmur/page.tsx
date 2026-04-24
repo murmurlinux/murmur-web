@@ -11,7 +11,7 @@ export default function WhyMurmurPage() {
       <p className="view-crumb"><Link href="/">~</Link><span className="sep">/</span><Link href="/blog">blog</Link><span className="sep">/</span>why-murmur</p>
       <div className="cmd-line"><span className="cmd-prompt">$</span><span className="cmd">cat /posts/why-murmur.md</span></div>
       <p className="view-title">Why Murmur</p>
-      <p className="view-sub">Why Linux deserved a dictation app that doesn&apos;t suck. Published April 2026.</p>
+      <p className="view-sub">Why Linux deserved a dictation app that doesn&apos;t suck. Published 17 April 2026.</p>
 
       <div className="manpage">
         <h3>the gap</h3>

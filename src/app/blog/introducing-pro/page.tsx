@@ -11,7 +11,7 @@ export default function IntroducingProPage() {
       <p className="view-crumb"><Link href="/">~</Link><span className="sep">/</span><Link href="/blog">blog</Link><span className="sep">/</span>introducing-pro</p>
       <div className="cmd-line"><span className="cmd-prompt">$</span><span className="cmd">cat /posts/introducing-pro.md</span></div>
       <p className="view-title">Introducing Pro</p>
-      <p className="view-sub">How we structured the Pro tier and what founding members get. Published April 2026.</p>
+      <p className="view-sub">How we structured the Pro tier and what founding members get. Published 17 April 2026.</p>
 
       <div className="manpage">
         <h3>why a paid tier</h3>

@@ -11,7 +11,7 @@ export default function HowItRunsLocalPage() {
       <p className="view-crumb"><Link href="/">~</Link><span className="sep">/</span><Link href="/blog">blog</Link><span className="sep">/</span>how-it-runs-local</p>
       <div className="cmd-line"><span className="cmd-prompt">$</span><span className="cmd">cat /posts/how-it-runs-local.md</span></div>
       <p className="view-title">How It Runs Local</p>
-      <p className="view-sub">whisper.cpp, silero vad, and the full local pipeline. Published April 2026.</p>
+      <p className="view-sub">whisper.cpp, silero vad, and the full local pipeline. Published 17 April 2026.</p>
 
       <div className="manpage">
         <h3>the pipeline</h3>

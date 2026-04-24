@@ -46,7 +46,7 @@ export default function PrivacyPage() {
         <p>Pro account data (email, subscription status) is stored in Supabase (hosted in ap-southeast-2, Sydney). Waitlist emails are stored in the same database. We use row-level security and encrypted connections.</p>
 
         <h3>your rights</h3>
-        <p>You can request deletion of your data at any time by emailing <a href="mailto:privacy@murmurlinux.com">privacy@murmurlinux.com</a>. We will delete your account, subscription records, and any associated data within 14 days. Newsletter subscribers can unsubscribe via the link in any email.</p>
+        <p>You can request deletion of your data at any time by emailing <a href="mailto:hello@murmurlinux.com">hello@murmurlinux.com</a>. We will delete your account, subscription records, and any associated data within 14 days. Newsletter subscribers can unsubscribe via the link in any email.</p>
 
         <h3>children</h3>
         <p>Murmur is not directed at children under 13. We do not knowingly collect data from children.</p>
@@ -55,8 +55,7 @@ export default function PrivacyPage() {
         <p>We may update this policy. Material changes will be emailed to Pro subscribers. The latest version is always available at this page.</p>
 
         <h3>contact</h3>
-        <p className="indent">Privacy questions: <a href="mailto:privacy@murmurlinux.com">privacy@murmurlinux.com</a></p>
-        <p className="indent">General: <a href="mailto:hello@murmurlinux.com">hello@murmurlinux.com</a></p>
+        <p className="indent"><a href="mailto:hello@murmurlinux.com">hello@murmurlinux.com</a></p>
       </div>
 
       <PageFooter />

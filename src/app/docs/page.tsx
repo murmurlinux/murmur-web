@@ -238,7 +238,7 @@ pnpm tauri build`}</pre>
         <p className="indent">Whisper models download from Hugging Face the first time you use them. If your network is slow or blocks Hugging Face, you can download the model manually and place it in <code>~/.local/share/com.murmurlinux.murmur/models/</code>. Model files are available on the <a href="https://huggingface.co/ggerganov/whisper.cpp">whisper.cpp Hugging Face page</a>.</p>
 
         <p className="indent"><strong>Still stuck?</strong></p>
-        <p className="indent">Pro users can run <code>murmur-cli doctor</code> to diagnose common issues automatically. Everyone is welcome to email us at <a href="mailto:support@murmurlinux.com">support@murmurlinux.com</a>. We&apos;re less judgemental than Stack Overflow.</p>
+        <p className="indent">Pro users can run <code>murmur-cli doctor</code> to diagnose common issues automatically. Everyone is welcome to email us at <a href="mailto:hello@murmurlinux.com">hello@murmurlinux.com</a>. We&apos;re less judgemental than Stack Overflow.</p>
 
         <h3>contributing</h3>
         <p className="indent">We welcome contributions. Fork the repo, create a branch, make your changes, and open a PR. Use conventional commit format (<code>feat:</code>, <code>fix:</code>, <code>docs:</code>). Run <code>cargo fmt</code> before committing. Full guide: <a href="https://github.com/murmurlinux/murmur/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
