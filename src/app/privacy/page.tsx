@@ -14,7 +14,7 @@ export default function PrivacyPage() {
 
       <div className="manpage">
         <h3>the short version</h3>
-        <p>The free version of Murmur runs entirely on your machine. Your audio, your transcriptions, and your configuration never leave your computer. There is no telemetry, no analytics, no phone-home. We cannot see what you dictate, when you use the app, or how often. We designed it this way on purpose.</p>
+        <p>The free version of Murmur runs entirely on your machine. Your audio, your transcriptions, and your configuration never leave your computer. There is no telemetry, no analytics, no phone-home. We cannot see what you dictate, when you use the app, or how often. We designed it this way on purpose. Pro users can optionally enable LLM cleanup, which is cloud-based but goes directly from your device to the provider you choose, not through our servers.</p>
 
         <h3>what we collect</h3>
         <p className="indent">- <strong>Free users:</strong> nothing. Zero data leaves your machine.</p>
@@ -38,6 +38,9 @@ export default function PrivacyPage() {
         <p>Provider data handling is governed by each provider&apos;s own privacy policy:</p>
         <p className="indent">- <strong>Groq:</strong> does not retain audio after transcription completes (as of writing).</p>
         <p className="indent">- <strong>Deepgram:</strong> configurable retention, supports zero-retention mode.</p>
+
+        <h3>LLM cleanup (Pro, optional)</h3>
+        <p>Pro users can enable LLM cleanup, which sends the raw Whisper transcript to a cloud LLM provider of your choice (<a href="https://groq.com" target="_blank" rel="noopener noreferrer">Groq</a> or <a href="https://anthropic.com" target="_blank" rel="noopener noreferrer">Anthropic</a>) for grammar, punctuation, and filler-word cleanup. This only happens when you enable it and provide your own API key (BYOK). Murmur does not run any intermediate server for this feature: the request goes directly from your device to the provider you select. Their data-handling policy applies. The API key is stored locally in Murmur&apos;s settings file on your device (plaintext at rest, mode 0600); we are evaluating OS keyring storage for a future release. The feature is off by default until you enter a key and enable it.</p>
 
         <h3>website</h3>
         <p>This website uses Vercel Speed Insights (privacy-preserving, no cookies). We do not use tracking cookies, advertising pixels, or third-party analytics.</p>
