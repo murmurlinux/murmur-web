@@ -43,6 +43,8 @@ chmod +x ${appImageFilename}
 ./${appImageFilename}`}</pre>
       </div>
 
+      <p className="muted" style={{ marginTop: 10, fontSize: 13 }}>First launch auto-downloads a ~75 MB speech model (tiny.en). On a metered connection, see <Link href="/docs">docs</Link> for alternative model sizes.</p>
+
       <div className="cta-row" style={{ marginTop: 14 }}>
         <a href={debUrl} className="cta">download .deb</a>
         <a href={appImageUrl} className="cta">download .AppImage</a>
