@@ -56,7 +56,7 @@ export default function AboutPage() {
       <div className="manpage">
         <h3>why murmur exists</h3>
         <p>Linux has had good options for almost everything, except voice dictation. Other platforms have had polished tools for years. We wanted to fix that.</p>
-        <p>Murmur Free is for privacy-conscious and everyday users. It runs whisper.cpp entirely on your machine. Nothing goes online, no account needed, and it&apos;s open source under GPL v3. Murmur Pro is for professionals and power users who want cloud-speed transcription via Groq and Deepgram. Audio goes directly to the provider, never to us.</p>
+        <p>Murmur Free is for privacy-conscious and everyday users. It runs whisper.cpp entirely on your machine. Nothing goes online, no account needed, and it&apos;s open source under GPL v3. Murmur Pro is for professionals and power users who want cloud-speed transcription via Groq and Deepgram. Pro is BYOK: you bring your own API keys for the cloud providers, and audio goes directly to the provider, never to us.</p>
 
         <h3>the philosophy</h3>
         <p>We built Murmur because we wanted something we&apos;d actually use ourselves, every day. Something that worked quietly, respected the user, and didn&apos;t try to be clever about monetisation. Local first. No telemetry. No dark patterns. The free version is genuinely free. Pro funds continued open source development.</p>
@@ -68,7 +68,6 @@ export default function AboutPage() {
       <p className="muted" style={{ marginTop: 10, fontSize: 12 }}>Stay in the loop: type <span className="accent">subscribe you@email.com</span> below.</p>
 
       <div className="cta-row" style={{ marginTop: 16 }}>
-        <a href="#" className="cta" onClick={openDemo}>watch demo</a>
         <Link href="/pricing" className="cta primary">get murmur pro</Link>
         <a href="https://github.com/murmurlinux" className="cta"><GithubIcon />github</a>
       </div>

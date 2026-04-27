@@ -376,13 +376,11 @@ export default function HomePage() {
             <p className="step">Transcribing...</p>
             <p className="output">&quot;The quick brown fox jumps over the lazy dog.&quot;</p>
             <p className="meta">Copied to clipboard.</p>
-            <p className="meta">Everything in free, plus cloud engines (Groq, Deepgram) for faster, more accurate transcription. Audio goes directly to the provider, never to us. Adds CLI mode, LLM cleanup, custom dictionaries, and more. Closed source. For professionals and heavy users.</p>
+            <p className="meta">Everything in free, plus cloud engines (Groq, Deepgram) for faster, more accurate transcription. BYOK: you bring your own API keys, audio goes directly to the provider, never to us. Adds CLI mode, LLM cleanup, custom dictionaries, and more. Closed source. For professionals and heavy users.</p>
           </div>
         </div>
 
         <div className="screen-cta typed-hidden" id="demo-ctas">
-          <a href="#" className="cta" onClick={openDemo}>watch demo</a>
-          <span className="or">&middot;</span>
           <Link href="/pricing" className="cta primary">get murmur pro</Link>
           <span className="or">&middot;</span>
           <Link href="/download" className="cta">download free</Link>
