@@ -121,7 +121,6 @@ export default function PricingPage() {
           </ul>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap" as const }}>
             <button type="button" className="cta primary" id="go-pro-btn" disabled style={{ cursor: "not-allowed", opacity: 0.6 }} aria-disabled="true">coming soon</button>
-            <a href="#" className="cta" onClick={openDemo}>watch demo</a>
           </div>
         </div>
       </div>
