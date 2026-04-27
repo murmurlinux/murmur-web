@@ -4,7 +4,6 @@ import { createClient } from "@supabase/supabase-js";
 
 export const runtime = "nodejs";
 
-// Lazy-init: avoid crashing at build time when env vars are absent
 let _supabase: ReturnType<typeof createClient> | null = null;
 function getSupabase() {
   if (!_supabase) {
@@ -34,6 +33,17 @@ function verifySignature(rawBody: string, signature: string | null): boolean {
 
 const PRO_STATUSES = new Set(["active", "on_trial"]);
 
+const SUBSCRIPTION_EVENTS = new Set([
+  "subscription_created",
+  "subscription_updated",
+  "subscription_cancelled",
+  "subscription_expired",
+  "subscription_resumed",
+  "subscription_paused",
+]);
+
+const POSTGRES_UNIQUE_VIOLATION = "23505";
+
 export async function POST(request: Request) {
   const rawBody = await request.text();
   const signature = request.headers.get("x-signature");
@@ -59,16 +69,39 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
   }
 
-  const subscriptionEvents = [
-    "subscription_created",
-    "subscription_updated",
-    "subscription_cancelled",
-    "subscription_expired",
-    "subscription_resumed",
-    "subscription_paused",
-  ];
+  const supabase = getSupabase();
 
-  if (!subscriptionEvents.includes(eventName)) {
+  // Idempotency: dedupe by sha256 of the raw body. Two replays of the same
+  // delivery have identical bodies → identical hashes → primary-key conflict
+  // on the second insert.
+  const eventHash = crypto.createHash("sha256").update(rawBody).digest("hex");
+  const { error: insertError } = await supabase
+    .from("webhook_events")
+    .insert({
+      event_hash: eventHash,
+      source: "lemonsqueezy",
+      event_name: eventName,
+    } as never);
+
+  if (insertError) {
+    // Treat any unique-constraint violation on this table as "already processed".
+    if (insertError.code === POSTGRES_UNIQUE_VIOLATION) {
+      console.info("[webhook] duplicate delivery, skipping:", {
+        eventHash,
+        eventName,
+      });
+      return NextResponse.json({ received: true, deduped: true });
+    }
+    // Other failure modes (RLS, connectivity) should not silently drop the
+    // event — better to 500 and let LemonSqueezy retry.
+    console.error("[webhook] idempotency log insert failed:", insertError);
+    return NextResponse.json(
+      { error: "Idempotency log unavailable" },
+      { status: 500 }
+    );
+  }
+
+  if (!SUBSCRIPTION_EVENTS.has(eventName)) {
     return NextResponse.json({ received: true });
   }
 
@@ -77,8 +110,58 @@ export async function POST(request: Request) {
   const customerId: number = attrs.customer_id;
   const subscriptionId = Number(p.data?.id);
   const isPro = PRO_STATUSES.has(status);
-
   const userId: string | undefined = customData?.user_id;
+
+  // Replay protection: only apply events whose payload timestamp is strictly
+  // newer than the last one we've recorded against this profile. LemonSqueezy
+  // emits attrs.updated_at on every subscription event; it advances
+  // monotonically, so it's a safe ordering key.
+  const eventTimestamp: string | undefined = attrs.updated_at;
+  if (!eventTimestamp || Number.isNaN(Date.parse(eventTimestamp))) {
+    console.error("[webhook] missing or unparseable attrs.updated_at:", {
+      eventName,
+      raw: eventTimestamp,
+    });
+    return NextResponse.json(
+      { error: "Missing event timestamp" },
+      { status: 400 }
+    );
+  }
+
+  // Read the existing profile to decide whether this event is fresh enough.
+  const lookup = userId
+    ? supabase.from("profiles").select("id, last_webhook_at").eq("id", userId)
+    : supabase
+        .from("profiles")
+        .select("id, last_webhook_at")
+        .eq("email", email);
+
+  const { data: existing, error: lookupError } = await lookup.maybeSingle();
+
+  if (lookupError) {
+    console.error("[webhook] profile lookup failed:", lookupError);
+    return NextResponse.json({ error: "Lookup failed" }, { status: 500 });
+  }
+
+  if (!existing) {
+    console.error("[webhook] no profile matched:", { userId, email });
+    return NextResponse.json(
+      { error: "No matching profile" },
+      { status: 404 }
+    );
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const existingTyped = existing as any;
+  const lastWebhookAt: string | null = existingTyped.last_webhook_at;
+  if (lastWebhookAt && Date.parse(eventTimestamp) <= Date.parse(lastWebhookAt)) {
+    console.info("[webhook] stale event, skipping:", {
+      eventName,
+      eventTimestamp,
+      lastWebhookAt,
+    });
+    return NextResponse.json({ received: true, stale: true });
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const cleanData: Record<string, any> = {
@@ -86,6 +169,7 @@ export async function POST(request: Request) {
     lemon_customer_id: customerId,
     lemon_subscription_id: subscriptionId,
     subscription_status: status,
+    last_webhook_at: eventTimestamp,
     updated_at: new Date().toISOString(),
   };
 
@@ -98,40 +182,14 @@ export async function POST(request: Request) {
     ).toISOString();
   }
 
-  const supabase = getSupabase();
+  const { error: updateError } = await supabase
+    .from("profiles")
+    .update(cleanData as never)
+    .eq("id", existingTyped.id);
 
-  let query;
-  if (userId) {
-    query = supabase
-      .from("profiles")
-      .update(cleanData as never)
-      .eq("id", userId)
-      .select("id");
-  } else {
-    console.warn(
-      "[webhook] user_id missing from custom_data, falling back to email lookup:",
-      email
-    );
-    query = supabase
-      .from("profiles")
-      .update(cleanData as never)
-      .eq("email", email)
-      .select("id");
-  }
-
-  const { data, error } = await query;
-
-  if (error) {
-    console.error("[webhook] profile update failed:", error);
+  if (updateError) {
+    console.error("[webhook] profile update failed:", updateError);
     return NextResponse.json({ error: "Update failed" }, { status: 500 });
-  }
-
-  if (!data || data.length === 0) {
-    console.error("[webhook] no profile matched for update:", { userId, email });
-    return NextResponse.json(
-      { error: "No matching profile" },
-      { status: 404 }
-    );
   }
 
   return NextResponse.json({ received: true });
